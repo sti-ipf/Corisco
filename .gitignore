@@ -1,0 +1,5 @@
+assetstore/
+config/
+exports/
+log/
+*.cfg

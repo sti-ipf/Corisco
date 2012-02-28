@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  bitstream-listing.xsl
+
+  Version: 1
+ 
+  Date: 2011-02-15 09:30:00 -0200 (Tue, 15 Feb 2011)
+ 
+  Copyright (c) 2010-2011, Brasiliana Digital Library (http://brasiliana.usp.br).
+  Copyright (c) 2002-2005, Hewlett-Packard Company and Massachusetts
+  Institute of Technology.  All rights reserved.
+ 
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions are
+  met:
+ 
+  - Redistributions of source code must retain the above copyright
+  notice, this list of conditions and the following disclaimer.
+ 
+  - Redistributions in binary form must reproduce the above copyright
+  notice, this list of conditions and the following disclaimer in the
+  documentation and/or other materials provided with the distribution.
+ 
+  - Neither the name of the Hewlett-Packard Company nor the name of the
+  Massachusetts Institute of Technology nor the names of their
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+ 
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  HOLDERS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+  BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
+  OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
+  TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
+  USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+  DAMAGE.
+-->
+
+<!--
+    Description: Specialization of 'General-Handler.xsl', of the Reference theme.
+    Author: Fabio N. Kepler
+-->
+
+<xsl:stylesheet xmlns:i18n="http://apache.org/cocoon/i18n/2.1"
+        xmlns:dri="http://di.tamu.edu/DRI/1.0/"
+        xmlns:mets="http://www.loc.gov/METS/"
+        xmlns:xlink="http://www.w3.org/TR/xlink/"
+        xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+        xmlns:dim="http://www.dspace.org/xmlns/dspace/dim"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:mods="http://www.loc.gov/mods/v3"
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns="http://www.w3.org/1999/xhtml"
+        exclude-result-prefixes="mets xlink xsl dim xhtml mods dc">
+
+    <xsl:output indent="yes"/>
+
+
+    <!-- Generate the thunbnail, if present, from the file section -->
+    <xsl:template match="mets:fileSec" mode="artifact-preview">
+        <xsl:param name="primaryBitstream" select="-1"/>
+        <xsl:comment><xsl:value-of select="$primaryBitstream"/></xsl:comment>
+
+        <a href="{ancestor::mets:METS/@OBJID}">
+            <xsl:choose>
+                <xsl:when test="$primaryBitstream != -1">
+                    <xsl:choose>
+                        <xsl:when test="mets:fileGrp[@USE='THUMBNAIL']/mets:file[@ID=$primaryBitstream]">
+                            <img class="preview-thumbnail" alt="Thumbnail">
+                                <xsl:attribute name="src">
+                                    <xsl:value-of select="mets:fileGrp[@USE='THUMBNAIL']/mets:file[@ID=$primaryBitstream]/mets:FLocat[@LOCTYPE='URL']/@xlink:href" />
+                                </xsl:attribute>
+                            </img>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:variable name="thumbnail-path">
+                                <xsl:value-of select="$djatoka-thumbnail-base-url"/>
+                                <xsl:value-of select="//mets:structMap[@TYPE='LOGICAL']/mets:div[@TYPE='DSpace Item']//mets:fptr[@FILEID=$primaryBitstream]/@FILEINTERNALID"/>
+                            </xsl:variable>
+        
+                            <img class="preview-thumbnail" alt="Thumbnail" onerror="this.onerror=null;this.src='{$bookreader-path}/images/transparent.png';">
+                                <xsl:attribute name="src">
+                                    <xsl:value-of select="$thumbnail-path"/>
+                                </xsl:attribute>
+                            </img>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+
+                <xsl:when test="mets:fileGrp[@USE='THUMBNAIL']">
+                    <img class="preview-thumbnail" alt="Thumbnail">
+                        <xsl:attribute name="src">
+                            <xsl:value-of select="mets:fileGrp[@USE='THUMBNAIL']/mets:file/mets:FLocat[@LOCTYPE='URL']/@xlink:href" />
+                        </xsl:attribute>
+                    </img>
+                </xsl:when>
+
+                <xsl:when test="mets:fileGrp[@USE='LOGO']">
+                    <xsl:comment>@USE='LOGO' preview-thumbnail</xsl:comment>
+                    <xsl:apply-templates select="mets:fileGrp[@USE='LOGO']"/>
+                </xsl:when>
+
+                <xsl:otherwise>
+                    <xsl:variable name="fileid">
+                        <xsl:value-of select="mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL']/mets:file[1]/@ID"/>
+                    </xsl:variable>
+                    <xsl:variable name="thumbnail-path">
+                        <xsl:value-of select="$djatoka-thumbnail-base-url"/>
+                        <xsl:value-of select="//mets:structMap[@TYPE='LOGICAL']/mets:div[@TYPE='DSpace Item']//mets:fptr[@FILEID=$fileid]/@FILEINTERNALID"/>
+                    </xsl:variable>
+
+                    <img class="preview-thumbnail" alt="Thumbnail" onerror="this.onerror=null;this.src='{$bookreader-path}/images/transparent.png';">
+                        <xsl:attribute name="src">
+                            <xsl:value-of select="$thumbnail-path"/>
+                        </xsl:attribute>
+                    </img>
+<!--                    <img alt="Thumbnail">
+                        <xsl:attribute name="src">
+                            <xsl:value-of select="$images-path"/>
+                            <xsl:text>visualizador_pg1.gif</xsl:text>
+                        </xsl:attribute>
+                    </img>-->
+                </xsl:otherwise>
+            </xsl:choose>
+        </a>
+    </xsl:template>
+
+    <!-- Generate the bitstream information from the file section -->
+    <xsl:template match="mets:fileGrp[@USE='CONTENT']">
+        <xsl:param name="context"/>
+        <xsl:param name="primaryBitstream" select="-1"/>
+
+        <h2><i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-head</i18n:text></h2>
+
+        <xsl:choose>
+            <xsl:when test="mets:file[@ID=$primaryBitstream]/@MIMETYPE='image/png'">
+                <h3 class="separador">Ver imagem no lightbox</h3>
+                    <!-- Tipo 1 -->
+                    <ul class="ds-list-media-with-lightbox">
+                        <xsl:choose>
+                            <!-- If one exists and it's of text/html MIME type, only display the primary bitstream -->
+                            <xsl:when test="mets:file[@ID=$primaryBitstream]/@MIMETYPE='text/html'">
+                                <xsl:apply-templates select="mets:file[@ID=$primaryBitstream]">
+                                    <xsl:with-param name="context" select="$context"/>
+                                </xsl:apply-templates>
+                            </xsl:when>
+                            <!-- Otherwise, iterate over and display all of them -->
+                            <xsl:otherwise>
+                                <xsl:apply-templates select="mets:file">
+                                    <xsl:sort data-type="number" select="boolean(./@ID=$primaryBitstream)" order="descending" />
+                                    <xsl:sort select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
+                                    <xsl:with-param name="context" select="$context"/>
+                                </xsl:apply-templates>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </ul>
+
+                    <script type="text/javascript" src="/xmlui/themes/Corisco/lib/js/jquery.lightbox.min.js">0</script>
+                    <script type="text/javascript">
+                        $(".ds-list-media-with-lightbox a").lightBox();
+                    </script>                    
+
+                    <!-- Tipo 2 -->
+                    <h3 class="separador">Ver imagem na mesma tela</h3>
+                    <div id="image-zoom-area">
+                        Carregando...
+                    </div>
+
+                    <ul class="ds-list-media">
+                        <xsl:choose>
+                            <!-- If one exists and it's of text/html MIME type, only display the primary bitstream -->
+                            <xsl:when test="mets:file[@ID=$primaryBitstream]/@MIMETYPE='text/html'">
+                                <xsl:apply-templates select="mets:file[@ID=$primaryBitstream]">
+                                    <xsl:with-param name="context" select="$context"/>
+                                </xsl:apply-templates>
+                            </xsl:when>
+                            <!-- Otherwise, iterate over and display all of them -->
+                            <xsl:otherwise>
+                                <xsl:apply-templates select="mets:file">
+                                    <xsl:sort data-type="number" select="boolean(./@ID=$primaryBitstream)" order="descending" />
+                                    <xsl:sort select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
+                                    <xsl:with-param name="context" select="$context"/>
+                                </xsl:apply-templates>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </ul>
+            </xsl:when>
+            <xsl:otherwise>
+                <script type="text/javascript" src="/xmlui/themes/Corisco/lib/js/jwplayer.js">0</script>
+                <div id="container">Loading the player...</div>
+                <script type="text/javascript">
+                    jwplayer("container").setup({
+                        flashplayer: "/xmlui/themes/Corisco/lib/js/player.swf",
+                        playlist: [
+                            <xsl:for-each select="mets:file">
+                                { file: "<xsl:call-template name="getFileViewURL">
+                                    <xsl:with-param name="file" select="."/>
+                                </xsl:call-template>"},
+                            </xsl:for-each>
+                        ]
+                    });
+                </script>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <!-- Build a single row in the bitsreams table of the item view page -->
+    <xsl:template match="mets:file">
+        <xsl:param name="context" select="."/>
+        <li>
+            <xsl:choose>
+                <xsl:when test="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/
+                    mets:file[@GROUPID=current()/@GROUPID]">
+                    <a class="image-link">
+                        <xsl:attribute name="href">
+                            <xsl:call-template name="getFileViewURL">
+                                <xsl:with-param name="file" select="."/>
+                            </xsl:call-template>
+                        </xsl:attribute>
+                        <img alt="Thumbnail">
+                            <xsl:attribute name="src">
+                                <xsl:value-of select="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/
+                                    mets:file[@GROUPID=current()/@GROUPID]/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                            </xsl:attribute>
+                        </img>
+                    </a>
+                </xsl:when>
+                <xsl:otherwise>
+                    <a>
+                        <xsl:attribute name="href">
+                            <xsl:call-template name="getFileViewURL">
+                                <xsl:with-param name="file" select="."/>
+                            </xsl:call-template>
+                        </xsl:attribute>
+                        <i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-viewOpen</i18n:text>
+                    </a>
+                </xsl:otherwise>
+            </xsl:choose>
+
+    	    <!-- Display the contents of 'Description' as long as at least one bitstream contains a description -->
+    	    <xsl:if test="$context/mets:fileSec/mets:fileGrp[@USE='CONTENT']/mets:file/mets:FLocat/@xlink:label != ''">
+    	        <p>
+    	            <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
+    	        </p>
+    	    </xsl:if>
+        </li>
+    </xsl:template>
+
+    <!--
+    File Type Mapping template
+
+    This maps format MIME Types to human friendly File Type descriptions.
+    Essentially, it looks for a corresponding 'key' in your messages.xml of this
+    format: xmlui.dri2xhtml.mimetype.{MIME Type}
+
+    (e.g.) <message key="xmlui.dri2xhtml.mimetype.application/pdf">PDF</message>
+
+    If a key is found, the translated value is displayed as the File Type (e.g. PDF)
+    If a key is NOT found, the MIME Type is displayed by default (e.g. application/pdf)
+    -->
+    <xsl:template name="getFileTypeDesc">
+      <xsl:param name="mimetype"/>
+
+      <!--Build full key name for MIME type (format: xmlui.dri2xhtml.mimetype.{MIME type})-->
+      <xsl:variable name="mimetype-key">xmlui.dri2xhtml.mimetype.<xsl:value-of select='$mimetype'/></xsl:variable>
+
+      <!--Lookup the MIME Type's key in messages.xml language file.  If not found, just display MIME Type-->
+      <i18n:text i18n:key="{$mimetype-key}"><xsl:value-of select="$mimetype"/></i18n:text>
+    </xsl:template>
+
+
+    <xsl:template name="getFileViewURL">
+        <xsl:param name="file"/>
+        <xsl:variable name="original-link">
+            <xsl:value-of select="substring-before(mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')"/>
+        </xsl:variable>
+
+        <xsl:choose>
+            <xsl:when test="@MIMETYPE = 'image/jpeg'">
+                <xsl:variable name="viewer-link">
+                    <xsl:value-of select="ancestor::mets:METS/@OBJID"/>
+                    <xsl:text>/stream/</xsl:text>
+                    <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
+                </xsl:variable>
+                <xsl:value-of select="$viewer-link"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$original-link"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+
+    <!-- Generate the license information from the file section -->
+    <xsl:template match="mets:fileGrp[@USE='CC-LICENSE' or @USE='LICENSE']">
+        <div class="license-info">
+            <p><i18n:text>xmlui.dri2xhtml.METS-1.0.license-text</i18n:text></p>
+            <ul>
+                <xsl:if test="@USE='CC-LICENSE'">
+                    <li><a href="{mets:file/mets:FLocat[@xlink:title='license_text']/@xlink:href}"><i18n:text>xmlui.dri2xhtml.structural.link_cc</i18n:text></a></li>
+                </xsl:if>
+                <xsl:if test="@USE='LICENSE'">
+                    <li><a href="{mets:file/mets:FLocat[@xlink:title='license.txt']/@xlink:href}"><i18n:text>xmlui.dri2xhtml.structural.link_original_license</i18n:text></a></li>
+                </xsl:if>
+            </ul>
+        </div>
+    </xsl:template>
+
+
+    <!-- Generate the logo, if present, from the file section -->
+    <xsl:template match="mets:fileGrp[@USE='LOGO']">
+        <!--
+        <div class="ds-logo-wrapper">
+            <img src="{mets:file/mets:FLocat[@LOCTYPE='URL']/@xlink:href}" class="logo">
+                <xsl:attribute name="alt">xmlui.dri2xhtml.METS-1.0.collection-logo-alt</xsl:attribute>
+                <xsl:attribute name="attr" namespace="http://apache.org/cocoon/i18n/2.1">alt</xsl:attribute>
+            </img>
+        </div>
+        -->
+                    <img class="preview-thumbnail" alt="Thumbnail" onerror="this.onerror=null;this.src='{$bookreader-path}/images/transparent.png';">
+                        <xsl:attribute name="src">
+                            <xsl:value-of select="mets:file/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="alt">xmlui.dri2xhtml.METS-1.0.collection-logo-alt</xsl:attribute>
+                        <xsl:attribute name="attr" namespace="http://apache.org/cocoon/i18n/2.1">alt</xsl:attribute>
+                    </img>
+    </xsl:template>
+
+
+</xsl:stylesheet>
