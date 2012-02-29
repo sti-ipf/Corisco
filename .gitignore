@@ -6,3 +6,4 @@ search/
 solr/statistics/data/
 solr/search/data/
 *.cfg
+*.log
