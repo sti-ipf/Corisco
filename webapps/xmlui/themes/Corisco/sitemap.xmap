@@ -93,56 +93,48 @@
                 
                 <!-- Step 2 Add page metadata -->
                 <map:transform type="IncludePageMeta">
+                    <map:parameter name="stylesheet.screen#1" value="lib/fancybox/jquery.fancybox.css" />
+                    <map:parameter name="stylesheet.screen#2" value="lib/css/corisco.css" />
                     <map:parameter name="javascript.external#1" value="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"/>
                     <map:parameter name="javascript.external#2" value="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"/>
+                    <map:parameter name="javascript#1" value="lib/js/jwplayer.js"/>                    
+                    <map:parameter name="javascript#2" value="lib/fancybox/jquery.easing.pack.js"/>
+                    <map:parameter name="javascript#3" value="lib/fancybox/jquery.mousewheel.pack.js"/>
+                    <map:parameter name="javascript#4" value="lib/fancybox/jquery.fancybox.pack.js"/>
+                    <map:parameter name="javascript#5" value="lib/js/corisco.js"/>
                 </map:transform>
 
                 <map:select type="browser">
                     <map:when test="explorer6">
                         <map:transform type="IncludePageMeta">
-                            <map:parameter name="stylesheet.screen#1" value="lib/css/jquery.lightbox.css"/>
-                            <map:parameter name="stylesheet.screen#1" value="lib/css/corisco.css"/>
-                            <map:parameter name="stylesheet.screen#2" value="lib/css/style-ie6.css"/>
-                            <map:parameter name="javascript#4" value="lib/js/corisco.js"/>
+                            <map:parameter name="stylesheet.screen#3" value="lib/css/style-ie6.css"/>
                             <map:parameter name="theme.path" value="{global:theme-path}"/>
                             <map:parameter name="theme.name" value="{global:theme-name}"/>
                         </map:transform>
                     </map:when>
                     <map:when test="explorer7">
                         <map:transform type="IncludePageMeta">
-                            <map:parameter name="stylesheet.screen#1" value="lib/css/jquery.lightbox.css"/>
-                            <map:parameter name="stylesheet.screen#1" value="lib/css/corisco.css"/>
-                            <map:parameter name="stylesheet.screen#2" value="lib/css/style-ie7.css"/>
-                            <map:parameter name="javascript#4" value="lib/js/corisco.js"/>
+                            <map:parameter name="stylesheet.screen#3" value="lib/css/style-ie7.css"/>
                             <map:parameter name="theme.path" value="{global:theme-path}"/>
                             <map:parameter name="theme.name" value="{global:theme-name}"/>
                         </map:transform>
                     </map:when>
                     <map:when test="safari2">
                         <map:transform type="IncludePageMeta">
-                            <map:parameter name="stylesheet.screen#1" value="lib/css/jquery.lightbox.css"/>
-                            <map:parameter name="stylesheet.screen#1" value="lib/css/corisco.css"/>
                             <map:parameter name="stylesheet.screen#3" value="lib/css/style-safari2.css"/>
-                            <map:parameter name="javascript#4" value="lib/js/corisco.js"/>
                             <map:parameter name="theme.path" value="{global:theme-path}"/>
                             <map:parameter name="theme.name" value="{global:theme-name}"/>
                         </map:transform>
                     </map:when>
                     <map:when test="safari3">
                         <map:transform type="IncludePageMeta">
-                            <map:parameter name="stylesheet.screen#1" value="lib/css/jquery.lightbox.css"/>
-                            <map:parameter name="stylesheet.screen#1" value="lib/css/corisco.css"/>
                             <map:parameter name="stylesheet.screen#3" value="lib/css/style-safari3.css"/>
-                            <map:parameter name="javascript#4" value="lib/js/corisco.js"/>
                             <map:parameter name="theme.path" value="{global:theme-path}"/>
                             <map:parameter name="theme.name" value="{global:theme-name}"/>
                         </map:transform>
                     </map:when>
                     <map:otherwise>
                         <map:transform type="IncludePageMeta">
-                            <map:parameter name="stylesheet.screen#1" value="lib/css/jquery.lightbox.css"/>
-                            <map:parameter name="stylesheet.screen" value="lib/css/corisco.css"/>
-                            <map:parameter name="javascript#4" value="lib/js/corisco.js"/>
                             <map:parameter name="theme.path" value="{global:theme-path}"/>
                             <map:parameter name="theme.name" value="{global:theme-name}"/>
                         </map:transform>

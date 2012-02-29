@@ -4,4 +4,5 @@ exports/
 log/
 search/
 solr/statistics/data/
+solr/search/data/
 *.cfg
