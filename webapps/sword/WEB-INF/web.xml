@@ -47,7 +47,7 @@
 
   <context-param>
     <param-name>dspace-config</param-name>
-    <param-value>/dados/dspace/config/dspace.cfg</param-value>
+    <param-value>/var/dados/dspace/config/dspace.cfg</param-value>
     <description>
       The location of the main DSpace configuration file
     </description>
