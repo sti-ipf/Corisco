@@ -64,5 +64,5 @@ fi
 LOG='-Djava.util.logging.config.file=$DSPACEDIR/config/logging.properties'
 
 # Now invoke Java
-/usr/lib/jvm/jdk1.6.0_30/bin/java $JAVA_OPTS -classpath $FULLPATH $LOG org.dspace.app.launcher.ScriptLauncher "$@"
+/usr/lib/jvm/java-1.7.0-openjdk-amd64/bin/java $JAVA_OPTS -classpath $FULLPATH $LOG org.dspace.app.launcher.ScriptLauncher "$@"
 
