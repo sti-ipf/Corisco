@@ -2,4 +2,6 @@ assetstore/
 config/
 exports/
 log/
+solr/statistics/data
+solr/search/data
 *.cfg
