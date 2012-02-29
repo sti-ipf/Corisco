@@ -197,10 +197,5 @@ this.printElement = function(elementSelector) {
 }) (jQuery);
 
 $(function() {
-   $("#image-zoom-area").html('<img src="' + $(".ds-list-media a:first").attr("href") + '" />');
-
-   $(".ds-list-media a").click(function() {
-        $("#image-zoom-area").html('<img src="' + $(this).attr("href") + '" />');
-        return false;
-   })
+    $(".fancybox").fancybox();
 });

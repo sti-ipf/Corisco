@@ -139,71 +139,46 @@
 
         <xsl:choose>
             <xsl:when test="mets:file[@ID=$primaryBitstream]/@MIMETYPE='image/png'">
-                <h3 class="separador">Ver imagem no lightbox</h3>
-                    <!-- Tipo 1 -->
-                    <ul class="ds-list-media-with-lightbox">
-                        <xsl:choose>
-                            <!-- If one exists and it's of text/html MIME type, only display the primary bitstream -->
-                            <xsl:when test="mets:file[@ID=$primaryBitstream]/@MIMETYPE='text/html'">
-                                <xsl:apply-templates select="mets:file[@ID=$primaryBitstream]">
-                                    <xsl:with-param name="context" select="$context"/>
-                                </xsl:apply-templates>
-                            </xsl:when>
-                            <!-- Otherwise, iterate over and display all of them -->
-                            <xsl:otherwise>
-                                <xsl:apply-templates select="mets:file">
-                                    <xsl:sort data-type="number" select="boolean(./@ID=$primaryBitstream)" order="descending" />
-                                    <xsl:sort select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
-                                    <xsl:with-param name="context" select="$context"/>
-                                </xsl:apply-templates>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </ul>
-
-                    <script type="text/javascript" src="/xmlui/themes/Corisco/lib/js/jquery.lightbox.min.js">0</script>
-                    <script type="text/javascript">
-                        $(".ds-list-media-with-lightbox a").lightBox();
-                    </script>                    
-
-                    <!-- Tipo 2 -->
-                    <h3 class="separador">Ver imagem na mesma tela</h3>
-                    <div id="image-zoom-area">
-                        Carregando...
-                    </div>
-
-                    <ul class="ds-list-media">
-                        <xsl:choose>
-                            <!-- If one exists and it's of text/html MIME type, only display the primary bitstream -->
-                            <xsl:when test="mets:file[@ID=$primaryBitstream]/@MIMETYPE='text/html'">
-                                <xsl:apply-templates select="mets:file[@ID=$primaryBitstream]">
-                                    <xsl:with-param name="context" select="$context"/>
-                                </xsl:apply-templates>
-                            </xsl:when>
-                            <!-- Otherwise, iterate over and display all of them -->
-                            <xsl:otherwise>
-                                <xsl:apply-templates select="mets:file">
-                                    <xsl:sort data-type="number" select="boolean(./@ID=$primaryBitstream)" order="descending" />
-                                    <xsl:sort select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
-                                    <xsl:with-param name="context" select="$context"/>
-                                </xsl:apply-templates>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </ul>
+                <ul class="ds-list-media-with-lightbox">
+                    <xsl:choose>
+                        <!-- If one exists and it's of text/html MIME type, only display the primary bitstream -->
+                        <xsl:when test="mets:file[@ID=$primaryBitstream]/@MIMETYPE='text/html'">
+                           <xsl:apply-templates select="mets:file[@ID=$primaryBitstream]">
+                                <xsl:with-param name="context" select="$context"/>
+                            </xsl:apply-templates>
+                        </xsl:when>
+                        <!-- Otherwise, iterate over and display all of them -->
+                        <xsl:otherwise>
+                           <xsl:apply-templates select="mets:file">
+                                <xsl:sort data-type="number" select="boolean(./@ID=$primaryBitstream)" order="descending" />
+                                <xsl:sort select="mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>
+                                <xsl:with-param name="context" select="$context"/>
+                            </xsl:apply-templates>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </ul>
             </xsl:when>
             <xsl:otherwise>
-                <script type="text/javascript" src="/xmlui/themes/Corisco/lib/js/jwplayer.js">0</script>
                 <div id="container">Loading the player...</div>
                 <script type="text/javascript">
-                    jwplayer("container").setup({
-                        flashplayer: "/xmlui/themes/Corisco/lib/js/player.swf",
-                        playlist: [
-                            <xsl:for-each select="mets:file">
-                                { file: "<xsl:call-template name="getFileViewURL">
-                                    <xsl:with-param name="file" select="."/>
-                                </xsl:call-template>"},
-                            </xsl:for-each>
-                        ]
-                    });
+                    (function() {
+                        jwplayer("container").setup({
+                            flashplayer: "/xmlui/themes/Corisco/lib/js/player.swf",
+                            <xsl:choose>
+                                <xsl:when test="mets:file/@MIMETYPE='audio/x-mpeg'">
+                                    controlbar: 'bottom',
+                                    height: 24,
+                                </xsl:when>
+                            </xsl:choose>
+                            playlist: [
+                                <xsl:for-each select="mets:file">
+                                    { file: "<xsl:call-template name="getFileViewURL">
+                                        <xsl:with-param name="file" select="."/>
+                                    </xsl:call-template>"},
+                                </xsl:for-each>
+                            ]
+                        });
+                    })();
                 </script>
             </xsl:otherwise>
         </xsl:choose>
@@ -216,16 +191,15 @@
             <xsl:choose>
                 <xsl:when test="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/
                     mets:file[@GROUPID=current()/@GROUPID]">
-                    <a class="image-link">
+                    <a class="fancybox" rel="fancybox">
                         <xsl:attribute name="href">
                             <xsl:call-template name="getFileViewURL">
                                 <xsl:with-param name="file" select="."/>
                             </xsl:call-template>
                         </xsl:attribute>
-                        <img alt="Thumbnail">
+                        <img alt="Thumbnail" width="200" height="150">
                             <xsl:attribute name="src">
-                                <xsl:value-of select="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/
-                                    mets:file[@GROUPID=current()/@GROUPID]/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+                                <xsl:value-of select="$context/mets:fileSec/mets:fileGrp[@USE='THUMBNAIL']/mets:file[@GROUPID=current()/@GROUPID]/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
                             </xsl:attribute>
                         </img>
                     </a>
