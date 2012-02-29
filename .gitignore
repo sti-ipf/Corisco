@@ -3,7 +3,7 @@ config/
 exports/
 log/
 search/
-solr/statistics/data/
-solr/search/data/
+solr/statistics/data
+solr/search/data
 *.cfg
 *.log
