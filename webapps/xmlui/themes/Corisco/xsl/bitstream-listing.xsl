@@ -136,9 +136,11 @@
         <xsl:param name="primaryBitstream" select="-1"/>
 
         <h2><i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-head</i18n:text></h2>
-
+        <xsl:comment>
+            <xsl:value-of select="mets:file/@MIMETYPE" />
+        </xsl:comment>
         <xsl:choose>
-            <xsl:when test="mets:file[@ID=$primaryBitstream]/@MIMETYPE='image/png'">
+            <xsl:when test="mets:file/@MIMETYPE='image/png'">
                 <ul class="ds-list-media-with-lightbox">
                     <xsl:choose>
                         <!-- If one exists and it's of text/html MIME type, only display the primary bitstream -->
@@ -217,11 +219,11 @@
             </xsl:choose>
 
     	    <!-- Display the contents of 'Description' as long as at least one bitstream contains a description -->
-    	    <xsl:if test="$context/mets:fileSec/mets:fileGrp[@USE='CONTENT']/mets:file/mets:FLocat/@xlink:label != ''">
+    	    <!--xsl:if test="$context/mets:fileSec/mets:fileGrp[@USE='CONTENT']/mets:file/mets:FLocat/@xlink:label != ''">
     	        <p>
     	            <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
     	        </p>
-    	    </xsl:if>
+    	    </xsl:if-->
         </li>
     </xsl:template>
 
