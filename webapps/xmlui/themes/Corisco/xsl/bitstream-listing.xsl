@@ -135,12 +135,9 @@
         <xsl:param name="context"/>
         <xsl:param name="primaryBitstream" select="-1"/>
 
-        <xsl:comment>
-            <xsl:value-of select="mets:file/@MIMETYPE" />
-        </xsl:comment>
         <xsl:choose>
             <xsl:when test="mets:file/@MIMETYPE='image/png'">
-                <ul class="ds-list-media-with-lightbox">
+                <ul class="ds-list-media">
                     <xsl:choose>
                         <!-- If one exists and it's of text/html MIME type, only display the primary bitstream -->
                         <xsl:when test="mets:file[@ID=$primaryBitstream]/@MIMETYPE='text/html'">

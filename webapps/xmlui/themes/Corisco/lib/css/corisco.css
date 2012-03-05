@@ -461,7 +461,11 @@ h3.separador {
 	margin-top: 20px;
 }
 
-.ds-list-media li, .ds-list-media-with-lightbox li {
+.ds-list-media {
+	clear: both;
+}
+
+.ds-list-media li {
 	display: inline;
 	margin: 10px;
 	text-align: center;
