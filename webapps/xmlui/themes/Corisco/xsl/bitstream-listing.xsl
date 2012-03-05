@@ -135,7 +135,6 @@
         <xsl:param name="context"/>
         <xsl:param name="primaryBitstream" select="-1"/>
 
-        <h2><i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-head</i18n:text></h2>
         <xsl:comment>
             <xsl:value-of select="mets:file/@MIMETYPE" />
         </xsl:comment>
