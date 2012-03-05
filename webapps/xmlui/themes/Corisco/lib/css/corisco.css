@@ -471,8 +471,9 @@ h3.separador {
 	text-align: center;
 }
 
-#image-zoom-area {
-	text-align: center;
+#container-jwplayer {
+	clear: both;
+	margin: 0 auto;
 }
 
 .fb_share {
@@ -489,4 +490,14 @@ h3.separador {
 	background: url("../img/orkut-promover.png") no-repeat;
 	text-indent: -9999px;
 	display: block;
+}
+
+.lista-galeria-video {
+	margin-top: 20px;
+	overflow: auto;
+}
+
+.lista-galeria-video .item {
+	float: left;
+	padding: 10px;
 }

@@ -157,27 +157,35 @@
                 </ul>
             </xsl:when>
             <xsl:otherwise>
-                <div id="container">Loading the player...</div>
+                <div id="container-jwplayer">Loading the player...</div>
                 <script type="text/javascript">
                     (function() {
-                        jwplayer("container").setup({
-                            flashplayer: "/xmlui/themes/Corisco/lib/js/player.swf",
+                        jwplayer("container-jwplayer").setup({
+                            'flashplayer': "/xmlui/themes/Corisco/lib/js/player.swf",
                             <xsl:choose>
                                 <xsl:when test="mets:file/@MIMETYPE='audio/x-mpeg'">
                                     controlbar: 'bottom',
                                     height: 24,
                                 </xsl:when>
+                                <xsl:otherwise>
+                                    'image': '<xsl:value-of select="$theme-path"/>/images/chamada-video.png',
+                                </xsl:otherwise>
                             </xsl:choose>
-                            playlist: [
-                                <xsl:for-each select="mets:file">
-                                    { file: "<xsl:call-template name="getFileViewURL">
-                                        <xsl:with-param name="file" select="."/>
-                                    </xsl:call-template>"},
-                                </xsl:for-each>
-                            ]
+                            'file': "<xsl:value-of select="substring-before($context/mets:fileSec/mets:fileGrp[@USE='CONTENT']/mets:file/mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')" />"
                         });
                     })();
                 </script>
+
+                <ul class="lista-galeria-video">
+                    <xsl:for-each select="mets:file">
+                        <xsl:variable name="link_video" select="substring-before(mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')" />
+                        <li class="item">
+                            <a class="visualizar-video" href="javascript:void(0);" rel="{$link_video}" title="Visualizar Vídeo">
+                                <img alt="Visualizar vídeo" src="{$theme-path}/images/chamada-video-pequena.png" />
+                            </a>
+                        </li>                            
+                    </xsl:for-each>
+                </ul>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -294,13 +302,13 @@
             </img>
         </div>
         -->
-                    <img class="preview-thumbnail" alt="Thumbnail" onerror="this.onerror=null;this.src='{$bookreader-path}/images/transparent.png';">
-                        <xsl:attribute name="src">
-                            <xsl:value-of select="mets:file/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="alt">xmlui.dri2xhtml.METS-1.0.collection-logo-alt</xsl:attribute>
-                        <xsl:attribute name="attr" namespace="http://apache.org/cocoon/i18n/2.1">alt</xsl:attribute>
-                    </img>
+        <img class="preview-thumbnail" alt="Thumbnail" onerror="this.onerror=null;this.src='{$bookreader-path}/images/transparent.png';">
+            <xsl:attribute name="src">
+                <xsl:value-of select="mets:file/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
+            </xsl:attribute>
+            <xsl:attribute name="alt">xmlui.dri2xhtml.METS-1.0.collection-logo-alt</xsl:attribute>
+            <xsl:attribute name="attr" namespace="http://apache.org/cocoon/i18n/2.1">alt</xsl:attribute>
+        </img>
     </xsl:template>
 
 
