@@ -492,12 +492,23 @@ h3.separador {
 	display: block;
 }
 
-.lista-galeria-video {
+.lista-galeria-midia {
+	clear: both;
 	margin-top: 20px;
 	overflow: auto;
 }
 
-.lista-galeria-video .item {
+.lista-galeria-midia .item {
 	float: left;
+	padding: 10px;
+}
+
+.div-midia-fancybox {
+	width: 400px;
+	height: 350px;
+}
+
+.div-midia-fancybox .qualidades-video li {
+	display: inline;
 	padding: 10px;
 }

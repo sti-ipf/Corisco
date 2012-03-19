@@ -198,12 +198,4 @@ this.printElement = function(elementSelector) {
 
 $(function() {
     $(".fancybox").fancybox();
-
-    $(".visualizar-video").click(function() {
-        jwplayer()
-            .load([{
-                file: $(this).attr("rel"), 
-                image: "/xmlui/themes/Corisco/images/chamada-video.png"}])
-            .play();
-    });
 });

@@ -157,35 +157,124 @@
                 </ul>
             </xsl:when>
             <xsl:otherwise>
-                <div id="container-jwplayer">Loading the player...</div>
                 <script type="text/javascript">
-                    (function() {
-                        jwplayer("container-jwplayer").setup({
-                            'flashplayer': "/xmlui/themes/Corisco/lib/js/player.swf",
-                            <xsl:choose>
-                                <xsl:when test="mets:file/@MIMETYPE='audio/x-mpeg'">
-                                    controlbar: 'bottom',
-                                    height: 24,
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    'image': '<xsl:value-of select="$theme-path"/>/images/chamada-video.png',
-                                </xsl:otherwise>
-                            </xsl:choose>
-                            'file': "<xsl:value-of select="substring-before($context/mets:fileSec/mets:fileGrp[@USE='CONTENT']/mets:file/mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')" />"
+                    $(function() {
+                        <xsl:choose>
+                            <xsl:when test="mets:file/@MIMETYPE='audio/x-mpeg'">
+                                <xsl:for-each select="mets:file">
+                                    var link = "<xsl:value-of select="substring-before(mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')" />";
+                                    var key = link.replace(/[\/%_\.]/g, "")
+
+                                    var item =  $('<li class="item" />').append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + key + '" title="Ouvir áudio" />').append('<img alt="Ouvir áudio" src="{$theme-path}/images/chamada-video-pequena.png" />'));
+                                    $(".lista-galeria-midia").append(item);
+
+                                    var $hideBloco = $('<div style="display: none;" />');
+                                    var $bloco = $('<div class="div-midia-fancybox" id="' + key + '" />');
+                                    $bloco.append('<div id="jwp-' + key + '">Carregando...</div>');
+
+                                    $(".blocos-midia").append($hideBloco.append($bloco));
+
+                                    jwplayer("jwp-" + key).setup({
+                                        'flashplayer': "/xmlui/themes/Corisco/lib/js/player.swf",
+                                        'file': link,
+                                        'controlbar': 'bottom',
+                                        'height': 24
+                                    });
+                                </xsl:for-each>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                function textoQualidade(sigla) {
+                                    var texto = "";
+
+                                    switch(sigla) {
+                                        case "B":
+                                            texto = "Baixa";
+                                            break;
+                                        case "M":
+                                            texto = "Média";
+                                            break;
+                                        case "C":
+                                            texto = "Celular";
+                                            break;
+                                        default:
+                                            texto = "Outra";
+                                            break;
+                                    }
+
+                                    return texto;
+                                }
+
+                                function trocaQualidade() {
+                                    var id = $(this).attr("rel");
+                                    var link = $(this).attr("alt");
+
+                                    jwplayer(id)
+                                        .load([{
+                                            file: link,
+                                            image: "/xmlui/themes/Corisco/images/chamada-video.png"}])
+                                        .play();
+                                    return false;
+                                }
+
+                                var videos = [];
+                                <xsl:for-each select="mets:file">
+                                    videos.push("<xsl:value-of select="substring-before(mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')" />");
+                                </xsl:for-each>
+                                var videosReorganized = new Object;
+                                for (var iVideos = 0; iVideos <xsl:text disable-output-escaping="yes">&lt;</xsl:text> videos.length; iVideos++) {
+                                    var index = videos[iVideos].substr(0, videos[iVideos].lastIndexOf("_")).replace(/[\/%_]/g, "");
+                                    var iPos = videos[iVideos].lastIndexOf("_")+1;
+                                    var quality = videos[iVideos].substr(iPos, videos[iVideos].lastIndexOf(".")-iPos);
+
+                                    if (eval("videosReorganized." + index) == undefined) eval("videosReorganized." + index + " = new Object({defaultQuality: '" + quality + "', list: new Object})");
+                                    if (quality == "M") eval("videosReorganized." + index + ".defaultQuality = 'M'");
+                                    
+                                    eval("videosReorganized." + index + ".list." + quality + " = '" + videos[iVideos] + "'");
+                                }
+
+                                for (var key in videosReorganized) {
+                                    var item =  $('<li class="item" />').append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + key + '" title="Visualizar Vídeo" />').append('<img alt="Visualizar vídeo" src="{$theme-path}/images/chamada-video-pequena.png" />'));
+                                    $(".lista-galeria-midia").append(item);
+
+                                    var $hideBloco = $('<div style="display: none;" />');
+                                    var $bloco = $('<div class="div-midia-fancybox" id="' + key + '" />');
+                                    $bloco.append('<div id="jwp-' + key + '">Carregando...</div>');
+
+                                    var $lista = $('<ul class="qualidades-video" />');
+                                    for (quality in videosReorganized[key].list) {
+                                        var value = videosReorganized[key].list[quality];
+                                        $lista.append($('<li />').append($('<a href="javascript:void(0);" rel="jwp-' + key + '" alt="' + value + '">' + textoQualidade(quality) + '</a>').click(trocaQualidade)));
+                                    }
+                                    
+                                    $hideBloco.append($bloco.append($lista));
+
+                                    $(".blocos-midia").append($hideBloco);
+
+                                    jwplayer("jwp-" + key).setup({
+                                        'flashplayer': "/xmlui/themes/Corisco/lib/js/player.swf",
+                                        'image': '<xsl:value-of select="$theme-path"/>/images/chamada-video.png',
+                                        'file': videosReorganized[key].list[videosReorganized[key].defaultQuality]
+                                    });                             
+                                }
+                            </xsl:otherwise>
+                        </xsl:choose>
+
+                        $(".visualizar-midia.fancybox").fancybox({
+                            titleShow: false,
+                            onComplete: function(a) {
+                                console.log(jwplayer("jwp-" + a.attr("rel")));
+                                jwplayer("jwp-" + a.attr("rel")).play().resize();
+                            },
+                            onClose: function(e) {
+                              jwplayer("jwp-" + a.attr("rel")).pause();  
+                            }
                         });
-                    })();
+                    });
                 </script>
 
-                <ul class="lista-galeria-video">
-                    <xsl:for-each select="mets:file">
-                        <xsl:variable name="link_video" select="substring-before(mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')" />
-                        <li class="item">
-                            <a class="visualizar-video" href="javascript:void(0);" rel="{$link_video}" title="Visualizar Vídeo">
-                                <img alt="Visualizar vídeo" src="{$theme-path}/images/chamada-video-pequena.png" />
-                            </a>
-                        </li>                            
-                    </xsl:for-each>
-                </ul>
+                <div class="blocos-midia"></div>
+
+                <ul class="lista-galeria-midia"></ul>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
