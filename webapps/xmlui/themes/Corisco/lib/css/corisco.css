@@ -68,10 +68,11 @@ html, body {
 p {font-size: 12px; line-height: 14px;}
 h2 {font-size: 12px; line-height: 18px; font-weight: normal;}
 h3 {
+	color:#A80000;	
 	font-size: 16px;
 	font-weight: bold;
 	float: left;
-	color:#A80000
+	margin-top: 10px;
 }
 h4 {font-size: 11px; font-weight: bold;}
 a, a:link, a:visited {text-decoration: none; color:inherit;}
@@ -189,9 +190,10 @@ height: 20px; /*background: url(../img/filtro.png) no-repeat;*/}
 				
 	#conteudo-central {height: auto;}
 		
-		/* -- visualizador -- */
-/*		#visualizador-paginas {height: auto; margin-top: -25px; padding: 0 0 10px; background: #DDDDDD;}*/
-		#visualizador-paginas {background: #DDDDDD;}
+#visualizador-paginas {
+	background: #DDDDDD;
+	padding: 10px 0;
+}
                         #caixas {height: auto; padding: 0px 0 8px; display: inline-block;}
 				#caixas div {float: left; position: relative; height: 12px; margin-right: 5px; padding: 4px 8px; line-height: 12px; background: #000000; cursor: pointer;}
 					#ficha-imagens {z-index: 50; position: absolute !important; top: 20px; left: 0; width: 400px; height: auto !important; padding: 10px; display: none;}
