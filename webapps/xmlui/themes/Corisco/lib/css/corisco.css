@@ -81,7 +81,7 @@ h3 {
     font-size: 16px;
     font-weight: bold;
     float: left;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
 }
 
 h4 {
@@ -165,7 +165,6 @@ a:hover {
 }
 
 #cabecalho {
-    height: 115px; 
     width: 950px; 
     margin: 0 auto;
 }
@@ -285,16 +284,10 @@ a:hover {
 }
             
 #conteudo {
-    position: relative; 
-    width: 950px; 
-    height: auto; 
-    padding: 25px 0 0; 
-    margin: 0 auto;
-}
-
-#conteudo-alto {
-    padding: 0 10px 25px; 
+    position: relative;
+    width: 950px;
     height: auto;
+    margin: 0 auto;
 }
         
 #dados-item {
@@ -324,30 +317,28 @@ a:hover {
 }
 
 .fechar {
-    position: absolute; 
-    top: 10px; 
-    right: 10px; 
-    background: url('../img/fechar.png') no-repeat; 
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: url('../img/fechar.png') no-repeat;
     cursor: pointer;
 }
 
 .caixa-borda3 p {
     padding-bottom: 12px;
 }
-                
-        
+    
 #colecao-item {
-    position: absolute; 
-    top: 20px; 
-    right: 0; 
+    margin-top: 20px;
     text-align: right;
 }
         
 #conteudo-alto .caixa {
-    position: relative; 
+    clear: both;
     height: 35px; 
     font-size: 12px; 
     line-height: 25px;
+    position: relative; 
 }
 
 
@@ -390,7 +381,7 @@ a:hover {
 
 .numero-resultados {
     float: left; 
-    width: 220px; 
+    width: 310px; 
     margin: 0; 
     padding: 5px 0; 
     text-align: center;
@@ -486,7 +477,10 @@ ul.links-paginacao li {
         
 #visualizador-paginas {
     background: #DDDDDD;
+    clear: both;
+    overflow: auto;
     padding: 10px 0;
+    width: 100%;
 }
 
 #caixas {
@@ -1315,7 +1309,7 @@ h3.separador {
 }
 
 .ds-list-media li {
-    display: inline;
+    float: left;
     margin: 10px;
     text-align: center;
 }
@@ -1323,22 +1317,6 @@ h3.separador {
 #container-jwplayer {
     clear: both;
     margin: 0 auto;
-}
-
-.fb_share {
-    background: url('../img/facebook_share.png') no-repeat;
-    display: block;
-    height: 18px;
-    text-indent: -9999px;
-    width: 94px;
-}
-
-.orkut {
-    width: 99px;
-    height: 20px;
-    background: url("../img/orkut-promover.png") no-repeat;
-    text-indent: -9999px;
-    display: block;
 }
 
 .lista-galeria-midia {
@@ -1360,4 +1338,40 @@ h3.separador {
 .div-midia-fancybox .qualidades-video li {
     display: inline;
     padding: 10px;
+}
+
+/* 
+ * Barra de compartilhar
+ */
+#barra-compartilhar li {
+    float: right;
+    padding: 0 10px;
+}
+
+#barra-compartilhar #fb-root {
+    width: 61px;
+}
+
+#barra-compartilhar .twitter {
+    width: 86px;
+}
+
+#barra-compartilhar .fb-share {
+    background: url('../img/facebook_share.png') no-repeat;
+    display: block;
+    height: 18px;
+    text-indent: -9999px;
+    width: 94px;
+}
+
+#barra-compartilhar .orkut {
+    width: 85px;
+    height: 20px;
+    background: url("../img/orkut-promover.png") no-repeat;
+    text-indent: -9999px;
+    display: block;
+}
+
+#barra-compartilhar .plus-one {
+    width: 60px;
 }
