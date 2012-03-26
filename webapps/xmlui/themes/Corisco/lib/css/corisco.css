@@ -476,7 +476,7 @@ ul.links-paginacao li {
 }
                 
 #conteudo-central {
-    height: auto;
+    clear: both;
 }
         
 #visualizador-paginas {
@@ -1334,9 +1334,8 @@ h3.separador {
     padding: 10px;
 }
 
-.div-midia-fancybox {
-    width: 400px;
-    height: 350px;
+.qualidades-video {
+    margin-top: 10px;
 }
 
 .div-midia-fancybox .qualidades-video li {
