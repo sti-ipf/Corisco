@@ -291,11 +291,12 @@ a:hover {
 }
         
 #dados-item {
-    position: relative; 
+    clear: both;
     height: auto; 
-    padding: 0 20px 5px 0; 
     line-height: 24px; 
-    padding-top:30px;
+    padding: 5px 20px 5px 0; 
+    position: relative; 
+    width: 900px;
 }
 
 #autoria-item {
@@ -329,8 +330,11 @@ a:hover {
 }
     
 #colecao-item {
-    margin-top: 20px;
-    text-align: right;
+    float: right;
+    width: 50px;
+}
+#colecao-item #nome-colecao {
+    float: left;
 }
         
 #conteudo-alto .caixa {
