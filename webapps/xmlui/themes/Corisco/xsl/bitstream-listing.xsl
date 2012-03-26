@@ -169,18 +169,33 @@
                                     $(".lista-galeria-midia").append(item);
 
                                     var $hideBloco = $('<div style="display: none;" />');
-                                    var $bloco = $('<div class="div-midia-fancybox" id="' + key + '" />');
+                                    var $bloco = $('<div id="' + key + '" />');
                                     $bloco.append('<div id="jwp-' + key + '">Carregando...</div>');
 
                                     $(".blocos-midia").append($hideBloco.append($bloco));
 
                                     jwplayer("jwp-" + key).setup({
                                         'flashplayer': "/xmlui/themes/Corisco/lib/js/player.swf",
-                                        'file': link,
                                         'controlbar': 'bottom',
-                                        'height': 24
+                                        'height': 24,
+                                        'width': '480',
+                                        'file': link
                                     });
                                 </xsl:for-each>
+
+
+                                $(".visualizar-midia.fancybox").fancybox({
+                                    titleShow: false,
+                                    'autoDimensions': false,
+                                    'width': '490',
+                                    'height': '30',
+                                    onComplete: function(a) {
+                                        jwplayer("jwp-" + a.attr("rel")).play();
+                                    },
+                                    onClose: function(e) {
+                                      jwplayer("jwp-" + a.attr("rel")).pause();  
+                                    }
+                                });                                
                             </xsl:when>
                             <xsl:otherwise>
                                 function textoQualidade(sigla) {
@@ -227,7 +242,7 @@
                                     var quality = videos[iVideos].substr(iPos, videos[iVideos].lastIndexOf(".")-iPos);
 
                                     if (eval("videosReorganized." + index) == undefined) eval("videosReorganized." + index + " = new Object({defaultQuality: '" + quality + "', list: new Object})");
-                                    if (quality == "M") eval("videosReorganized." + index + ".defaultQuality = 'M'");
+                                    if (quality == "B") eval("videosReorganized." + index + ".defaultQuality = 'B'");
                                     
                                     eval("videosReorganized." + index + ".list." + quality + " = '" + videos[iVideos] + "'");
                                 }
@@ -241,34 +256,43 @@
                                     $bloco.append('<div id="jwp-' + key + '">Carregando...</div>');
 
                                     var $lista = $('<ul class="qualidades-video" />');
+                                    var $listaDownloads = $('<ul class="qualidades-video" />');
                                     for (quality in videosReorganized[key].list) {
                                         var value = videosReorganized[key].list[quality];
-                                        $lista.append($('<li />').append($('<a href="javascript:void(0);" rel="jwp-' + key + '" alt="' + value + '">' + textoQualidade(quality) + '</a>').click(trocaQualidade)));
+                                        
+                                        $listaDownloads.append($('<li />').append($('<a href="' + value + '" alt="' + value + '">Fazer download em qualidade ' + textoQualidade(quality) + '</a>')));
+                                        if (quality != "C") {
+                                            $lista.append($('<li />').append($('<a href="javascript:void(0);" rel="jwp-' + key + '" alt="' + value + '">Visualizar em qualidade ' + textoQualidade(quality) + '</a>').click(trocaQualidade)));
+                                        }
                                     }
                                     
-                                    $hideBloco.append($bloco.append($lista));
+                                    $hideBloco.append($bloco.append($lista).append($listaDownloads));
 
                                     $(".blocos-midia").append($hideBloco);
 
                                     jwplayer("jwp-" + key).setup({
                                         'flashplayer': "/xmlui/themes/Corisco/lib/js/player.swf",
                                         'image': '<xsl:value-of select="$theme-path"/>/images/chamada-video.png',
-                                        'file': videosReorganized[key].list[videosReorganized[key].defaultQuality]
-                                    });                             
+                                        'width': 480,
+                                        'height': 320,
+                                        'file': videosReorganized[key].list[videosReorganized[key].defaultQuality],
+                                    });
                                 }
+
+                                $(".visualizar-midia.fancybox").fancybox({
+                                    titleShow: false,
+                                    autoDimensions: false,
+                                    width: 480,
+                                    height: 380,
+                                    onComplete: function(a) {
+                                        jwplayer("jwp-" + a.attr("rel")).play();
+                                    },
+                                    onClose: function(e) {
+                                      jwplayer("jwp-" + a.attr("rel")).pause();  
+                                    }
+                                });
                             </xsl:otherwise>
                         </xsl:choose>
-
-                        $(".visualizar-midia.fancybox").fancybox({
-                            titleShow: false,
-                            onComplete: function(a) {
-                                console.log(jwplayer("jwp-" + a.attr("rel")));
-                                jwplayer("jwp-" + a.attr("rel")).play().resize();
-                            },
-                            onClose: function(e) {
-                              jwplayer("jwp-" + a.attr("rel")).pause();  
-                            }
-                        });
                     });
                 </script>
 

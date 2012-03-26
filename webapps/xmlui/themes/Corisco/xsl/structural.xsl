@@ -810,8 +810,8 @@
         </xsl:variable>
 
         <div id="conteudo-alto">
-			<ul id="vizir_cont" style="float:right;width: 600px;padding: 34px 0 0;">
-				<li style="display:inline;float:right;">
+			<ul id="barra-compartilhar">
+				<li class="plus-one">
 					<script>
 					      window.___gcfg = {
 					        lang: 'pt-BR'
@@ -824,7 +824,7 @@
 					 </script>
 					<div class="g-plusone" data-size="medium" data-annotation="bubble" ></div>
 				</li>
-				<li style="display:inline;float:right;">
+				<li class="twitter">
 					<a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
 					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];
 							if(!d.getElementById(id)){js=d.createElement(s);
@@ -833,7 +833,7 @@
 							}}(document,"script","twitter-wjs");
 					</script>
 				</li>
-                <li style="display:inline;float:right;">
+                <li>
 					<div id="fb-root"></div>
 					<script>(function(d, s, id) {
 						 var js, fjs = d.getElementsByTagName(s)[0];
@@ -843,12 +843,12 @@
 						 fjs.parentNode.insertBefore(js, fjs);
 						}(document, 'script', 'facebook-jssdk'));
 					</script>
-					<div class="fb-like" data-send="true" data-layout="button_count" data-width="180" data-show-faces="false"></div>
+					<div class="fb-like" data-send="false" data-layout="button_count" data-width="40" data-show-faces="false"></div>
 				</li>
-                <li style="display:inline;float:right;">
-                    <a name="fb_share" class="fb_share" type="button_count" share_url="http://acervo.paulofreire.org:8080/xmlui">Compartilhar<script type="text/javascript">window.onload = function() { var script = document.createElement('script'); script.src = 'http://static.ak.fbcdn.net/connect.php/js/FB.Share'; document.getElementsByTagName('head')[0].appendChild(script); }</script></a>
+                <li>
+                    <a name="fb_share" class="fb-share" type="button_count" share_url="http://acervo.paulofreire.org:8080/xmlui">Compartilhar<script type="text/javascript">window.onload = function() { var script = document.createElement('script'); script.src = 'http://static.ak.fbcdn.net/connect.php/js/FB.Share'; document.getElementsByTagName('head')[0].appendChild(script); }</script></a>
                 </li>
-                <li style="display:inline;float:right;">
+                <li>
                     <a href="http://promote.orkut.com/preview?nt=orkut.com&amp;tt=Acervo Paulo Freire&amp;du=http://acervo.paulofreire.org:8080/xmlui&amp;cn=Acervo Paulo Freire!" target="_blank" title="Promover no Orkut" class="orkut" rel="nofollow">Compartilhar no Orkut</a>
                 </li>
 			</ul>
@@ -857,7 +857,7 @@
                 <!-- Rendering metadata for all communities. -->
                 <xsl:when test="//dri:body/dri:div[@n='community-home']">
                     <xsl:apply-templates select="//dri:body/dri:div[@n='community-home']/dri:div[@n='community-view']/dri:referenceSet[@type='detailView']/dri:reference" mode="headDetailView"/>
-                    <div id="dados-item" style="width:520px;">
+                    <div id="dados-item">
                         <h3>
                             <span id="nome-item">
                                 <xsl:apply-templates select="//dri:body//dri:div[@rend='secondary recent-submission']/dri:head"/>
@@ -876,7 +876,7 @@
                     <xsl:apply-templates select="//dri:body/dri:div[@id='aspect.discovery.CollectionViewer.div.collection-home']/dri:head"/>
                     -->
                     <xsl:apply-templates select="//dri:body/dri:div[@n='collection-home']/dri:div[@n='collection-view']/dri:referenceSet[@type='detailView']/dri:reference" mode="headDetailView"/>
-                    <div id="dados-item" style="width:520px;">
+                    <div id="dados-item">
                         <h3>
                             <span id="nome-item">
                                 <xsl:apply-templates select="//dri:body//dri:div[@rend='secondary recent-submission']/dri:head"/>
@@ -886,7 +886,7 @@
                 </xsl:when>
 
                 <xsl:when test="//dri:body//dri:div[@rend='secondary recent-submission']">
-                    <div id="dados-item" style="width:520px;">
+                    <div id="dados-item">
                         <h3>
                             <span id="nome-item">
                                 <xsl:apply-templates select="//dri:body//dri:div[@rend='secondary recent-submission']/dri:head"/>
@@ -896,7 +896,7 @@
                 </xsl:when>
 
                 <xsl:when test="//dri:body//dri:div[@id='aspect.discovery.SimpleSearch.div.search-results']">
-                    <div id="dados-item" style="width:520px;">
+                    <div id="dados-item">
                         <h3>
                             <span id="nome-item">
                                 <xsl:choose>
@@ -921,7 +921,7 @@
 
 
                 <xsl:when test="//dri:body/dri:div[starts-with(@n, 'browse-by')]">
-                    <div id="dados-item" style="width:520px;">
+                    <div id="dados-item">
                         <h3>
                             <span id="nome-item">
                                 <i18n:text>xmlui.ArtifactBrowser.AbstractSearch.browse_head</i18n:text>
@@ -940,7 +940,7 @@
 
 
                 <xsl:otherwise>
-                    <div id="dados-item" style="width:520px;">
+                    <div id="dados-item">
                         <h3>
                             <span id="nome-item"><xsl:comment>No matching primary div.</xsl:comment></span>
                         </h3>

@@ -2205,7 +2205,7 @@
 
     <xsl:template name="itemHeadDetailView-DIM">
 
-        <div id="dados-item" style="width:520px;">
+        <div id="dados-item">
             <h3>
                 <span id="nome-item">
                     <xsl:value-of select="//dim:field[@element='title' and not(@qualifier)]"/>
@@ -2861,7 +2861,7 @@
 
     
     <xsl:template name="collectionHeadDetailView-DIM">
-        <div id="dados-item" style="width:520px;">
+        <div id="dados-item">
             <h3>
                 <span id="nome-item">
                     <xsl:value-of select="//dim:field[@element='title' and not(@qualifier)]"/>
@@ -3096,7 +3096,7 @@
    
     
     <xsl:template name="communityHeadDetailView-DIM">
-        <div id="dados-item" style="width:520px;">
+        <div id="dados-item">
             <h3>
                 <span id="nome-item">
                     <xsl:value-of select="//dim:field[@element='title' and not(@qualifier)]"/>
