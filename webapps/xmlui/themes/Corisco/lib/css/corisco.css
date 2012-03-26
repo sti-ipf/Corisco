@@ -296,7 +296,7 @@ a:hover {
     line-height: 24px; 
     padding: 5px 20px 5px 0; 
     position: relative; 
-    width: 900px;
+    width: 850px;
 }
 
 #autoria-item {
@@ -331,7 +331,7 @@ a:hover {
     
 #colecao-item {
     float: right;
-    width: 50px;
+    width: 100px;
 }
 #colecao-item #nome-colecao {
     float: left;

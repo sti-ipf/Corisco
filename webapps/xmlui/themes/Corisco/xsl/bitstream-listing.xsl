@@ -283,7 +283,7 @@
                                     titleShow: false,
                                     autoDimensions: false,
                                     width: 480,
-                                    height: 380,
+                                    height: 400,
                                     onComplete: function(a) {
                                         jwplayer("jwp-" + a.attr("rel")).play();
                                     },
