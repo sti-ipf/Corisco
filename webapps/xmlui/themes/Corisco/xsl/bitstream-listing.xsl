@@ -222,11 +222,12 @@
                                 function trocaQualidade() {
                                     var id = $(this).attr("rel");
                                     var link = $(this).attr("alt");
-
+                                    console.log(jwplayer(id));
                                     jwplayer(id)
                                         .load([{
                                             file: link,
                                             image: "/xmlui/themes/Corisco/images/chamada-video.png"}])
+                                        .resize()
                                         .play();
                                     return false;
                                 }
@@ -297,18 +298,15 @@
                                     jwplayer("jwp-" + key).setup({
                                         'flashplayer': "/xmlui/themes/Corisco/lib/js/player.swf",
                                         'image': '<xsl:value-of select="$theme-path"/>/images/chamada-video.png',
-/*                                        'width': 480,
-                                        'height': 320,*/
-                                        'file': videosReorganized[key].list[videosReorganized[key].defaultQuality],
+                                        'file': videosReorganized[key].list[videosReorganized[key].defaultQuality]
                                     });
                                 }
 
                                 $(".visualizar-midia.fancybox").fancybox({
                                     titleShow: false,
                                     autoDimensions: true,
-                                    /*width: 480,
-                                    height: 400,*/
                                     onComplete: function(a) {
+                                    console.log(a.attr("rel"));
                                         jwplayer("jwp-" + a.attr("rel")).play();
                                     },
                                     onClose: function(e) {
