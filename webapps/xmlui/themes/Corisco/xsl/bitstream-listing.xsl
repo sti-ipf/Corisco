@@ -248,7 +248,7 @@
                                 }
 
                                 for (var key in videosReorganized) {
-                                    var item =  $('<li class="item" />').append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + key + '" title="Visualizar Vídeo" />').append('<img alt="Clique aqui para assistir ou fazer cópia do vídeo" src="{$theme-path}/images/chamada-video-pequena.png" />'));
+                                    var item =  $('<li class="item" />').append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + key + '" title="Clique aqui para assistir ou fazer cópia do vídeo" />').append('<img alt="Clique aqui para assistir ou fazer cópia do vídeo" src="{$theme-path}/images/chamada-video-pequena.png" />'));
                                     $(".lista-galeria-midia").append(item);
 
                                     var $hideBloco = $('<div style="display: none;" />');
