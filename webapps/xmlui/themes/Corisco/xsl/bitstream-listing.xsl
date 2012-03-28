@@ -221,13 +221,13 @@
 
                                 function trocaQualidade() {
                                     var id = $(this).attr("rel");
-                                    var link = $(this).attr("alt");
-                                    console.log(jwplayer(id));
+                                    var conf = $(this).attr("alt").strip("|");
                                     jwplayer(id)
                                         .load([{
-                                            file: link,
-                                            image: "/xmlui/themes/Corisco/images/chamada-video.png"}])
-                                        .resize()
+                                            'file': conf[0],
+                                            'image': "/xmlui/themes/Corisco/images/chamada-video.png",
+                                            'width': conf[1],
+                                            'height': conf[2]}])
                                         .play();
                                     return false;
                                 }
@@ -266,6 +266,11 @@
                                         
                                         $listaDownloads.append($('<li />').append($('<a href="' + value + '" alt="' + value + '">' + textoQualidade(quality) + '</a>')));
                                         if (quality != "C") {
+                                            if (quality == "B") {
+                                                value = value + "|320|480";
+                                            } else {
+                                                value = value + "|720|480"
+                                            }
                                             $lista.append($('<li />').append($('<a href="javascript:void(0);" rel="jwp-' + key + '" alt="' + value + '">' + textoQualidade(quality) + '</a>').click(trocaQualidade)));
                                         }
                                     }
@@ -306,7 +311,6 @@
                                     titleShow: false,
                                     autoDimensions: true,
                                     onComplete: function(a) {
-                                    console.log(a.attr("rel"));
                                         jwplayer("jwp-" + a.attr("rel")).play();
                                     },
                                     onClose: function(e) {
