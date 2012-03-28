@@ -225,9 +225,8 @@
                                     jwplayer(id)
                                         .load([{
                                             'file': conf[0],
-                                            'image': "/xmlui/themes/Corisco/images/chamada-video.png",
-                                            'width': conf[1],
-                                            'height': conf[2]}])
+                                            'image': "/xmlui/themes/Corisco/images/chamada-video.png"}])
+                                        .resize(conf[1], conf[2])
                                         .play();
                                     return false;
                                 }
