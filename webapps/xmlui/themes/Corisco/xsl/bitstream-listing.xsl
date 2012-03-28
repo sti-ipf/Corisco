@@ -248,42 +248,66 @@
                                 }
 
                                 for (var key in videosReorganized) {
-                                    var item =  $('<li class="item" />').append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + key + '" title="Visualizar Vídeo" />').append('<img alt="Visualizar vídeo" src="{$theme-path}/images/chamada-video-pequena.png" />'));
+                                    var item =  $('<li class="item" />').append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + key + '" title="Visualizar Vídeo" />').append('<img alt="Clique aqui para assistir ou fazer cópia do vídeo" src="{$theme-path}/images/chamada-video-pequena.png" />'));
                                     $(".lista-galeria-midia").append(item);
 
                                     var $hideBloco = $('<div style="display: none;" />');
                                     var $bloco = $('<div class="div-midia-fancybox" id="' + key + '" />');
                                     $bloco.append('<div id="jwp-' + key + '">Carregando...</div>');
 
+                                    var $labelVisualizarEmQualidade = $('<strong />').text("Visualizar em qualidade: ");
+                                    var $labelFazerDownloadEmQualidade = $('<strong />').text("Fazer Download em qualidade: ");
+
                                     var $lista = $('<ul class="qualidades-video" />');
                                     var $listaDownloads = $('<ul class="qualidades-video" />');
                                     for (quality in videosReorganized[key].list) {
                                         var value = videosReorganized[key].list[quality];
                                         
-                                        $listaDownloads.append($('<li />').append($('<a href="' + value + '" alt="' + value + '">Fazer download em qualidade ' + textoQualidade(quality) + '</a>')));
+                                        $listaDownloads.append($('<li />').append($('<a href="' + value + '" alt="' + value + '">' + textoQualidade(quality) + '</a>')));
                                         if (quality != "C") {
-                                            $lista.append($('<li />').append($('<a href="javascript:void(0);" rel="jwp-' + key + '" alt="' + value + '">Visualizar em qualidade ' + textoQualidade(quality) + '</a>').click(trocaQualidade)));
+                                            $lista.append($('<li />').append($('<a href="javascript:void(0);" rel="jwp-' + key + '" alt="' + value + '">' + textoQualidade(quality) + '</a>').click(trocaQualidade)));
                                         }
                                     }
+
+                                    var pipesAdded = 0;
+                                    $listaDownloads.children().each(function(index) {
+                                        index += pipesAdded;
+                                        var not_is_last_item = (index <xsl:text disable-output-escaping="yes">&lt;</xsl:text> ($listaDownloads.children().length - 1));
+                                        if (not_is_last_item) {
+                                            $(this).after($('<strong />').text('|'));
+                                            pipesAdded += 1;
+                                        }
+                                    });
+
+
+                                    var pipesAdded = 0;
+                                    $lista.children().each(function(index) {
+                                        index += pipesAdded;
+                                        var not_is_last_item = (index <xsl:text disable-output-escaping="yes">&lt;</xsl:text> ($lista.children().length - 1));
+                                        if (not_is_last_item) {
+                                            $(this).after($('<strong />').text('|'));
+                                            pipesAdded += 1;
+                                        }
+                                    });
                                     
-                                    $hideBloco.append($bloco.append($lista).append($listaDownloads));
+                                    $hideBloco.append($bloco.append($labelVisualizarEmQualidade).append($lista).append($labelFazerDownloadEmQualidade).append($listaDownloads));
 
                                     $(".blocos-midia").append($hideBloco);
 
                                     jwplayer("jwp-" + key).setup({
                                         'flashplayer': "/xmlui/themes/Corisco/lib/js/player.swf",
                                         'image': '<xsl:value-of select="$theme-path"/>/images/chamada-video.png',
-                                        'width': 480,
-                                        'height': 320,
+/*                                        'width': 480,
+                                        'height': 320,*/
                                         'file': videosReorganized[key].list[videosReorganized[key].defaultQuality],
                                     });
                                 }
 
                                 $(".visualizar-midia.fancybox").fancybox({
                                     titleShow: false,
-                                    autoDimensions: false,
-                                    width: 480,
-                                    height: 400,
+                                    autoDimensions: true,
+                                    /*width: 480,
+                                    height: 400,*/
                                     onComplete: function(a) {
                                         jwplayer("jwp-" + a.attr("rel")).play();
                                     },

@@ -824,6 +824,7 @@
 					 </script>
 					<div class="g-plusone" data-size="medium" data-annotation="bubble" ></div>
 				</li>
+                <li>|</li>
 				<li class="twitter">
 					<a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
 					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];
@@ -833,6 +834,11 @@
 							}}(document,"script","twitter-wjs");
 					</script>
 				</li>
+                <li>|</li>
+                <li>
+                    <a href="http://promote.orkut.com/preview?nt=orkut.com&amp;tt=Acervo Paulo Freire&amp;du=http://acervo.paulofreire.org:8080/xmlui&amp;cn=Acervo Paulo Freire!" target="_blank" title="Promover no Orkut" class="orkut" rel="nofollow">Compartilhar no Orkut</a>
+                </li>
+                <li>|</li>
                 <li>
 					<div id="fb-root"></div>
 					<script>(function(d, s, id) {
@@ -847,9 +853,6 @@
 				</li>
                 <li>
                     <a name="fb_share" class="fb-share" type="button_count" share_url="http://acervo.paulofreire.org:8080/xmlui">Compartilhar<script type="text/javascript">window.onload = function() { var script = document.createElement('script'); script.src = 'http://static.ak.fbcdn.net/connect.php/js/FB.Share'; document.getElementsByTagName('head')[0].appendChild(script); }</script></a>
-                </li>
-                <li>
-                    <a href="http://promote.orkut.com/preview?nt=orkut.com&amp;tt=Acervo Paulo Freire&amp;du=http://acervo.paulofreire.org:8080/xmlui&amp;cn=Acervo Paulo Freire!" target="_blank" title="Promover no Orkut" class="orkut" rel="nofollow">Compartilhar no Orkut</a>
                 </li>
 			</ul>
             <xsl:choose>

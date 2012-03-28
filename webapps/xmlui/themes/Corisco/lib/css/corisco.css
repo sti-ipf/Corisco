@@ -1310,6 +1310,8 @@ h3.separador {
 
 .ds-list-media {
     clear: both;
+    margin: 0 auto;
+    width: 880px;
 }
 
 .ds-list-media li {
@@ -1335,12 +1337,12 @@ h3.separador {
 }
 
 .qualidades-video {
-    margin-top: 10px;
+    margin: 5px 0;
 }
 
 .div-midia-fancybox .qualidades-video li {
     display: inline;
-    padding: 10px;
+    padding: 0 10px;
 }
 
 /* 
@@ -1348,7 +1350,7 @@ h3.separador {
  */
 #barra-compartilhar li {
     float: right;
-    padding: 0 10px;
+    padding: 0 5px;
 }
 
 #barra-compartilhar #fb-root {
