@@ -221,7 +221,7 @@
 
                                 function trocaQualidade() {
                                     var id = $(this).attr("rel");
-                                    var conf = $(this).attr("alt").strip("|");
+                                    var conf = $(this).attr("alt").split("|");
                                     jwplayer(id)
                                         .load([{
                                             'file': conf[0],
