@@ -836,7 +836,7 @@
 				</li>
                 <li>|</li>
                 <li>
-                    <a href="http://promote.orkut.com/preview?nt=orkut.com&amp;tt=Acervo Paulo Freire&amp;du=http://acervo.paulofreire.org:8080/xmlui&amp;cn=Acervo Paulo Freire!" target="_blank" title="Promover no Orkut" class="orkut" rel="nofollow">Compartilhar no Orkut</a>
+                    <a href="http://promote.orkut.com/preview?nt=orkut.com&amp;tt=Acervo Paulo Freire&amp;du=http://acervo.paulofreire.org&amp;cn=Acervo Paulo Freire!" target="_blank" title="Promover no Orkut" class="orkut" rel="nofollow">Compartilhar no Orkut</a>
                 </li>
                 <li>|</li>
                 <li>
@@ -852,7 +852,7 @@
 					<div class="fb-like" data-send="false" data-layout="button_count" data-width="40" data-show-faces="false"></div>
 				</li>
                 <li>
-                    <a name="fb_share" class="fb-share" type="button_count" share_url="http://acervo.paulofreire.org:8080/xmlui">Compartilhar<script type="text/javascript">window.onload = function() { var script = document.createElement('script'); script.src = 'http://static.ak.fbcdn.net/connect.php/js/FB.Share'; document.getElementsByTagName('head')[0].appendChild(script); }</script></a>
+                    <a name="fb_share" class="fb-share" type="button_count" share_url="http://acervo.paulofreire.org">Compartilhar<script type="text/javascript">window.onload = function() { var script = document.createElement('script'); script.src = 'http://static.ak.fbcdn.net/connect.php/js/FB.Share'; document.getElementsByTagName('head')[0].appendChild(script); }</script></a>
                 </li>
 			</ul>
             <xsl:choose>
