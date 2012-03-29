@@ -222,16 +222,19 @@
                                 function trocaQualidade() {
                                     var id = $(this).attr("rel");
                                     var conf = $(this).attr("alt").split("|");
+                                    var width = parseInt(conf[1]);
+                                    var height = parseInt(conf[2]);
+
                                     
-                                    $("#fancybox-content").css("width", parseInt(conf[1]));
-                                    $("#fancybox-wrap").css("width", parseInt(conf[1])+10);
-                                    $.fancybox.center();
+                                    $("#fancybox-content").css("width", width);
+                                    $("#fancybox-wrap").css("width", width+20);
+                                    $.fancybox.center(true);
 
                                     jwplayer(id)
                                         .load([{
                                             'file': conf[0],
                                             'image': "/xmlui/themes/Corisco/images/chamada-video.png"}])
-                                        .resize(parseInt(conf[1]), parseInt(conf[2]))
+                                        .resize(width, height)
                                         .play();
 
                                     return false;
