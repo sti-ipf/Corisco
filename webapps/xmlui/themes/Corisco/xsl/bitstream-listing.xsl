@@ -231,7 +231,7 @@
                                         .load([{
                                             'file': conf[0],
                                             'image': "/xmlui/themes/Corisco/images/chamada-video.png"}])
-                                        .resize(parseInt(conf[1]), parseInt(conf[2])
+                                        .resize(parseInt(conf[1]), parseInt(conf[2]))
                                         .play();
 
                                     return false;
