@@ -162,6 +162,7 @@
                     function resizeFancybox(width, height) {
                         $("#fancybox-content").css("width", width);
                         $("#fancybox-wrap").css("width", width+20);
+                        $.fancybox.center(true);
                         setTimeout("$.fancybox.center(true)", 1000);
                     }
 
