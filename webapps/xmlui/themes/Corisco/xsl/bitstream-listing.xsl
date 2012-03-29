@@ -225,17 +225,16 @@
                                     var width = parseInt(conf[1]);
                                     var height = parseInt(conf[2]);
 
-                                    
-                                    $("#fancybox-content").css("width", width);
-                                    $("#fancybox-wrap").css("width", width+20);
-                                    $.fancybox.center(true);
-
                                     jwplayer(id)
                                         .load([{
                                             'file': conf[0],
                                             'image': "/xmlui/themes/Corisco/images/chamada-video.png"}])
                                         .resize(width, height)
                                         .play();
+
+                                    $("#fancybox-content").css("width", width);
+                                    $("#fancybox-wrap").css("width", width+20);
+                                    $.fancybox.center(true);                                        
 
                                     return false;
                                 }
