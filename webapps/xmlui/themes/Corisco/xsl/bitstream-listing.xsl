@@ -223,7 +223,7 @@
                                     var id = $(this).attr("rel");
                                     var conf = $(this).attr("alt").split("|");
                                     
-                                    $("#fancybox-content").css("width", parseInt(conf[1]);
+                                    $("#fancybox-content").css("width", parseInt(conf[1]));
                                     $("#fancybox-wrap").css("width", parseInt(conf[1])+10);
                                     $.fancybox.center();
 
