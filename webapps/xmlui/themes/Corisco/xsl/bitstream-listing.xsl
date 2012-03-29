@@ -222,6 +222,8 @@
                                 function trocaQualidade() {
                                     var id = $(this).attr("rel");
                                     var conf = $(this).attr("alt").split("|");
+                                    console.log("width: " + conf[1]);
+                                    console.log("height: " + conf[2]);
                                     
                                     $("#fancybox-content").css("width", conf[1]);
                                     $("#fancybox-wrap").css("width", conf[1]+10);
