@@ -219,6 +219,20 @@
                                     return texto;
                                 }
 
+                                function getResolution(quality) {
+                                    var resolution = {};
+
+                                    if (quality == 'B') {
+                                        resolution.width = 480;
+                                        resolution.height = 320;
+                                    } else {
+                                        resolution.width = 720;
+                                        resolution.height = 480;
+                                    }
+
+                                    return resolution;                                    
+                                }
+
                                 function trocaQualidade() {
                                     var id = $(this).attr("rel");
                                     var conf = $(this).attr("alt").split("|");
@@ -273,11 +287,9 @@
                                         
                                         $listaDownloads.append($('<li />').append($('<a href="' + value + '" alt="' + value + '">' + textoQualidade(quality) + '</a>')));
                                         if (quality != "C") {
-                                            if (quality == "B") {
-                                                value = value + "|320|480";
-                                            } else {
-                                                value = value + "|720|480"
-                                            }
+                                            var resolution = getResolution(quality)
+                                            value = value + "|" + resolution.width + "|" + resolution.height;
+
                                             $lista.append($('<li />').append($('<a href="javascript:void(0);" rel="jwp-' + key + '" alt="' + value + '">' + textoQualidade(quality) + '</a>').click(trocaQualidade)));
                                         }
                                     }
@@ -307,10 +319,14 @@
 
                                     $(".blocos-midia").append($hideBloco);
 
+                                    var resolution = getResolution(videosReorganized[key].defaultQuality);
+
                                     jwplayer("jwp-" + key).setup({
                                         'flashplayer': "/xmlui/themes/Corisco/lib/js/player.swf",
                                         'image': '<xsl:value-of select="$theme-path"/>/images/chamada-video.png',
-                                        'file': videosReorganized[key].list[videosReorganized[key].defaultQuality]
+                                        'file': videosReorganized[key].list[videosReorganized[key].defaultQuality],
+                                        'width': resolution.width,
+                                        'height': resolution.height
                                     });
                                 }
 
