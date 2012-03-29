@@ -158,6 +158,13 @@
             </xsl:when>
             <xsl:otherwise>
                 <script type="text/javascript">
+
+                    function resizeFancybox(width, height) {
+                        $("#fancybox-content").css("width", width);
+                        $("#fancybox-wrap").css("width", width+20);
+                        setTimeout("$.fancybox.center(true)", 1000);
+                    }
+
                     $(function() {
                         <xsl:choose>
                             <xsl:when test="mets:file/@MIMETYPE='audio/x-mpeg'">
@@ -246,9 +253,7 @@
                                         .resize(width, height)
                                         .play();
 
-                                    $("#fancybox-content").css("width", width);
-                                    $("#fancybox-wrap").css("width", width+20);
-                                    $.fancybox.center(true);                                        
+                                    resizeFancybox();
 
                                     return false;
                                 }
@@ -270,7 +275,7 @@
                                 }
 
                                 for (var key in videosReorganized) {
-                                    var item =  $('<li class="item" />').append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + key + '" title="Clique aqui para assistir ou fazer cópia do vídeo" />').append('<img alt="Clique aqui para assistir ou fazer cópia do vídeo" src="{$theme-path}/images/chamada-video-pequena.png" />'));
+                                    var item =  $('<li class="item" />').append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + videosReorganized[key].list[videosReorganized[key].defaultQuality] + '" title="Clique aqui para assistir ou fazer cópia do vídeo" />').append('<img alt="Clique aqui para assistir ou fazer cópia do vídeo" src="{$theme-path}/images/chamada-video-pequena.png" />'));
                                     $(".lista-galeria-midia").append(item);
 
                                     var $hideBloco = $('<div style="display: none;" />');
@@ -318,26 +323,25 @@
                                     $hideBloco.append($bloco.append($labelVisualizarEmQualidade).append($lista).append($labelFazerDownloadEmQualidade).append($listaDownloads));
 
                                     $(".blocos-midia").append($hideBloco);
-
-                                    var resolution = getResolution(videosReorganized[key].defaultQuality);
-
-                                    jwplayer("jwp-" + key).setup({
-                                        'flashplayer': "/xmlui/themes/Corisco/lib/js/player.swf",
-                                        'image': '<xsl:value-of select="$theme-path"/>/images/chamada-video.png',
-                                        'file': videosReorganized[key].list[videosReorganized[key].defaultQuality],
-                                        'width': resolution.width,
-                                        'height': resolution.height
-                                    });
                                 }
 
                                 $(".visualizar-midia.fancybox").fancybox({
                                     titleShow: false,
                                     autoDimensions: true,
                                     onComplete: function(a) {
-                                        jwplayer("jwp-" + a.attr("rel")).play();
+                                        var resolution = getResolution('B');
+                                        resizeFancybox(resolution.width, resolution.height);
+                                        jwplayer("jwp-" + a.attr("href").substring(1)).setup({
+                                            'flashplayer': '<xsl:value-of select="$theme-path"/>/lib/js/player.swf',
+                                            'autostart': true,
+                                            'image': '<xsl:value-of select="$theme-path"/>/images/chamada-video.png',
+                                            'file': a.attr("rel"),
+                                            'width': resolution.width,
+                                            'height': resolution.height
+                                        });
                                     },
                                     onClose: function(e) {
-                                      jwplayer("jwp-" + a.attr("rel")).pause();  
+                                      jwplayer("jwp-" + a.attr("href").substring(1)).pause();  
                                     }
                                 });
                             </xsl:otherwise>
