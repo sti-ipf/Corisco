@@ -253,7 +253,7 @@
                                         .resize(width, height)
                                         .play();
 
-                                    resizeFancybox();
+                                    resizeFancybox(width, height);
 
                                     return false;
                                 }
