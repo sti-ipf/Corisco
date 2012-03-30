@@ -284,7 +284,7 @@
                                     $bloco.append('<div id="jwp-' + key + '">Carregando...</div>');
 
                                     var $labelVisualizarEmQualidade = $('<strong />').text("Visualizar em qualidade: ");
-                                    var $labelFazerDownloadEmQualidade = $('<strong />').text("Fazer Download em qualidade: ");
+                                    var $labelFazerDownloadEmQualidade = $('<strong />').text("Baixar/Copiar em qualidade: ");
 
                                     var $lista = $('<ul class="qualidades-video" />');
                                     var $listaDownloads = $('<ul class="qualidades-video" />');
@@ -321,7 +321,7 @@
                                         }
                                     });
                                     
-                                    $hideBloco.append($bloco.append($labelVisualizarEmQualidade).append($lista).append($labelFazerDownloadEmQualidade).append($listaDownloads));
+                                    $hideBloco.append($bloco.append($('<br />')).append($labelVisualizarEmQualidade).append($lista).append($labelFazerDownloadEmQualidade).append($listaDownloads));
 
                                     $(".blocos-midia").append($hideBloco);
                                 }
