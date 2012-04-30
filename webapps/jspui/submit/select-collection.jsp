@@ -49,6 +49,7 @@
 
 <%@ page import="javax.servlet.jsp.jstl.fmt.LocaleSupport" %>
 <%@ page import="java.util.TreeMap" %>
+<%@ page import="java.text.Collator" %>
 
 <%@ page import="org.dspace.core.Context" %>
 <%@ page import="org.dspace.app.webui.servlet.SubmissionController" %>
@@ -65,7 +66,7 @@
 
     //get collections to choose from
     Collection[] collections = (Collection[]) request.getAttribute("collections");
-    TreeMap<String, Integer> collectionsSorted = new TreeMap<String, Integer>();
+    TreeMap<String, Integer> collectionsSorted = new TreeMap<String, Integer>(Collator.getInstance());
     for (int i = 0; i < collections.length; i++) {
       String firstCommunity = (collections[i].getCommunities().length > 0) ? collections[i].getCommunities()[0].getMetadata("name") : "";
       collectionsSorted.put(firstCommunity + " - " + collections[i].getMetadata("name"), collections[i].getID());
