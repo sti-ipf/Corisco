@@ -48,6 +48,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
 <%@ page import="javax.servlet.jsp.jstl.fmt.LocaleSupport" %>
+<%@ page import="java.util.TreeMap" %>
 
 <%@ page import="org.dspace.core.Context" %>
 <%@ page import="org.dspace.app.webui.servlet.SubmissionController" %>
@@ -55,8 +56,7 @@
 <%@ page import="org.dspace.app.webui.util.UIUtil" %>
 <%@ page import="org.dspace.content.Collection" %>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"
-    prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 	
 <%@ taglib uri="http://www.dspace.org/dspace-tags.tld" prefix="dspace" %>
 
@@ -64,8 +64,12 @@
     request.setAttribute("LanguageSwitch", "hide");
 
     //get collections to choose from
-    Collection[] collections =
-        (Collection[]) request.getAttribute("collections");
+    Collection[] collections = (Collection[]) request.getAttribute("collections");
+    TreeMap<Integer, String> collectionsSorted = new TreeMap<Integer, String>();
+    for (int i = 0; i < collections.length; i++) {
+      String firstCommunity = (collections[i].getCommunities().length > 0) ? collections[i].getCommunities()[0].getMetadata("name") : "";
+      collectionsSorted.put(collections[i].getID(), firstCommunity + " - " + collections[i].getMetadata("name"));
+    }
 
 	//check if we need to display the "no collection selected" error
     Boolean noCollection = (Boolean) request.getAttribute("no.collection");
@@ -82,7 +86,7 @@
     <h1><fmt:message key="jsp.submit.select-collection.heading"/></h1>
 
 	
-<%  if (collections.length > 0)
+<%  if (!collectionsSorted.isEmpty())
     {
 %>
 	<div><fmt:message key="jsp.submit.select-collection.info1"/>
@@ -113,10 +117,10 @@
                         <select name="collection" id="tcollection">
                         	<option value="-1"></option>
 <%
-        for (int i = 0; i < collections.length; i++)
+        for (Integer id : collectionsSorted.keySet())
         {
 %>
-                            <option value="<%= collections[i].getID() %>"><%= collections[i].getMetadata("name") %></option>
+<option value="<%= id %>"><%= collectionsSorted.get(id) %></option>
 <%
         }
 %>
