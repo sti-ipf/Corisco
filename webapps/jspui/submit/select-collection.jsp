@@ -65,10 +65,10 @@
 
     //get collections to choose from
     Collection[] collections = (Collection[]) request.getAttribute("collections");
-    TreeMap<Integer, String> collectionsSorted = new TreeMap<Integer, String>();
+    TreeMap<String, Integer> collectionsSorted = new TreeMap<String, Integer>();
     for (int i = 0; i < collections.length; i++) {
       String firstCommunity = (collections[i].getCommunities().length > 0) ? collections[i].getCommunities()[0].getMetadata("name") : "";
-      collectionsSorted.put(collections[i].getID(), firstCommunity + " - " + collections[i].getMetadata("name"));
+      collectionsSorted.put(firstCommunity + " - " + collections[i].getMetadata("name"), collections[i].getID());
     }
 
 	//check if we need to display the "no collection selected" error
@@ -117,10 +117,10 @@
                         <select name="collection" id="tcollection">
                         	<option value="-1"></option>
 <%
-        for (Integer id : collectionsSorted.keySet())
+        for (String collection : collectionsSorted.keySet())
         {
 %>
-<option value="<%= id %>"><%= collectionsSorted.get(id) %></option>
+<option value="<%= collectionsSorted.get(collection) %>"><%= collection %></option>
 <%
         }
 %>
