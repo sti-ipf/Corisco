@@ -47,11 +47,28 @@
 <%@ page import="org.dspace.content.Item" %>
 <%@ page import="org.dspace.app.webui.servlet.admin.EditItemServlet" %>
 
+<%@ page import="javax.servlet.jsp.jstl.fmt.LocaleSupport" %>
+<%@ page import="java.util.TreeMap" %>
+<%@ page import="java.text.Collator" %>
+
 <%@ taglib uri="http://www.dspace.org/dspace-tags.tld" prefix="dspace" %>
 
 <%
 	Collection [] notLinkedCollections = (Collection[] )request.getAttribute("notLinkedCollections");
+  TreeMap<String, Integer> notLinkedCollectionsSorted = new TreeMap<String, Integer>(Collator.getInstance());
+  for (int i = 0; i < notLinkedCollections.length; i++)
+  {
+    String firstCommunity = (notLinkedCollections[i].getCommunities().length > 0) ? notLinkedCollections[i].getCommunities()[0].getMetadata("name") : "";
+    notLinkedCollectionsSorted.put(firstCommunity + " - " + notLinkedCollections[i].getMetadata("name"), notLinkedCollections[i].getID());
+  }
+
 	Collection [] linkedCollections = (Collection[] )request.getAttribute("linkedCollections");
+  TreeMap<String, Integer> linkedCollectionsSorted = new TreeMap<String, Integer>(Collator.getInstance());
+  for (int i = 0; i < linkedCollections.length; i++)
+  {
+    String firstCommunity = (linkedCollections[i].getCommunities().length > 0) ? linkedCollections[i].getCommunities()[0].getMetadata("name") : "";
+    linkedCollectionsSorted.put(firstCommunity + " - " + linkedCollections[i].getMetadata("name"), linkedCollections[i].getID());
+  }
 	
 	Item item = (Item)request.getAttribute("item");
 %>
@@ -79,10 +96,10 @@
 				<td class="standard">
 				<select name="collection_from_id">
 <%
-        for (int i = 0; i < linkedCollections.length; i++)
+        for (String collection : linkedCollectionsSorted.keySet())
         {
 %>
-            <option value="<%= linkedCollections[i].getID() %>"><%= linkedCollections[i].getMetadata("name") %></option>
+            <option value="<%= linkedCollectionsSorted.get(collection) %>"><%= collection %></option>
 <%
         }
 %>
@@ -96,11 +113,10 @@
 				<td class="standard">
 				<select name="collection_to_id">
 <%
-		//Later on find a away to display in a tree format with the linked one disabled?
-        for (int i = 0; i < notLinkedCollections.length; i++)
+        for (String collection : notLinkedCollectionsSorted.keySet())
         {
 %>
-            <option value="<%= notLinkedCollections[i].getID() %>"><%= notLinkedCollections[i].getMetadata("name") %></option>
+            <option value="<%= notLinkedCollectionsSorted.get(collection) %>"><%= collection %></option>
 <%
         }
 %>
