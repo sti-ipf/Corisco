@@ -87,6 +87,7 @@ h3 {
 h4 {
     font-size: 11px; 
     font-weight: bold;
+	color:#FFF;
 }
 
 a, a:link, a:visited {
@@ -101,14 +102,14 @@ a:hover {
 
 .cor1, .cor1 a, td .info-resultado p a, .funcoes-resultado div a:hover {
     color: #D71A20;
-}
+	}
 
 .cor2, #cabecalho-barra a, #abas div a {
-    color: #FFFFFF;
+    /*color: #FFFFFF;*/
 }
 
 #cabecalho-menu a, .funcoes-resultado div a, .dado-item a, li span a {
-    color: #303030;
+	color:#FFFF;    /*color: #303030;*/
 }
 
 .caixa {
@@ -170,12 +171,18 @@ a:hover {
 }
 
 #cabecalho-menu {
-    position: relative; 
-    height: 40px; 
+	/*background-image: url('../img/top_back.png');*/
+	
+	background-color:#B11015;
+	position: relative; 
+    height: 30px; 
     font-size: 12px;
+	color:#FFF;
 }
 
 #menu-esquerdo {
+	padding-left: 200px;
+	color:#FFF;
     position: absolute; 
     top: 0; 
     left: 0;
@@ -183,7 +190,7 @@ a:hover {
 
 #menu-esquerdo ul li {
     float: left; 
-    padding:16px 11px 0 14px; 
+    padding:10px 11px 0 14px; 
     border-top: none; 
     border-left: none; 
     border-bottom: none;
@@ -191,7 +198,7 @@ a:hover {
 
 #menu-esquerdo ul li.first {
     float: left; 
-    padding:16px 11px 0 2px;
+  /*  padding:16px 11px 0 2px;*/
     border-top: none; 
     border-left: none; 
     border-bottom: none;
@@ -207,7 +214,7 @@ a:hover {
         
 #cabecalho-barra {
     position: relative;
-    height: 140px;
+    height: 168px;
     background-image: url('../img/topo.png');
     background-repeat:repeat-x;
     background-position:center
@@ -223,9 +230,9 @@ a:hover {
 }
 
 #cabecalho-busca {
-    position: relative; 
-    padding: 24px 0 0 475px; 
-    padding-top: 40px;
+    position: relative;
+padding: 24px 0 0 345px;
+padding-top: 50px;
 }
 
 #formulario-busca-cabecalho {
@@ -240,7 +247,7 @@ a:hover {
 #caixa-busca {
     float: left;
     position: relative;
-    width: 370px;
+    width: 290px;
     height: 30px;
     padding-left: 5px;
     border: 1px solid #606060;
@@ -248,12 +255,12 @@ a:hover {
 }
 
 #selecionar-filtro {
-    z-index: 1;
-    position: absolute;
-    top: 57px;
-    left: 705px;
-    width: 140px;
-    height: 20px;
+  z-index: 1;
+position: absolute;
+top: 67px;
+left: 535px;
+width: 100px;
+height: 20px;
 }
 
 .selecionar-display {
@@ -264,7 +271,8 @@ a:hover {
 }
 
 #botao-enviar {
-    float: left; 
+	margin-top: 6px;
+	float: left; 
     width: 65px; 
     height: 24px; 
     margin-left: 6px; 
@@ -710,7 +718,7 @@ ul.links-paginacao li {
 
 #abas .borda {
     float: left; 
-    width: 110px; 
+    width: 140px; 
     height: 32px; 
     margin: 9px 1px 1px 0; 
     line-height: 32px; 
@@ -788,6 +796,7 @@ ul.links-paginacao li {
 .funcoes-resultado {
     height: 12px;  
     font-size: 11px; 
+	color: #D71A20;
     line-height: 12px;
 }
 
@@ -810,6 +819,14 @@ ul.links-paginacao li {
     right: 0; 
     text-align: right;
 }
+
+
+.total-colecao{
+	font-size:1px;
+	color:#FFF;
+	
+	}
+
 
 .tipo-documento img {
     padding-left: 8px;
@@ -929,15 +946,16 @@ ul.links-paginacao li {
 }
 
 #coluna-filtros .borda {
-    position: relative; 
+	position: relative; 
     margin-bottom: 10px; 
+	/*padding-bottom:10px;*/
     border-top: none; 
     border-right: none; 
     border-left: none;
 }
 
 #coluna-filtros div h3 {
-    line-height: 24px;
+    line-height: 25px;
 }
 
 .mais-filtro {
@@ -1004,8 +1022,8 @@ ul.links-paginacao li {
 }
 
 #rodape {
-    border-top: 3px solid #D11E1B;
-    height: 90px;
+    /*border-top: 3px solid #D11E1B;*/
+    height: 92px;
     background: url('../img/rodape.png') no-repeat  scroll 0 0 transparent;
     align: center;
 }
@@ -1353,8 +1371,20 @@ h3.separador {
     padding: 0 5px;
 }
 
+
+/*BARRA REDES SOCIAIS*/
+#barra_sociais{
+	width:100%;
+	height:30px;
+	/*background-color: #3F0;*/
+	position: relative;
+	/*padding: 24px 0 0 35px;*/
+	padding-top: 65px;}
+
+
+
 #barra-compartilhar #fb-root {
-    width: 61px;
+    width: 80px;
 }
 
 #barra-compartilhar .twitter {

@@ -463,6 +463,71 @@
                         </fieldset>-->
                     </form>
                 </div>
+                
+                
+                
+                
+             <!--ADICIONADOOOOOOOO-->  <div id="barra_sociais">
+        
+        
+        
+			<ul id="barra-compartilhar">
+				<li class="plus-one">
+					<script>
+					      window.___gcfg = {
+					        lang: 'pt-BR'
+					      };  
+					      (function() {
+					        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+					        po.src = 'https://apis.google.com/js/plusone.js';
+					        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+					      })();
+					 </script>
+					<div class="g-plusone" data-size="medium" data-annotation="bubble" ></div>
+				</li>
+                <li>|</li>
+				<li class="twitter">
+					<a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];
+							if(!d.getElementById(id)){js=d.createElement(s);
+							js.id=id;js.src="//platform.twitter.com/widgets.js";
+							fjs.parentNode.insertBefore(js,fjs);
+							}}(document,"script","twitter-wjs");
+					</script>
+				</li>
+                <li>|</li>
+                <li>
+                    <a href="http://promote.orkut.com/preview?nt=orkut.com&amp;tt=Acervo Paulo Freire&amp;du=http://acervo.paulofreire.org&amp;cn=Acervo Paulo Freire!" target="_blank" title="Promover no Orkut" class="orkut" rel="nofollow">Compartilhar no Orkut</a>
+                </li>
+                <li>|</li>
+                <li>
+					<div id="fb-root"></div>
+					<script>(function(d, s, id) {
+						 var js, fjs = d.getElementsByTagName(s)[0];
+						 if (d.getElementById(id)) return;
+						 js = d.createElement(s); js.id = id;
+						 js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1";
+						 fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));
+					</script>
+					<div class="fb-like" data-send="false" data-layout="button_count" data-width="40" data-show-faces="false"></div>
+				</li>
+                <li>
+                    <a name="fb_share" class="fb-share" type="button_count" share_url="http://acervo.paulofreire.org">Compartilhar<script type="text/javascript">window.onload = function() { var script = document.createElement('script'); script.src = 'http://static.ak.fbcdn.net/connect.php/js/FB.Share'; document.getElementsByTagName('head')[0].appendChild(script); }</script></a>
+                </li>
+			</ul>
+            
+<!--ADICIONADOOOOOOOO-->      </div>
+               
+                
+                
+                
+                
+                
+                
+                
+                
+                
             </div>
 
             <xsl:choose>
@@ -607,7 +672,8 @@
     -->
     <xsl:template match="dri:body">
         <div id="conteudo">
-            <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='alert'][@qualifier='message']">
+        
+               <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='alert'][@qualifier='message']">
                 <div id="ds-system-wide-alert">
                     <p>
                         <xsl:copy-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='alert'][@qualifier='message']/node()"/>
@@ -805,56 +871,32 @@
 
     <!-- Top content -->
     <xsl:template name="conteudo-alto">
-        <xsl:variable name="container-handle">
+     <xsl:variable name="container-handle">
             <xsl:value-of select="substring-after(/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='focus'][@qualifier='container'], ':')"/>
         </xsl:variable>
-
+<!-- INICIO REDES SOCIAIS-->
         <div id="conteudo-alto">
-			<ul id="barra-compartilhar">
-				<li class="plus-one">
-					<script>
-					      window.___gcfg = {
-					        lang: 'pt-BR'
-					      };  
-					      (function() {
-					        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-					        po.src = 'https://apis.google.com/js/plusone.js';
-					        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-					      })();
-					 </script>
-					<div class="g-plusone" data-size="medium" data-annotation="bubble" ></div>
-				</li>
-                <li>|</li>
-				<li class="twitter">
-					<a href="https://twitter.com/share" class="twitter-share-button" data-lang="pt">Tweetar</a>
-					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];
-							if(!d.getElementById(id)){js=d.createElement(s);
-							js.id=id;js.src="//platform.twitter.com/widgets.js";
-							fjs.parentNode.insertBefore(js,fjs);
-							}}(document,"script","twitter-wjs");
-					</script>
-				</li>
-                <li>|</li>
-                <li>
-                    <a href="http://promote.orkut.com/preview?nt=orkut.com&amp;tt=Acervo Paulo Freire&amp;du=http://acervo.paulofreire.org&amp;cn=Acervo Paulo Freire!" target="_blank" title="Promover no Orkut" class="orkut" rel="nofollow">Compartilhar no Orkut</a>
-                </li>
-                <li>|</li>
-                <li>
-					<div id="fb-root"></div>
-					<script>(function(d, s, id) {
-						 var js, fjs = d.getElementsByTagName(s)[0];
-						 if (d.getElementById(id)) return;
-						 js = d.createElement(s); js.id = id;
-						 js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1";
-						 fjs.parentNode.insertBefore(js, fjs);
-						}(document, 'script', 'facebook-jssdk'));
-					</script>
-					<div class="fb-like" data-send="false" data-layout="button_count" data-width="40" data-show-faces="false"></div>
-				</li>
-                <li>
-                    <a name="fb_share" class="fb-share" type="button_count" share_url="http://acervo.paulofreire.org">Compartilhar<script type="text/javascript">window.onload = function() { var script = document.createElement('script'); script.src = 'http://static.ak.fbcdn.net/connect.php/js/FB.Share'; document.getElementsByTagName('head')[0].appendChild(script); }</script></a>
-                </li>
-			</ul>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
             <xsl:choose>
 
                 <!-- Rendering metadata for all communities. -->
@@ -2544,7 +2586,7 @@
 
         <!-- Once the search box is built, the other parts of the options are added -->
 
-        <div id="titulo-refinar" class="borda">
+        <div id="titulo-listar" class="borda">
             <h3><i18n:text>xmlui.dri2xhtml.structural.search-filter</i18n:text></h3>
         </div>
 
