@@ -58,7 +58,7 @@
         <div id="cabecalho-menu">
             <div id="menu-esquerdo">
                 <ul>
-                    <li class="borda first">
+                   <!-- <li class="borda first">
                         <a href="">
                             <i18n:text>xmlui.general.static_menu.1</i18n:text>
                         </a>
@@ -67,15 +67,46 @@
                         <a href="">
                             <i18n:text>xmlui.general.static_menu.2</i18n:text>
                         </a>
+                    </li>-->
+                     <li class="borda first">
+                        <a href="http://www.paulofreire.org/centro-de-referencia/repositorio-digital">
+                            O Repositório
+                        </a>
+                    </li>
+                     <li class="borda">
+                        <a href="http://www.paulofreire.org/paulo-freire-memoria-e-presenca">
+                            O Projeto
+                        </a>
+                    </li>
+                     <li class="borda">
+                        <a href="https://github.com/brasiliana/Corisco" target="_blank">
+                            O Corisco
+                        </a>
+                    </li>
+                    <li class="borda">
+                        <a href="http://www.paulofreire.org/centro-de-referencia/repositorio-digital" target="_blank">
+                            Como nos enviar materiais
+                        </a>
+                    </li>
+                   <!-- <li class="borda">
+                        <a href="">
+                            Direitos autorais
+                        </a>
+                    </li>-->
+                      <li class="borda">
+                        <a href="mailto:acervo@paulofreire.org">
+                        	Contato
+                        </a>
+                        
                     </li>
 		            </ul>
             </div>
-            <div id="menu-direito">
+            <!--<div id="menu-direito">
                 <a href="https://github.com/brasiliana/Corisco">
                     <i18n:text>xmlui.general.static_menu.about_corisco</i18n:text>
                 </a>
-            </div>
-        </div>
+            </div>-->
+      </div>
     </xsl:template>
 
 

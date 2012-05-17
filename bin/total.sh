@@ -5,9 +5,9 @@ echo "Parando Tomcat"
 echo "Iniciando Tomcat"
 /etc/alternatives/apache-tomcat/bin/startup.sh
 echo "Executando index-update"
-/var/www/dspace/bin/index-update
+/var/dados/dspace/bin/index-update
 echo "Executando filter-media"
-/var/www/dspace/bin/filter-media
+/var/dados/dspace/bin/filter-media
 echo "Executando update-discovery-index"
-/var/www/dspace/bin/dspace update-discovery-index
+/var/dados/dspace/bin/dspace update-discovery-index
 
