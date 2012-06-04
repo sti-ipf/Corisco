@@ -60,7 +60,6 @@
 
     <xsl:output indent="yes"/>
 
-
     <!-- Generate the thunbnail, if present, from the file section -->
     <xsl:template match="mets:fileSec" mode="artifact-preview">
         <xsl:param name="primaryBitstream" select="-1"/>
@@ -119,12 +118,6 @@
                             <xsl:value-of select="$thumbnail-path"/>
                         </xsl:attribute>
                     </img>
-<!--                    <img alt="Thumbnail">
-                        <xsl:attribute name="src">
-                            <xsl:value-of select="$images-path"/>
-                            <xsl:text>visualizador_pg1.gif</xsl:text>
-                        </xsl:attribute>
-                    </img>-->
                 </xsl:otherwise>
             </xsl:choose>
         </a>
@@ -190,7 +183,6 @@
                                         'file': link
                                     });
                                 </xsl:for-each>
-
 
                                 $(".visualizar-midia.fancybox").fancybox({
                                     titleShow: false,
@@ -310,7 +302,6 @@
                                         }
                                     });
 
-
                                     var pipesAdded = 0;
                                     $lista.children().each(function(index) {
                                         index += pipesAdded;
@@ -388,13 +379,6 @@
                     </a>
                 </xsl:otherwise>
             </xsl:choose>
-
-    	    <!-- Display the contents of 'Description' as long as at least one bitstream contains a description -->
-    	    <!--xsl:if test="$context/mets:fileSec/mets:fileGrp[@USE='CONTENT']/mets:file/mets:FLocat/@xlink:label != ''">
-    	        <p>
-    	            <xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label"/>
-    	        </p>
-    	    </xsl:if-->
         </li>
     </xsl:template>
 
@@ -420,7 +404,6 @@
       <i18n:text i18n:key="{$mimetype-key}"><xsl:value-of select="$mimetype"/></i18n:text>
     </xsl:template>
 
-
     <xsl:template name="getFileViewURL">
         <xsl:param name="file"/>
         <xsl:variable name="original-link">
@@ -442,7 +425,6 @@
         </xsl:choose>
     </xsl:template>
 
-
     <!-- Generate the license information from the file section -->
     <xsl:template match="mets:fileGrp[@USE='CC-LICENSE' or @USE='LICENSE']">
         <div class="license-info">
@@ -458,17 +440,8 @@
         </div>
     </xsl:template>
 
-
     <!-- Generate the logo, if present, from the file section -->
     <xsl:template match="mets:fileGrp[@USE='LOGO']">
-        <!--
-        <div class="ds-logo-wrapper">
-            <img src="{mets:file/mets:FLocat[@LOCTYPE='URL']/@xlink:href}" class="logo">
-                <xsl:attribute name="alt">xmlui.dri2xhtml.METS-1.0.collection-logo-alt</xsl:attribute>
-                <xsl:attribute name="attr" namespace="http://apache.org/cocoon/i18n/2.1">alt</xsl:attribute>
-            </img>
-        </div>
-        -->
         <img class="preview-thumbnail" alt="Thumbnail" onerror="this.onerror=null;this.src='{$bookreader-path}/images/transparent.png';">
             <xsl:attribute name="src">
                 <xsl:value-of select="mets:file/mets:FLocat[@LOCTYPE='URL']/@xlink:href"/>
@@ -477,6 +450,5 @@
             <xsl:attribute name="attr" namespace="http://apache.org/cocoon/i18n/2.1">alt</xsl:attribute>
         </img>
     </xsl:template>
-
 
 </xsl:stylesheet>

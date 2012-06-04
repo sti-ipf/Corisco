@@ -53,7 +53,6 @@
 
     <xsl:output indent="yes"/>
 
-
     <!-- Build a single row in the bitsreams table of the item view page -->
     <xsl:template match="mets:file" mode="image-viewer">
         <xsl:param name="context" select="."/>
@@ -134,7 +133,6 @@
    },-->
 
     </xsl:template>
-
 
     <xsl:template match="mets:file" mode="book-viewer">
         <xsl:param name="context" select="."/>
@@ -219,6 +217,5 @@
         </div>
 
     </xsl:template>
-
 
 </xsl:stylesheet>

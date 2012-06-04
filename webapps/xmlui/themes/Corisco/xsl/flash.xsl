@@ -50,8 +50,7 @@
          </xsl:if>
                 
         <!-- Generate the info about the item from the metadata section -->
-        <xsl:apply-templates select="./mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']/mets:xmlData/dim:dim"
-        mode="itemSummaryView-DIM"/>
+        <xsl:apply-templates select="./mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']/mets:xmlData/dim:dim" mode="itemSummaryView-DIM"/>
 
         <!-- Generate the bitstream information from the file section -->
         <xsl:choose>
@@ -82,10 +81,7 @@
         <!-- Generate the license information from the file section -->
         <xsl:apply-templates select="./mets:fileSec/mets:fileGrp[@USE='CC-LICENSE' or @USE='LICENSE']"/>
 
-
     </xsl:template>
-
-
 
 
     <!-- Generate FLV maxi player objects for flash movie files in the CONTENT bundle -->
@@ -121,7 +117,6 @@
 
     </div>
     </xsl:template>
-
 
 <!-- KRG 2008-11-05
      The next two templates have been modified to display the filmstrip thumbnail in search and browse results
