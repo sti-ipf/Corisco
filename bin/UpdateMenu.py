@@ -20,7 +20,7 @@ class GenerateMenu:
         if not self.connection:
             try:
                 self.connection = psycopg2.connect("\
-                    dbname='postgres'\
+                    dbname='dspace'\
                     user='dspace'\
                     host='127.0.0.1'\
                     password='dspace9940'\
@@ -34,7 +34,7 @@ class GenerateMenu:
         query = self.getConnection().cursor()
         query.execute("\
             SELECT community.community_id, community.name, Handle.handle \
-            FROM public.community, public.community2community, public.Handle \
+            FROM community, community2community, Handle \
             WHERE community2community.child_comm_id = community.community_id \
             AND Handle.resource_id = community.community_id \
             AND Handle.resource_type_id = 4 \
@@ -46,7 +46,7 @@ class GenerateMenu:
         query = self.getConnection().cursor()
         query.execute("\
             SELECT Handle.handle, collection.name \
-            FROM collection, community2collection, public.Handle \
+            FROM collection, community2collection, Handle \
             WHERE community2collection.collection_id = collection.collection_id \
             AND Handle.resource_id = collection.collection_id \
             AND Handle.resource_type_id = 3 \

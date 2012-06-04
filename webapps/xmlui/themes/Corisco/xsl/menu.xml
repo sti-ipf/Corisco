@@ -1,191 +1,383 @@
 <?xml version="1.0" encoding="utf-8"?>
 <communities>
     <community>
-        <handle>7891/2</handle>
-        <title>Acervo Paulo Freire</title>
+        <handle>
+            7891/2
+        </handle>
+        <title>
+            Acervo Paulo Freire
+        </title>
         <community>
-            <handle>7891/3</handle>
-            <title>Iconografia</title>
+            <handle>
+                7891/3
+            </handle>
+            <title>
+                Iconografia
+            </title>
             <collections>
                 <collection>
-                    <handle>7891/12</handle>
-                    <title>Cartazes</title>
+                    <handle>
+                        7891/12
+                    </handle>
+                    <title>
+                        Cartazes
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/9</handle>
-                    <title>Charges</title>
+                    <handle>
+                        7891/9
+                    </handle>
+                    <title>
+                        Charges
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/4</handle>
-                    <title>Fotografias</title>
+                    <handle>
+                        7891/4
+                    </handle>
+                    <title>
+                        Fotografias
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/11</handle>
-                    <title>Ilustrações</title>
+                    <handle>
+                        7891/11
+                    </handle>
+                    <title>
+                        Ilustrações
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/10</handle>
-                    <title>Pinturas</title>
+                    <handle>
+                        7891/10
+                    </handle>
+                    <title>
+                        Pinturas
+                    </title>
                 </collection>
             </collections>
         </community>
         <community>
-            <handle>7891/13</handle>
-            <title>Obra</title>
+            <handle>
+                7891/13
+            </handle>
+            <title>
+                Obra
+            </title>
             <collections>
                 <collection>
-                    <handle>7891/15</handle>
-                    <title>Artigos</title>
+                    <handle>
+                        7891/15
+                    </handle>
+                    <title>
+                        Artigos
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/16</handle>
-                    <title>Áudios</title>
+                    <handle>
+                        7891/16
+                    </handle>
+                    <title>
+                        Áudios
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/585</handle>
-                    <title>Capítulos</title>
+                    <handle>
+                        7891/585
+                    </handle>
+                    <title>
+                        Capítulos
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/586</handle>
-                    <title>Cartilhas</title>
+                    <handle>
+                        7891/586
+                    </handle>
+                    <title>
+                        Cartilhas
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/17</handle>
-                    <title>Correspondências</title>
+                    <handle>
+                        7891/17
+                    </handle>
+                    <title>
+                        Correspondências
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/587</handle>
-                    <title>Diálogos</title>
+                    <handle>
+                        7891/587
+                    </handle>
+                    <title>
+                        Diálogos
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/19</handle>
-                    <title>Entrevistas</title>
+                    <handle>
+                        7891/19
+                    </handle>
+                    <title>
+                        Entrevistas
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/588</handle>
-                    <title>Eventos</title>
+                    <handle>
+                        7891/588
+                    </handle>
+                    <title>
+                        Eventos
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/20</handle>
-                    <title>Folhetos</title>
+                    <handle>
+                        7891/20
+                    </handle>
+                    <title>
+                        Folhetos
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/1025</handle>
-                    <title>Legislação</title>
+                    <handle>
+                        7891/1025
+                    </handle>
+                    <title>
+                        Legislação
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/21</handle>
-                    <title>Livros</title>
+                    <handle>
+                        7891/21
+                    </handle>
+                    <title>
+                        Livros
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/22</handle>
-                    <title>Manuscritos</title>
+                    <handle>
+                        7891/22
+                    </handle>
+                    <title>
+                        Manuscritos
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/589</handle>
-                    <title>Marginálias</title>
+                    <handle>
+                        7891/589
+                    </handle>
+                    <title>
+                        Marginálias
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/24</handle>
-                    <title>Prefácios e apresentações</title>
+                    <handle>
+                        7891/24
+                    </handle>
+                    <title>
+                        Prefácios e apresentações
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/590</handle>
-                    <title>Projetos</title>
+                    <handle>
+                        7891/590
+                    </handle>
+                    <title>
+                        Projetos
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/591</handle>
-                    <title>Relatórios</title>
+                    <handle>
+                        7891/591
+                    </handle>
+                    <title>
+                        Relatórios
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/592</handle>
-                    <title>Teses</title>
+                    <handle>
+                        7891/592
+                    </handle>
+                    <title>
+                        Teses
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/797</handle>
-                    <title>Títulos</title>
+                    <handle>
+                        7891/797
+                    </handle>
+                    <title>
+                        Títulos
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/25</handle>
-                    <title>Vídeos</title>
+                    <handle>
+                        7891/25
+                    </handle>
+                    <title>
+                        Vídeos
+                    </title>
                 </collection>
             </collections>
         </community>
         <community>
-            <handle>7891/14</handle>
-            <title>Produção de Terceiros</title>
+            <handle>
+                7891/14
+            </handle>
+            <title>
+                Produção de Terceiros
+            </title>
             <collections>
                 <collection>
-                    <handle>7891/26</handle>
-                    <title>Artigos</title>
+                    <handle>
+                        7891/26
+                    </handle>
+                    <title>
+                        Artigos
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/27</handle>
-                    <title>Áudios</title>
+                    <handle>
+                        7891/27
+                    </handle>
+                    <title>
+                        Áudios
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/594</handle>
-                    <title>Bibliografias</title>
+                    <handle>
+                        7891/594
+                    </handle>
+                    <title>
+                        Bibliografias
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/593</handle>
-                    <title>Biografias</title>
+                    <handle>
+                        7891/593
+                    </handle>
+                    <title>
+                        Biografias
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/595</handle>
-                    <title>Capítulos</title>
+                    <handle>
+                        7891/595
+                    </handle>
+                    <title>
+                        Capítulos
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/28</handle>
-                    <title>Dissertações</title>
+                    <handle>
+                        7891/28
+                    </handle>
+                    <title>
+                        Dissertações
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/596</handle>
-                    <title>Documentos Avulsos</title>
+                    <handle>
+                        7891/596
+                    </handle>
+                    <title>
+                        Documentos Avulsos
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/29</handle>
-                    <title>Eventos</title>
+                    <handle>
+                        7891/29
+                    </handle>
+                    <title>
+                        Eventos
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/597</handle>
-                    <title>Histórias em quadrinhos</title>
+                    <handle>
+                        7891/597
+                    </handle>
+                    <title>
+                        Histórias em quadrinhos
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/1026</handle>
-                    <title>Legislação</title>
+                    <handle>
+                        7891/1026
+                    </handle>
+                    <title>
+                        Legislação
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/601</handle>
-                    <title>Literaturas de Cordel</title>
+                    <handle>
+                        7891/601
+                    </handle>
+                    <title>
+                        Literaturas de Cordel
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/31</handle>
-                    <title>Livros</title>
+                    <handle>
+                        7891/31
+                    </handle>
+                    <title>
+                        Livros
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/734</handle>
-                    <title>Monografias</title>
+                    <handle>
+                        7891/2370
+                    </handle>
+                    <title>
+                        Manuscritos
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/598</handle>
-                    <title>Programas</title>
+                    <handle>
+                        7891/734
+                    </handle>
+                    <title>
+                        Monografias
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/599</handle>
-                    <title>Projetos</title>
+                    <handle>
+                        7891/598
+                    </handle>
+                    <title>
+                        Programas
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/600</handle>
-                    <title>Relatórios</title>
+                    <handle>
+                        7891/599
+                    </handle>
+                    <title>
+                        Projetos
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/34</handle>
-                    <title>Teses</title>
+                    <handle>
+                        7891/600
+                    </handle>
+                    <title>
+                        Relatórios
+                    </title>
                 </collection>
                 <collection>
-                    <handle>7891/35</handle>
-                    <title>Vídeos</title>
+                    <handle>
+                        7891/34
+                    </handle>
+                    <title>
+                        Teses
+                    </title>
+                </collection>
+                <collection>
+                    <handle>
+                        7891/35
+                    </handle>
+                    <title>
+                        Vídeos
+                    </title>
                 </collection>
             </collections>
         </community>
