@@ -225,8 +225,6 @@
             </div>
 
         </div>
-
-        <!-- div para dar um clear no float -->
         <div class="clear">
             <xsl:comment>Empty</xsl:comment>
         </div>
@@ -236,10 +234,8 @@
         <xsl:param name="position"/>
         <xsl:variable name="itemWithdrawn" select="@withdrawn" />
         <div class="info-resultado">
-            <!-- inseri span classe "numero-resultado" e coloquei texto pra visualizar-->
             <h2 class="titulo-resultado">
                 <span class="numero-resultado"><xsl:value-of select="$position"/>. </span>
-<!--                    <a>título do resultado</a>-->
                 <span class="cor1">
                     <xsl:element name="a">
                         <xsl:attribute name="href">

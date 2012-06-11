@@ -330,16 +330,6 @@
                     <xsl:text> </xsl:text>
                 </a>
 
-                <div id="cabecalho-busca">
-                    <form id="formulario-busca-cabecalho" method="get">
-                        <xsl:attribute name="action">
-                            <xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='search'][@qualifier='simpleURL']"/>
-                        </xsl:attribute>
-
-                        <xsl:apply-templates select="/dri:document/dri:options/dri:list[@n='top-search']" mode="header"/>
-                    </form>
-                </div>
-                
                 <div id="barra_sociais">    
         			<ul id="barra-compartilhar">
         				<li class="plus-one">
@@ -480,8 +470,21 @@
     -->
     <xsl:template match="dri:body">
         <div id="conteudo">
+            <xsl:if test="count(//dri:body/dri:div[@n='item-view'])=0">
+                <xsl:call-template name="collections-column" />
+
+                <div id="cabecalho-busca">
+                    <form id="formulario-busca-cabecalho" method="get">
+                        <xsl:attribute name="action">
+                            <xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='search'][@qualifier='simpleURL']"/>
+                        </xsl:attribute>
+
+                        <xsl:apply-templates select="/dri:document/dri:options/dri:list[@n='top-search']" mode="header"/>
+                    </form>
+                </div>
+            </xsl:if>
         
-               <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='alert'][@qualifier='message']">
+           <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='alert'][@qualifier='message']">
                 <div id="ds-system-wide-alert">
                     <p>
                         <xsl:copy-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='alert'][@qualifier='message']/node()"/>
@@ -493,14 +496,9 @@
                 <xsl:apply-templates select="//dri:div[@interactive='yes'][@n='general-query']" mode="formAttributes" />
                 <xsl:attribute name="id">formulario-busca</xsl:attribute>
                 <xsl:attribute name="method">GET</xsl:attribute>
-                <xsl:if test="//dri:body/dri:div[@n!='item-view']">
-                    <xsl:call-template name="collections-column" />
-                </xsl:if>
 
                 <xsl:call-template name="conteudo-central" />
             </form>
-
-            <xsl:call-template name="conteudo-baixo" />
         </div>
     </xsl:template>
 
@@ -641,40 +639,20 @@
         <xsl:variable name="container-handle">
             <xsl:value-of select="substring-after(/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='focus'][@qualifier='container'], ':')"/>
         </xsl:variable>
-        <div id="conteudo-alto">       
+        <div id="conteudo-alto">
             <xsl:choose>
                 <!-- Rendering metadata for all communities. -->
                 <xsl:when test="//dri:body/dri:div[@n='community-home']">
                     <xsl:apply-templates select="//dri:body/dri:div[@n='community-home']/dri:div[@n='community-view']/dri:referenceSet[@type='detailView']/dri:reference" mode="headDetailView"/>
-                    <div id="dados-item">
-                        <h3>
-                            <span id="nome-item">
-                                <xsl:apply-templates select="//dri:body//dri:div[@rend='secondary recent-submission']/dri:head"/>
-                            </span>
-                        </h3>
-                    </div>
                 </xsl:when>
 
                 <!-- Rendering metadata for all collections. -->
                 <xsl:when test="//dri:body/dri:div[@n='collection-home']">
                     <xsl:apply-templates select="//dri:body/dri:div[@n='collection-home']/dri:div[@n='collection-view']/dri:referenceSet[@type='detailView']/dri:reference" mode="headDetailView"/>
-                    <div id="dados-item">
-                        <h3>
-                            <span id="nome-item">
-                                <xsl:apply-templates select="//dri:body//dri:div[@rend='secondary recent-submission']/dri:head"/>
-                            </span>
-                        </h3>
-                    </div>
                 </xsl:when>
 
                 <xsl:when test="//dri:body//dri:div[@rend='secondary recent-submission']">
-                    <div id="dados-item">
-                        <h3>
-                            <span id="nome-item">
-                                <xsl:apply-templates select="//dri:body//dri:div[@rend='secondary recent-submission']/dri:head"/>
-                            </span>
-                        </h3>
-                    </div>
+                    <!-- Não exibe nada -->
                 </xsl:when>
 
                 <xsl:when test="//dri:body//dri:div[@id='aspect.discovery.SimpleSearch.div.search-results']">
@@ -713,9 +691,11 @@
                         </h3>
                     </div>
                 </xsl:when>
+
                 <xsl:when test="//dri:body//dri:div[@n='item-view']">
                     <xsl:apply-templates select="//dri:body/dri:div[@n='item-view']/dri:referenceSet/dri:reference" mode="headDetailView"/>
                 </xsl:when>
+
                 <xsl:otherwise>
                     <div id="dados-item">
                         <h3>
@@ -724,8 +704,6 @@
                     </div>
                 </xsl:otherwise>
             </xsl:choose>
-
-            <xsl:call-template name="caixa-barra"/>
         </div>
     </xsl:template>
 
@@ -828,7 +806,20 @@
 
     <!-- Central/main content -->
     <xsl:template name="conteudo-central">
-        <div id="conteudo-central">
+        <xsl:variable name="div-id">
+            <xsl:choose>
+                <xsl:when test="//dri:body/dri:div[@n='item-view']">
+                    <xsl:text>conteudo-item</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text>conteudo-central</xsl:text>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <div>
+            <xsl:attribute name="id">
+                <xsl:value-of select="$div-id" />
+            </xsl:attribute>
             <xsl:call-template name="conteudo-alto" />
 
             <xsl:choose>
@@ -838,19 +829,16 @@
 
                 <xsl:otherwise>
                     <div id="coluna-resultados">
-                        <xsl:if test="//dri:options/dri:list[@n='discovery-location']">
-                            <div id="abas">
-                                <xsl:apply-templates select="//dri:options/dri:list[@n='discovery-location']" mode="tabList"/>
-                            </div>
-                        </xsl:if>
-
                         <xsl:apply-templates select="//dri:body/dri:div"/>
                     </div>
-
-                    <xsl:apply-templates select="//dri:options"/>
                 </xsl:otherwise>
             </xsl:choose>
+            <xsl:if test="count(//dri:body/dri:div[@n='item-view'])=0">
+                <xsl:apply-templates select="//dri:options"/>
+            </xsl:if>            
         </div>
+
+        <xsl:call-template name="conteudo-baixo" />
     </xsl:template>
 
     <!-- Bottom content -->
@@ -1989,13 +1977,14 @@
             <xsl:apply-templates />
     </xsl:template>
 
-    <xsl:template match="dri:options/dri:list[dri:list][@n='discovery']" priority="4">
-        <xsl:apply-templates select="//dri:div[@interactive='yes'][@n='general-query']/dri:list[@n='search-query']/dri:item[@n='search-filter-list']" />
+    <xsl:template match="dri:options/dri:list[dri:list][@n='discovery']" priority="4">        
         <div id="titulo-listar" class="borda">
-            <h3><i18n:text>xmlui.dri2xhtml.structural.search-filter</i18n:text></h3>
+            <h3 id="filtrar-por"><i18n:text>xmlui.dri2xhtml.structural.search-filter</i18n:text></h3>
         </div>
 
         <xsl:apply-templates select="*[not(name()='head')]" mode="nested"/>
+
+        <xsl:apply-templates select="//dri:div[@interactive='yes'][@n='general-query']/dri:list[@n='search-query']/dri:item[@n='search-filter-list']" />
     </xsl:template>
 
     <xsl:template match="dri:options/dri:list/dri:list[@n='global']" priority="3">
@@ -2055,13 +2044,12 @@
     </xsl:template>
 
     <xsl:template match="dri:options/dri:list[@n='top-search']/dri:item/dri:field[@n='search-filter-controls']" mode="header" priority="1">
-
         <xsl:apply-templates select="dri:field" mode="header"/>
 
         <xsl:if test="contains(dri:params/@operations,'add')">
             <!-- Had to add a hidden input because there are other inputs with type 'submit', and only the first one is submitted when enter key is pressed in a text field. -->
             <!-- Add buttons should be named "submit_[field]_add" so that we can ignore errors from required fields when simply adding new values-->
-            <input id="botao-enviar" type="submit" name="{concat('submit_',@n,'_add')}" i18n:attr="value" value="xmlui.general.go" >
+            <input id="botao-enviar" type="submit" name="{concat('submit_',@n,'_add')}" value="Buscar" >
             </input>
         </xsl:if>
     </xsl:template>
@@ -2730,15 +2718,13 @@
         </xsl:if>
     </xsl:template>
 
-    <xsl:template match="dri:field[@type='select']" mode="header">
-        <div>
-            <select>
-                <xsl:call-template name="fieldAttributes"/>
-                <xsl:attribute name="id">selecionar-filtro</xsl:attribute>
-                <xsl:attribute name="class">selecionar-display</xsl:attribute>
-                <xsl:apply-templates />
-            </select>
-        </div>
+    <xsl:template match="dri:field[@type='select']" mode="header" priority="2">
+        <select>
+            <xsl:call-template name="fieldAttributes"/>
+            <xsl:attribute name="id">selecionar-filtro</xsl:attribute>
+            <xsl:attribute name="class">selecionar-display</xsl:attribute>
+            <xsl:apply-templates />
+        </select>
     </xsl:template>
 
     <xsl:template match="dri:field[@type='select']" mode="searchControls">
@@ -3185,7 +3171,7 @@
         <xsl:apply-templates />
     </xsl:template>
 
-    <xsl:template match="dri:field[@type='text']" mode="header" priority="10">
+    <xsl:template match="dri:field[@type='text']" mode="header" priority="1">
         <input id="caixa-busca" type="text">
             <xsl:attribute name="name">
                 <xsl:value-of select="@n"/>
@@ -3193,14 +3179,10 @@
             <xsl:attribute name="type">
                 <xsl:value-of select="@type"/>
             </xsl:attribute>
-            <xsl:choose>
-                <xsl:otherwise>
-                    <xsl:attribute name="i18n:attr">value</xsl:attribute>
-                    <xsl:attribute name="value">
-                        <xsl:value-of select="../dri:help"/>
-                    </xsl:attribute>
-                </xsl:otherwise>
-            </xsl:choose>
+            <xsl:attribute name="i18n:attr">value</xsl:attribute>
+            <xsl:attribute name="value">
+                <xsl:value-of select="../dri:help"/>
+            </xsl:attribute>
             <xsl:attribute name="onFocus"><xsl:text>clearText(this)</xsl:text></xsl:attribute>
             <xsl:attribute name="onBlur"><xsl:text>clearText(this)</xsl:text></xsl:attribute>
         </input>
