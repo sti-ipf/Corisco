@@ -970,6 +970,7 @@ ul.links-paginacao li {
 #communities-collections-column .subcommunities > li > a {
     color: #B01212;
     font-weight: bold;
+	font-size: 12px;
 }
 
 #communities-collections-column .collections {
@@ -979,8 +980,9 @@ ul.links-paginacao li {
 
 #communities-collections-column .collections li {
     border-bottom: 1px dotted #FFF;
-    padding-left: 40px;
+    padding-left: 20px;
     padding-right: 10px;
+	font-size: 12px;
 }
 
 #coluna-filtros .borda {

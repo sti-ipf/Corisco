@@ -792,8 +792,7 @@
                         <li>
                             <a>
                                 <xsl:attribute name="href">
-                                    <xsl:text>/xmlui/handle/</xsl:text>
-                                    <xsl:value-of select="./handle" />
+                                    <xsl:text>/xmlui/handle/</xsl:text><xsl:value-of select="./handle" />
                                 </xsl:attribute>
                                 <xsl:value-of select="./title" />
                             </a>

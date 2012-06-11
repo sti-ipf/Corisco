@@ -13,7 +13,7 @@ class GenerateMenu:
     def saveXml(self, filename):
         document = parseString("<communities>" + self.getTreeCommunities(1) + "</communities>")
         fileXml = open(filename, "w")
-        fileXml.write(document.toprettyxml("    ", "\r\n", "utf-8"))
+        fileXml.write(document.toxml("utf-8"))
         fileXml.close()
 
     def getConnection(self):
