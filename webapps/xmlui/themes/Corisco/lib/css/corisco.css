@@ -105,7 +105,7 @@ a:hover {
 }
 
 .caixa {
-    background: #E7E7E7;
+    background: #FFF;
 }
 
 .caixa2 {
@@ -142,7 +142,7 @@ a:hover {
 /* ---------- fim da customização ---------- */
 
 .clear {
-    position: relative; 
+    position: relative;
     clear:both;
 }
 
@@ -159,6 +159,7 @@ a:hover {
 #cabecalho-menu {
 	padding-top: 8px;
 	margin: 0 auto;
+    padding-top: 5px;
     width: 500px;
 }
 
@@ -167,7 +168,7 @@ a:hover {
     padding: 5px 10px;
     border-left: 3px solid #D11E18;
 }
-        
+
 #cabecalho-barra {
     background: url('../img/topo.png') center no-repeat;
     height: 180px;
@@ -318,9 +319,10 @@ a:hover {
 .caixa-borda3 p {
     padding-bottom: 12px;
 }
-    
+
 #colecao-item {
     float: right;
+    margin-right: 15px;
     width: 100px;
 }
 #colecao-item #nome-colecao {
@@ -1377,6 +1379,7 @@ h3.separador {
 .ds-list-media {
     clear: both;
     margin: 0 auto;
+    width: 880px;
 }
 
 .ds-list-media li {
