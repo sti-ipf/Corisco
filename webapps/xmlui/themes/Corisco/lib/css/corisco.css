@@ -157,6 +157,7 @@ a:hover {
 }
 
 #cabecalho-menu {
+	padding-top: 8px;
 	margin: 0 auto;
     width: 500px;
 }
@@ -164,12 +165,12 @@ a:hover {
 #cabecalho-menu .item-menu {
     display: inline;
     padding: 5px 10px;
-    border-left: 1px solid #D11E18;
+    border-left: 3px solid #D11E18;
 }
         
 #cabecalho-barra {
     background: url('../img/topo.png') center no-repeat;
-    height: 168px;
+    height: 180px;
     position: relative;
 }
 
