@@ -825,7 +825,7 @@
     <xsl:template match="dim:field[@element='description' and not(@qualifier)]" mode="itemSummaryList-DIM" priority="10">
         <xsl:choose>
             <xsl:otherwise>
-                <p>
+                <p class="item-description">
                     <!-- Header column -->
                     <span class="tipo-dado">
                         <xsl:choose>
@@ -1865,7 +1865,7 @@
                     </div>
                 </div>
             </xsl:if>
-            
+
             <xsl:if test="//dim:field[@element='relation' and @qualifier='ispartof']">
                 <div class="info-visualizador">
                     <span class="barra-texto">

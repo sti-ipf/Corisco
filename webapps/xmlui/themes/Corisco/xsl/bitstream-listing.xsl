@@ -14,19 +14,19 @@
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
   met:
- 
+
   - Redistributions of source code must retain the above copyright
   notice, this list of conditions and the following disclaimer.
- 
+
   - Redistributions in binary form must reproduce the above copyright
   notice, this list of conditions and the following disclaimer in the
   documentation and/or other materials provided with the distribution.
- 
+
   - Neither the name of the Hewlett-Packard Company nor the name of the
   Massachusetts Institute of Technology nor the names of their
   contributors may be used to endorse or promote products derived from
   this software without specific prior written permission.
- 
+
   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
   ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -81,7 +81,7 @@
                                 <xsl:value-of select="$djatoka-thumbnail-base-url"/>
                                 <xsl:value-of select="//mets:structMap[@TYPE='LOGICAL']/mets:div[@TYPE='DSpace Item']//mets:fptr[@FILEID=$primaryBitstream]/@FILEINTERNALID"/>
                             </xsl:variable>
-        
+
                             <img class="preview-thumbnail" alt="Thumbnail" onerror="this.onerror=null;this.src='{$bookreader-path}/images/transparent.png';">
                                 <xsl:attribute name="src">
                                     <xsl:value-of select="$thumbnail-path"/>
@@ -193,9 +193,9 @@
                                         jwplayer("jwp-" + a.attr("rel")).play();
                                     },
                                     onClose: function(e) {
-                                      jwplayer("jwp-" + a.attr("rel")).pause();  
+                                      jwplayer("jwp-" + a.attr("rel")).pause();
                                     }
-                                });                                
+                                });
                             </xsl:when>
                             <xsl:otherwise>
                                 function textoQualidade(sigla) {
@@ -230,7 +230,7 @@
                                         resolution.height = 480;
                                     }
 
-                                    return resolution;                                    
+                                    return resolution;
                                 }
 
                                 function trocaQualidade() {
@@ -263,7 +263,7 @@
 
                                     if (eval("videosReorganized." + index) == undefined) eval("videosReorganized." + index + " = new Object({defaultQuality: '" + quality + "', list: new Object})");
                                     if (quality == "B") eval("videosReorganized." + index + ".defaultQuality = 'B'");
-                                    
+
                                     eval("videosReorganized." + index + ".list." + quality + " = '" + videos[iVideos] + "'");
                                 }
 
@@ -273,6 +273,7 @@
 
                                     var $hideBloco = $('<div style="display: none;" />');
                                     var $bloco = $('<div class="div-midia-fancybox" id="' + key + '" />');
+                                    $bloco.append($('<div class="div-item-description-video" />').append($('.item-description .dado-item').text()));
                                     $bloco.append('<div id="jwp-' + key + '">Carregando...</div>');
 
                                     var $labelVisualizarEmQualidade = $('<strong />').text("Visualizar em qualidade: ");
@@ -282,7 +283,7 @@
                                     var $listaDownloads = $('<ul class="qualidades-video" />');
                                     for (quality in videosReorganized[key].list) {
                                         var value = videosReorganized[key].list[quality];
-                                        
+
                                         $listaDownloads.append($('<li />').append($('<a href="' + value + '" alt="' + value + '">' + textoQualidade(quality) + '</a>')));
                                         if (quality != "C") {
                                             var resolution = getResolution(quality)
@@ -311,7 +312,7 @@
                                             pipesAdded += 1;
                                         }
                                     });
-                                    
+
                                     $hideBloco.append($bloco.append($('<br />')).append($labelVisualizarEmQualidade).append($lista).append($labelFazerDownloadEmQualidade).append($listaDownloads));
 
                                     $(".blocos-midia").append($hideBloco);

@@ -1473,3 +1473,7 @@ h3.separador {
 #show-full-item-record {
     clear: both;
 }
+
+.div-item-description-video {
+    padding: 5px;
+}
