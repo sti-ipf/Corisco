@@ -205,7 +205,9 @@ a:hover {
     font-size: 14px;
     height: 25px;
     position: absolute;
+
 }
+
 
 #formulario-busca-cabecalho #caixa-busca {
     left: 97px;
@@ -220,13 +222,19 @@ a:hover {
 
 #formulario-busca-cabecalho #botao-enviar {
     background-color: #f4f4f4;
+	  font-weight: bold;
     left: 470px;
     top: 13px;
+	cursor: hand;
 }
 
 #formulario-busca-cabecalho #botao-enviar:hover {
     font-weight: bold;
+	cursor: hand;
 }
+
+
+
 
 /*
 #cabecalho-busca {
@@ -343,7 +351,10 @@ a:hover {
     font-size: 12px; 
     line-height: 25px;
     margin: 10px 0;
-    position: relative; 
+    position: relative; 	
+	background-color: white;
+	border: 1px solid #A80000;
+
 }
 
 #conteudo-item {
@@ -1032,7 +1043,7 @@ ul.links-paginacao li {
 
 #titulo-listar {
     position: relative; 
-    height: 37px; 
+    height: 42px; 
     margin-bottom: 0px !important; 
     line-height: 28px;
 }
