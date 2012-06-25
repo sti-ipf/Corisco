@@ -207,7 +207,7 @@
 
             <xsl:call-template name="colecao-resultado"/>
 
-            <div class="borda">
+            <div id="show-full-item-record">
                 <p>
                     <img>
                         <xsl:attribute name="src">
@@ -219,7 +219,7 @@
                 </p>
             </div>
 
-            <div class="caixa-borda">
+            <div class="caixa-borda" id="full-item-record">
 <!--                <xsl:call-template name="ficha-metadados"/>-->
                 <xsl:apply-templates select="." mode="itemMetadata" />
             </div>

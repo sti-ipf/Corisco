@@ -69,7 +69,7 @@ function alternarMaisMetadados(){
 $(document).ready(function(){
 
 $('.mais-filtro').next('ul').hide();
-$('.info').children('.borda').next('div').hide();
+$('.info').children('#full-item-record').hide();
 
 if ($('#fechar-meta') != null && $('#fechar-meta').length) {
     $('#fechar-meta').click(
@@ -126,7 +126,7 @@ if ($('.mais-filtro') != null && $('.mais-filtro').length) {
 }
 
 if ($('.info') != null && $('.info').length) {
-    $('.info').children('.borda').toggle(
+    $('.info').children('#show-full-item-record').toggle(
         function(){
             $(this).children('p').children('img').attr('src', images_path + 'menos.png');
             $(this).next('div').slideToggle();

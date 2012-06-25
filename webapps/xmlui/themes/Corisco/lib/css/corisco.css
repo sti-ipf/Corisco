@@ -757,8 +757,9 @@ ul.links-paginacao li {
 }
 
 #lista-resultados li {
-    position: relative; 
+    border-bottom: 1px solid #D11E1B;
     padding-bottom: 10px;
+    position: relative; 
 }
 
 #lista-resultados li .caixa {
@@ -1455,4 +1456,8 @@ h3.separador {
 
 #barra-compartilhar .plus-one {
     width: 60px;
+}
+
+#show-full-item-record {
+    clear: both;
 }
