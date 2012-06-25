@@ -11,3 +11,5 @@ statistics/
 upload/
 *.cfg
 *.log
+*.sublime-project
+*.sublime-workspace
