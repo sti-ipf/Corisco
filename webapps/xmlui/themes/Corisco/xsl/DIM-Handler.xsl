@@ -265,19 +265,19 @@
             <p class="autor-resultado">
                 <xsl:choose>
                     <xsl:when test="dim:field[@element='contributor'][@qualifier='author']">
+                    <xsl:choose>
+                        <xsl:when test="count(following-sibling::dim:field[@element='contributor'][@qualifier='author']) != 0">
+                            <xsl:text>Autores: </xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:text>Autor(a): </xsl:text>
+                        </xsl:otherwise>
+                    </xsl:choose>
                         <xsl:for-each select="dim:field[@element='contributor'][@qualifier='author']">
                             <span>
                                 <xsl:if test="@authority">
                                     <xsl:attribute name="class"><xsl:text>ds-dc_contributor_author-authority</xsl:text></xsl:attribute>
                                 </xsl:if>
-                                <xsl:choose>
-                                    <xsl:when test="count(following-sibling::dim:field[@element='contributor'][@qualifier='author']) != 0">
-                                        <xsl:text>Autores:</xsl:text>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:text>Autor(a):</xsl:text>
-                                    </xsl:otherwise>
-                                </xsl:choose>
                               <xsl:copy-of select="node()"/>
                             </span>
                             <xsl:if test="count(following-sibling::dim:field[@element='contributor'][@qualifier='author']) != 0">

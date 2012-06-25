@@ -457,13 +457,10 @@
             </xsl:choose>
         </li>
     </xsl:template>
-
-    
-    
 <!--
         The meta, body, options elements; the three top-level elements in the schema
 -->
-    
+
     <!--
         The template to handle the dri:body element. It simply creates the ds-body div and applies
         templates of the body's child elements (which consists entirely of dri:div tags).
@@ -483,7 +480,7 @@
                     </form>
                 </div>
             </xsl:if>
-        
+
            <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='alert'][@qualifier='message']">
                 <div id="ds-system-wide-alert">
                     <p>
@@ -1631,7 +1628,7 @@
             </xsl:if>
         </td>
     </xsl:template>
-    
+
     <xsl:template match="dri:list[not(@type)]/dri:item" priority="2" mode="nested">
         <li>
             <xsl:apply-templates />
@@ -1641,11 +1638,10 @@
             <xsl:apply-templates select="$node-set1[count(.|$node-set2) != count($node-set2)]"/>
         </li>
     </xsl:template>
-    
-    
+
     <!-- Special treatment of a list type "form", which is used to encode simple forms and give them structure.
         This is done partly to ensure that the resulting HTML form follows accessibility guidelines. -->
-    
+
     <xsl:template match="dri:list[@type='form']" priority="3">
         <xsl:choose>
             <xsl:when test="ancestor::dri:list[@type='form']">
@@ -1665,7 +1661,7 @@
                             </xsl:with-param>
                         </xsl:call-template>
                         <xsl:apply-templates select="dri:head"/>
-            
+
                         <ol>
                             <xsl:apply-templates select="*[not(name()='label' or name()='head')]" />
                         </ol>
@@ -2391,7 +2387,7 @@
             </xsl:call-template>
         </xsl:if>
     </xsl:template>
-    
+
     <!-- Select box case: use the selected options contained in the instance to create the hidden fields -->
     <xsl:template match="dri:field[@type='select']/dri:instance" mode="hiddenInterpreter">
         <xsl:variable name="position" select="position()"/>
@@ -2410,9 +2406,7 @@
             </input>
         </xsl:for-each>
     </xsl:template>
-      
-    
-    
+
     <!-- Composite instanced field stuff -->
     <!-- It is also the one that receives the special error and help handling -->
     <xsl:template match="dri:field[@type='composite'][dri:field/dri:instance | dri:params/@operations]" priority="3">
@@ -2566,8 +2560,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
-    
+
     <xsl:template match="dri:field[@type='select']" mode="compositeField">
         <xsl:param name="position">1</xsl:param>
         <xsl:if test="not(position()=1)">
@@ -2649,7 +2642,7 @@
             </xsl:for-each>
         </span>
     </xsl:template>
-    
+
     <xsl:template match="dri:instance" mode="interpreted">
         <xsl:choose>
             <xsl:when test="dri:value[@type='interpreted']">
@@ -2703,7 +2696,7 @@
             <xsl:apply-templates />
         </span>
     </xsl:template>
-    
+
     <!-- The handling of the field element is more complex. At the moment, the handling of input fields in the
         DRI schema is very similar to HTML, utilizing the same controlled vocabulary in most cases. This makes
         converting DRI fields to HTML inputs a straightforward, if a bit verbose, task. We are currently
@@ -2736,7 +2729,7 @@
         </select>
 
     </xsl:template>
-    
+
     <xsl:template match="dri:field[@type='select']/dri:option" mode="searchControls">
         <option>
             <xsl:attribute name="value">
@@ -3010,7 +3003,7 @@
             <xsl:attribute name="onfocus">javascript:tFocus(this);</xsl:attribute>
         </xsl:if>
     </xsl:template>
-        
+
     <!-- Since the field element contains only the type attribute, all other attributes commonly associated
         with input fields are stored on the params element. Rather than parse the attributes directly, this
         template generates a call to attribute templates, something that is not done in XSL by default. The
@@ -3018,8 +3011,7 @@
     <xsl:template match="dri:params">
         <xsl:apply-templates select="@*"/>
     </xsl:template>
-    
-    
+
     <xsl:template match="dri:field[@type='select']/dri:option">
         <option>
             <xsl:attribute name="value">
@@ -3031,7 +3023,7 @@
             <xsl:apply-templates />
         </option>
     </xsl:template>
-    
+
     <xsl:template match="dri:field[@type='checkbox' or @type='radio']/dri:option">
         <label>
             <input>
