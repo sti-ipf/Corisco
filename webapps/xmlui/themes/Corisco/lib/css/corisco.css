@@ -210,14 +210,20 @@ a:hover {
 
 
 #formulario-busca-cabecalho #caixa-busca {
+    color: darkRed;
     left: 97px;
     top: 10px;
     width: 205px;
 }
 
 #formulario-busca-cabecalho #selecionar-filtro {
+    color: #BEBEBE;
+    overflow: hidden;
     left: 360px;
     top: 13px;
+    background: url("../img/seta-select.png") left center no-repeat;
+    padding-left: 20px;
+    width: 130px;
 }
 
 #formulario-busca-cabecalho #botao-enviar {
