@@ -217,6 +217,7 @@ a:hover {
 }
 
 #formulario-busca-cabecalho #selecionar-filtro {
+    -webkit-appearance: none;
     color: #BEBEBE;
     overflow: hidden;
     left: 360px;
