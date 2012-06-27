@@ -1427,6 +1427,7 @@ h3.separador {
 
 .lista-galeria-midia .item .description-item {
     margin-bottom: 10px;
+    min-height: 14px;
     text-align: center;
 }
 
