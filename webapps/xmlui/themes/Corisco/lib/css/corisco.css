@@ -355,13 +355,15 @@ a:hover {
 
 #conteudo-central #conteudo-alto .caixa {
     clear: both;
-    font-size: 12px; 
+    font-size: 12px;
     line-height: 25px;
     margin: 10px 0;
-    position: relative; 	
+    position: relative;
 	background-color: white;
-	border: 1px solid #A80000;
+}
 
+#conteudo-central #conteudo-alto .caixa img {
+    border: 1px solid #A80000;
 }
 
 #conteudo-item {
@@ -1421,6 +1423,11 @@ h3.separador {
 .lista-galeria-midia .item {
     float: left;
     padding: 10px;
+}
+
+.lista-galeria-midia .item .description-item {
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 .qualidades-video {
