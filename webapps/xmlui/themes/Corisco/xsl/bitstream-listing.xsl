@@ -166,7 +166,8 @@
                                     var link = "<xsl:value-of select="substring-before(mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')" />";
                                     var key = link.replace(/[\/%_\.]/g, "")
 
-                                    var item =  $('<li class="item" />').append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + key + '" title="Ouvir áudio" />').append('<img alt="Ouvir áudio" src="{$theme-path}/images/chamada-video-pequena.png" />'));
+                                    var descItem = $('<p class="description-item" />').text('<xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label" />');
+                                    var item =  $('<li class="item" />').append(descItem).append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + key + '" title="Ouvir áudio" />').append('<img alt="Ouvir áudio" src="{$theme-path}/images/chamada-video-pequena.png" />'));
                                     $(".lista-galeria-midia").append(item);
 
                                     var $hideBloco = $('<div style="display: none;" />');
@@ -253,27 +254,28 @@
 
                                 var videos = [];
                                 <xsl:for-each select="mets:file">
-                                    videos.push("<xsl:value-of select="substring-before(mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')" />");
+                                    videos.push(["<xsl:value-of select="substring-before(mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')" />", "<xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label" />"]);
                                 </xsl:for-each>
                                 var videosReorganized = new Object;
                                 for (var iVideos = 0; iVideos <xsl:text disable-output-escaping="yes">&lt;</xsl:text> videos.length; iVideos++) {
-                                    var index = videos[iVideos].substr(0, videos[iVideos].lastIndexOf("_")).replace(/[\/%_]/g, "");
-                                    var iPos = videos[iVideos].lastIndexOf("_")+1;
-                                    var quality = videos[iVideos].substr(iPos, videos[iVideos].lastIndexOf(".")-iPos);
+                                    var index = videos[iVideos][0].substr(0, videos[iVideos][0].lastIndexOf("_")).replace(/[\/%_]/g, "");
+                                    var iPos = videos[iVideos][0].lastIndexOf("_")+1;
+                                    var quality = videos[iVideos][0].substr(iPos, videos[iVideos][0].lastIndexOf(".")-iPos);
 
                                     if (eval("videosReorganized." + index) == undefined) eval("videosReorganized." + index + " = new Object({defaultQuality: '" + quality + "', list: new Object})");
                                     if (quality == "B") eval("videosReorganized." + index + ".defaultQuality = 'B'");
 
-                                    eval("videosReorganized." + index + ".list." + quality + " = '" + videos[iVideos] + "'");
+                                    eval("videosReorganized." + index + ".list." + quality + " = ['" + videos[iVideos][0] + "', '" + videos[iVideos][1] + "']");
                                 }
 
                                 for (var key in videosReorganized) {
-                                    var item =  $('<li class="item" />').append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + videosReorganized[key].list[videosReorganized[key].defaultQuality] + '" title="Clique aqui para assistir ou fazer cópia do vídeo" />').append('<img alt="Clique aqui para assistir ou fazer cópia do vídeo" src="{$theme-path}/images/chamada-video-pequena.png" />'));
+                                    var descItem = $('<p class="description-item" />').text(videosReorganized[key].list[videosReorganized[key].defaultQuality][1]);
+                                    var item =  $('<li class="item" />').append(descItem).append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + videosReorganized[key].list[videosReorganized[key].defaultQuality][0] + '" title="Clique aqui para assistir ou fazer cópia do vídeo" />').append('<img alt="Clique aqui para assistir ou fazer cópia do vídeo" src="{$theme-path}/images/chamada-video-pequena.png" />'));
                                     $(".lista-galeria-midia").append(item);
 
                                     var $hideBloco = $('<div style="display: none;" />');
                                     var $bloco = $('<div class="div-midia-fancybox" id="' + key + '" />');
-                                    $bloco.append($('<div class="div-item-description-video" />').append($('.item-description .dado-item').text()));
+                                    $bloco.append($('<div class="div-item-description-video" />').text(videosReorganized[key].list[videosReorganized[key].defaultQuality][1]));
                                     $bloco.append('<div id="jwp-' + key + '">Carregando...</div>');
 
                                     var $labelVisualizarEmQualidade = $('<strong />').text("Visualizar em qualidade: ");
@@ -284,10 +286,10 @@
                                     for (quality in videosReorganized[key].list) {
                                         var value = videosReorganized[key].list[quality];
 
-                                        $listaDownloads.append($('<li />').append($('<a href="' + value + '" alt="' + value + '">' + textoQualidade(quality) + '</a>')));
+                                        $listaDownloads.append($('<li />').append($('<a href="' + value[0] + '" alt="' + value[0] + '">' + textoQualidade(quality) + '</a>')));
                                         if (quality != "C") {
                                             var resolution = getResolution(quality)
-                                            value = value + "|" + resolution.width + "|" + resolution.height;
+                                            value = value[0] + "|" + resolution.width + "|" + resolution.height;
 
                                             $lista.append($('<li />').append($('<a href="javascript:void(0);" rel="jwp-' + key + '" alt="' + value + '">' + textoQualidade(quality) + '</a>').click(trocaQualidade)));
                                         }
