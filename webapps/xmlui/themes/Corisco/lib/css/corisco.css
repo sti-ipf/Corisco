@@ -217,6 +217,7 @@ a:hover {
 }
 
 #formulario-busca-cabecalho #selecionar-filtro {
+    -webkit-appearance: none;
     color: #BEBEBE;
     overflow: hidden;
     left: 360px;
@@ -1426,6 +1427,7 @@ h3.separador {
 
 .lista-galeria-midia .item .description-item {
     margin-bottom: 10px;
+    min-height: 14px;
     text-align: center;
 }
 
