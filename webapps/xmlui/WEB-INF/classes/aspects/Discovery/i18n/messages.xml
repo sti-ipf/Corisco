@@ -140,10 +140,11 @@
     <message key="xmlui.ArtifactBrowser.AbstractSearch.result_empty_query">A busca produziu {0} resultado(s).</message>
     <message key="xmlui.ArtifactBrowser.AbstractSearch.browse_head">Listagem por:</message>
     <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.contributor.author_browse">Autor</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.type_browse">Tipo de Documento</message>
     <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.title_browse">Título</message>
     <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.subject_browse">Assunto</message>
     <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dateissued.year_browse">Ano de Publicação</message>
-      
+
     <message key="xmlui.ArtifactBrowser.AbstractSearch.result_query_head">Mostrando resultados para:</message>
     <message key="xmlui.ArtifactBrowser.AbstractSearch.result_empty_query_head">Lista de itens</message>
 

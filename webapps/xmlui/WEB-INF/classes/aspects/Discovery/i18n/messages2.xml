@@ -140,6 +140,7 @@
     <message key="xmlui.ArtifactBrowser.AbstractSearch.browse_head">Browse by:</message>
     <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.contributor.author_browse">Author</message>
     <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.title_browse">Title</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.type_browse">Document Type</message>
     <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.subject_browse">Subject</message>
     <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dateissued.year_browse">Year issued</message>
 

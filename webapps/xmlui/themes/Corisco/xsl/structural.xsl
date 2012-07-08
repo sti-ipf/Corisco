@@ -171,7 +171,7 @@
                     </xsl:attribute>
                 </link>
             </xsl:for-each>
-            
+
             <!-- Add syndication feeds -->
             <xsl:for-each select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='feed']">
                 <link rel="alternate" type="application">
@@ -184,7 +184,7 @@
                     </xsl:attribute>
                 </link>
             </xsl:for-each>
-            
+
             <!--  Add OpenSearch auto-discovery link -->
             <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='opensearch'][@qualifier='shortName']">
                 <link rel="search" type="application/opensearchdescription+xml">
@@ -199,7 +199,7 @@
                     </xsl:attribute>
                 </link>
             </xsl:if>
-            
+
             <!-- The following javascript removes the default text of empty text areas when they are focused on or submitted -->
             <!-- There is also javascript to disable submitting a form when the 'enter' key is pressed. -->
             <script type="text/javascript">
@@ -220,19 +220,19 @@
                                 function disableEnterKey(e)
                                 {
                                      var key;
-                                
+
                                      if(window.event)
                                           key = window.event.keyCode;     //Internet Explorer
                                      else
                                           key = e.which;     //Firefox and Netscape
-                                
+
                                      if(key == 13)  //if "Enter" pressed, then disable!
                                           return false;
                                      else
                                           return true;
                                 }
             </script>
-            
+
             <!-- add "external" javascript from static, path is absolute-->
             <xsl:for-each select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='javascript'][@qualifier='external']">
                 <script type="text/javascript">
@@ -262,7 +262,7 @@
                     </xsl:attribute>&#160;
                 </script>
             </xsl:for-each>
-            
+
             <!-- Add theme javascipt  -->
             <xsl:for-each select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='javascript'][not(@qualifier)]">
                 <script type="text/javascript">
@@ -291,7 +291,7 @@
             <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='xhtml_head_item']">
                 <xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='xhtml_head_item']" disable-output-escaping="yes"/>
             </xsl:if>
-            
+
             <!-- Switching to new asynchronous code. -->
             <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='google'][@qualifier='analytics']">
                 <script type="text/javascript">
@@ -301,7 +301,7 @@
                     <xsl:value-of select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='google'][@qualifier='analytics']"/>
                     <xsl:text>']);
                     _gaq.push(['_trackPageview']);
-            
+
                     (function() {
                         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
                         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
@@ -310,12 +310,10 @@
                     </xsl:text>
                 </script>
             </xsl:if>
-            
-            
+
         </head>
     </xsl:template>
-    
-    
+
     <!-- The header (distinct from the HTML head element) contains the title, subtitle, login box and various
         placeholders for header images -->
     <xsl:template name="buildHeader">
@@ -330,13 +328,13 @@
                     <xsl:text> </xsl:text>
                 </a>
 
-                <div id="barra_sociais">    
+                <div id="barra_sociais">
         			<ul id="barra-compartilhar">
         				<li class="plus-one">
         					<script>
         					      window.___gcfg = {
         					        lang: 'pt-BR'
-        					      };  
+        					      }
         					      (function() {
         					        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
         					        po.src = 'https://apis.google.com/js/plusone.js';
@@ -1673,8 +1671,8 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
-    <xsl:template match="dri:list[@type='form']/dri:item" priority="3">         
+
+    <xsl:template match="dri:list[@type='form']/dri:item" priority="3">
             <xsl:choose>
                 <xsl:when test="dri:field[@type='composite']">
                     <xsl:call-template name="pick-label"/>
@@ -1964,7 +1962,7 @@
 
     <!-- Next, special handling is performed for lists under the options tag, making them into option sets to
         reflect groups of similar options (like browsing, for example). -->
-    
+
     <!-- The template that applies to lists directly under the options tag that have other lists underneath
         them. Each list underneath the matched one becomes an option-set and is handled by the appropriate
         list templates. -->
@@ -1972,7 +1970,7 @@
             <xsl:apply-templates />
     </xsl:template>
 
-    <xsl:template match="dri:options/dri:list[dri:list][@n='discovery']" priority="4">        
+    <xsl:template match="dri:options/dri:list[dri:list][@n='discovery']" priority="4">
         <div id="titulo-listar" class="borda">
             <h3 id="filtrar-por"><i18n:text>xmlui.dri2xhtml.structural.search-filter</i18n:text></h3>
         </div>
@@ -1987,6 +1985,11 @@
             <div class="caixa-listar">
                 <ul>
                     <xsl:apply-templates select="*[not(name()='head')]" mode="Corisco"/>
+                    <li class="lista-item">
+                        <span>
+                            <a href="/xmlui/browse?field=dc.type">Tipo de Documento</a>
+                        </span>
+                    </li>
                 </ul>
             </div>
         </xsl:if>
@@ -2054,7 +2057,7 @@
     </xsl:template>
     <xsl:template match="dri:options//dri:list[count(child::*)=0]" priority="5">
     </xsl:template>
-    
+
 
     <xsl:template match="dri:options/dri:list/dri:head" priority="3">
         <div id="titulo-listar" class="borda">
@@ -2064,7 +2067,7 @@
         </div>
     </xsl:template>
 
-    
+
     <!-- Items inside option lists are excluded from the "orphan roundup" mechanism -->
     <xsl:template match="dri:options//dri:item" mode="nested" priority="3">
         <li class="filtro-item">
@@ -2110,12 +2113,12 @@
                 </li>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>  
-    
+    </xsl:template>
+
     <!-- From here on out come the templates for supporting elements that are contained within structural
         ones. These include head (in all its myriad forms), rich text container elements (like hi and figure),
         as well as the field tag and its related elements. The head elements are done first. -->
-    
+
     <!-- The first (and most complex) case of the header tag is the one used for divisions. Since divisions can
         nest freely, their headers should reflect that. Thus, the type of HTML h tag produced depends on how
         many divisions the header tag is nested inside of. -->
@@ -2124,7 +2127,7 @@
         <!--HIDDEN-->
         <xsl:apply-templates />
     </xsl:template>
-    
+
     <xsl:template match="dri:list[@n='jump-list']/dri:head" priority="1">
         <span>
             <xsl:apply-templates />
