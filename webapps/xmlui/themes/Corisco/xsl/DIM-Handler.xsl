@@ -2479,7 +2479,7 @@
                         </div>
                     </div>
                 </xsl:if>
-            
+
                 <xsl:if test="//dim:field[@element='relation' and @qualifier='ispartof']">
                     <div class="info-visualizador">
                         <span class="barra-texto">
@@ -2710,7 +2710,7 @@
                         </div>
                     </div>
                 </xsl:if>
-            
+
                 <xsl:if test="//dim:field[@element='relation' and @qualifier='ispartof']">
                     <div class="info-visualizador">
                         <span class="barra-texto">

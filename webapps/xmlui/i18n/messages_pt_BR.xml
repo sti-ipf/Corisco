@@ -3,26 +3,26 @@
   messages_pt_BR.xml
 
   Version: $Revision: $
- 
+
   Date: $Date: $
- 
+
  Copyright (c) 2002-2008, DSpace Foundation. All rights reserved.
- 
+
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
   met:
- 
+
   - Redistributions of source code must retain the above copyright
   notice, this list of conditions and the following disclaimer.
- 
+
   - Redistributions in binary form must reproduce the above copyright
   notice, this list of conditions and the following disclaimer in the
   documentation and/or other materials provided with the distribution.
- 
+
   - Neither the name of the DSpace Foundation nor the names of their
   contributors may be used to endorse or promote products derived from
   this software without specific prior written permission.
- 
+
   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
   ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -37,20 +37,20 @@
   DAMAGE.
 -->
 <catalogue xml:lang="pt-BR" xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
-	
+
 	<!--
 		The format used by all keys is as follows
-		
+
 		xmlui.<Aspect>.<Java Class>.<name>
-		
+
 		There are a few exceptions to this nameing format,
-		1) Some general keys are in the xmlui.general namespace 
+		1) Some general keys are in the xmlui.general namespace
 		   because they are used very frequently.
-		2) Some general keys which are specific to a particular aspect 
-		   may be found at xmlui.<Aspect> without specifiying a 
-		   particular java class. 
-		--> 
-	
+		2) Some general keys which are specific to a particular aspect
+		   may be found at xmlui.<Aspect> without specifiying a
+		   particular java class.
+		-->
+
 	<!-- General keys -->
 	<message key="xmlui.general.dspace_home">Página Inicial</message>
 	<message key="xmlui.general.search">Buscar</message>
@@ -63,45 +63,39 @@
 	<message key="xmlui.general.delete">Deletar</message>
 	<message key="xmlui.general.next">Próximo</message>
 	<message key="xmlui.general.untitled">Sem Título</message>
-	
 
-	<!-- 
-		Page not found keys 
-		
+
+	<!--
+		Page not found keys
+
 		This is a special component that is not part of any aspect but is added
 		by manakin to all aspect chains.
 		-->
 	<message key="xmlui.PageNotFound.title">Página não encontrada</message>
 	<message key="xmlui.PageNotFound.head">Página não encontrada</message>
 	<message key="xmlui.PageNotFound.para1">Não foi possível encontrar a página requerida.</message>
-	
-	
+
+
 	<!--
-		This section is for feed syndications (RSS, atom, etc)  
+		This section is for feed syndications (RSS, atom, etc)
 	-->
 	<message key="xmlui.feed.general_description">O Repositório captura, armazena, indexa, preserva e distribui material de pesquisa em formato digital.</message>
 	<message key="xmlui.feed.logo_title">O canal de imagem</message>
 	<message key="xmlui.feed.untitled">Sem Título</message>
-	
+
 	<!--
-		Default notice header 
+		Default notice header
 	 	-->
 	<message key="xmlui.general.notice.default_head">Noticiar</message>
-	
-	
-	
+
+
+
 	<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  
+
 		             ArtifactBrowser Aspect
-	
+
 		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-	
-	
-	
-	
-	
-	
-	
+
 	<!-- org.dspace.app.xmlui.artifactbrowser.AbstractSearch.java -->
 	<message key="xmlui.ArtifactBrowser.AbstractSearch.head1_community">Buscar resultados para a Comunidade: {0}</message>
 	<message key="xmlui.ArtifactBrowser.AbstractSearch.head1_collection">Buscar resultados para a Coleção: {0}</message>
@@ -140,7 +134,7 @@
 	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_identifier">Identificador</message>
 	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_language">Idioma/Língua (ISO)</message>
 	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_keyword">Palavra-chave</message>
-	
+
     <!--  some common other possibilities for Advanced Search Fields -->
     <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_contributor">Contribuidor</message>
     <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_creator">Criador</message>
@@ -157,14 +151,12 @@
     <message key="xmlui.ArtifactBrowser.AdvancedSearch.or">OR (ou)</message>
     <message key="xmlui.ArtifactBrowser.AdvancedSearch.not">NOT (não)</message>
 
-
-	
 	<!-- org.dspace.app.xmlui.artifactbrowser.ConfigureableBrowse.java -->
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.starts_with">Ou entre com as primeiras letras:</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.starts_with_help">Visualizar os itens que começam com essa letra</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.jump_select">Escolha a data:</message>	
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.choose_month">Mês</message>	
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.choose_year">Ano</message>	
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.jump_select">Escolha a data:</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.choose_month">Mês</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.choose_year">Ano</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.jump_year">Ou digite o ano: </message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.jump_year_help">Visualize os itens que são de um dado ano.</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.sort_by"> Ordenado por: </message>
@@ -189,17 +181,17 @@
 
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.subject">Visualizar {0} pelo Assunto {1}</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.subject">Visualizar {0} pelo Assunto</message>
-	
+
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.item.title">Visualizar {0} pelo Título {1}</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.item.title">Visualizar {0} pelo Título</message>
-	
+
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.item.dateissued">Visualizar {0} pela data de publicação {1}</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.item.dateissued">Visualizar {0} pela data de publicação</message>
 
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.item.dateaccessioned">Visualizar {0} pela Data de submissão {1}</message>
 	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.item.dateaccessioned">Visualizar {0} pela Data de submissão</message>
 
-	
+
 	<!-- org.dspace.app.xmlui.artifactbrowser.CollectionViewer.java -->
 	<message key="xmlui.ArtifactBrowser.CollectionViewer.search_scope">Abrangência da Busca</message>
 	<message key="xmlui.ArtifactBrowser.CollectionViewer.all_of_dspace">Todo o repositório</message>
@@ -210,7 +202,7 @@
 	<message key="xmlui.ArtifactBrowser.CollectionViewer.browse_dates">Data</message>
 	<message key="xmlui.ArtifactBrowser.CollectionViewer.advanced_search_link">Pesquisa Avançada</message>
 	<message key="xmlui.ArtifactBrowser.CollectionViewer.head_recent_submissions">Novidades no Acervo</message>
-	
+
 	<!-- org.dspace.app.xmlui.artifactbrowser.CommunityBrowser.java -->
 	<message key="xmlui.ArtifactBrowser.CommunityBrowser.title">Lista de Comunidades</message>
 	<message key="xmlui.ArtifactBrowser.CommunityBrowser.trail">Lista de Comunidades</message>
@@ -229,8 +221,8 @@
 	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_sub_communities">Sub-communidades desta Comunidade</message>
 	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_sub_collections">Coleções desta Comunidade:</message>
 	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_recent_submissions">Novidades no acervo</message>
-	
-	
+
+
 	<!-- org.dspace.app.xmlui.artifactbrowser.Contact.java -->
 	<message key="xmlui.ArtifactBrowser.Contact.title">Entre em contato com os administradores</message>
 	<message key="xmlui.ArtifactBrowser.Contact.trail">Contate-nos</message>
@@ -239,7 +231,7 @@
 	<message key="xmlui.ArtifactBrowser.Contact.feedback_label">Formulário de contato</message>
 	<message key="xmlui.ArtifactBrowser.Contact.feedback_link">Fale conosco</message>
 	<message key="xmlui.ArtifactBrowser.Contact.email">Email dos administradores</message>
-	
+
 	<!-- org.dspace.app.xmlui.artifactbrowser.FeedbackForm.java -->
 	<message key="xmlui.ArtifactBrowser.FeedbackForm.title">Fale conosco</message>
 	<message key="xmlui.ArtifactBrowser.FeedbackForm.trail">Fale conosco</message>
@@ -249,23 +241,23 @@
 	<message key="xmlui.ArtifactBrowser.FeedbackForm.email_help">Este endereço de Email será utilizado para acompanhamento das considerações.</message>
 	<message key="xmlui.ArtifactBrowser.FeedbackForm.comments">Comentários</message>
 	<message key="xmlui.ArtifactBrowser.FeedbackForm.submit">Enviar comentários</message>
-	
+
 	<!-- org.dspace.app.xmlui.artifactbrowser.FeedbackSent.java -->
 	<message key="xmlui.ArtifactBrowser.FeedbackSent.title">Dar um retorno</message>
 	<message key="xmlui.ArtifactBrowser.FeedbackSent.trail">Dar um retorno</message>
 	<message key="xmlui.ArtifactBrowser.FeedbackSent.head">Enviar considerações</message>
 	<message key="xmlui.ArtifactBrowser.FeedbackSent.para1">Suas considerações foram recebidas.</message>
-	
+
 	<!-- org.dspace.app.xmlui.artifactbrowser.FrontPageSearch.java -->
 	<message key="xmlui.ArtifactBrowser.FrontPageSearch.head">Todo o repositório</message>
 	<message key="xmlui.ArtifactBrowser.FrontPageSearch.para1">Entre com o argumento de busca no repositório.</message>
-	
+
 	<!-- org.dspace.app.xmlui.artifactbrowser.ItemViewer.java -->
 	<message key="xmlui.ArtifactBrowser.ItemViewer.trail">Ver item</message>
 	<message key="xmlui.ArtifactBrowser.ItemViewer.head_parent_collections">Este item aparece na(s) seguinte(s) coleção(ções)</message>
 	<message key="xmlui.ArtifactBrowser.ItemViewer.show_simple">Apresentar o registro simples</message>
 	<message key="xmlui.ArtifactBrowser.ItemViewer.show_full">Ficha completa</message>
-	
+
 	<!-- org.dspace.app.xmlui.artifactbrowser.Navigation.java -->
 	<message key="xmlui.ArtifactBrowser.Navigation.head_browse">Listar por</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.head_all_of_dspace">Todo o repositório</message>
@@ -277,14 +269,14 @@
 	<message key="xmlui.ArtifactBrowser.Navigation.browse_dateaccessioned">Data de submissão</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.head_this_collection">Esta Coleção</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.head_this_community">Esta Comunidade</message>
-	
+
 	<!-- org.dspace.app.xmlui.artifactbrowser.SimpleSearch.java -->
 	<message key="xmlui.ArtifactBrowser.SimpleSearch.title">Busca no Acervo</message>
 	<message key="xmlui.ArtifactBrowser.SimpleSearch.trail">Busca no Acervo</message>
 	<message key="xmlui.ArtifactBrowser.SimpleSearch.head">Busca no Acervo</message>
 	<message key="xmlui.ArtifactBrowser.SimpleSearch.search_scope">Abrangência da busca</message>
 	<message key="xmlui.ArtifactBrowser.SimpleSearch.full_text_search">Busca em texto integral</message>
-	
+
 	<!-- org.dspace.app.xmlui.artifactbrowser.RestrictedItem.java -->
 	<message key="xmlui.ArtifactBrowser.RestrictedItem.title">Este recurso é restrito</message>
 	<message key="xmlui.ArtifactBrowser.RestrictedItem.trail">Restrito</message>
@@ -304,7 +296,7 @@
 	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_item">item</message>
 	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_resource">recurso</message>
 	<message key="xmlui.ArtifactBrowser.RestrictedItem.unknown">desconhecido</message>
-	
+
 	<!-- Authentication messages used at the top of the login page:  -->
 	<message key="xmlui.ArtifactBrowser.RestrictedItem.auth_header">O Item é restrito</message>	
 	<message key="xmlui.ArtifactBrowser.RestrictedItem.auth_message">O item que está tentando acesso possui restrição de acesso. É preciso logar no repositório para ter a permissão necessária para acessá-lo ou entrar em contato com os administradores do repositório.</message>
@@ -316,36 +308,30 @@
   <message key="xmlui.ArtifactBrowser.StatisticsViewer.no_report.text">Nenhum relatório disponível no momento para este serviço. Por favor, cheque mais tarde.</message>
 
 
-	<!-- Authentication messages used for bitstream authentication -->	
-	<message key="xmlui.BitstreamReader.auth_header">O arquivo é restrito</message>	
+	<!-- Authentication messages used for bitstream authentication -->
+	<message key="xmlui.BitstreamReader.auth_header">O arquivo é restrito</message>
 	<message key="xmlui.BitstreamReader.auth_message">O arquivo que está tentando acesso possui restrição de acesso. É preciso logar no repositório e ter permissão para acessá-lo.</message>
-	
+
 		<!-- Export Archive download messages -->
 	<message key="xmlui.ItemExportDownloadReader.auth_header">Este arquivo de exportação está restrito.</message>
 	<message key="xmlui.ItemExportDownloadReader.auth_message">O arquivo de exportação que está tentanto acessar é um recurso restrito e requer credenciais para visualização. Por favor, faça um login para acessar o arquivo de exportação.</message>
 
 
 	<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		
+
 		                EPerson Aspect
-		
+
 		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-	
-	
-	
-	
-	
-	
-	
+
 	<!-- General keys used by the EPerson aspect -->
 	<message key="xmlui.EPerson.trail_new_registration">Cadastro de usuário novo</message>
 	<message key="xmlui.EPerson.trail_forgot_password">Esqueceu a senha</message>
-	
+
 	<!-- org.dspace.app.xmlui.eperson.CannotRegister.java -->
 	<message key="xmlui.EPerson.CannotRegister.title">Cadastramento indisponível</message>
 	<message key="xmlui.EPerson.CannotRegister.head">Cadastramento indisponível</message>
 	<message key="xmlui.EPerson.CannotRegister.para1">A configuração do repositório não permite cadastramento. Por favor entre em contato com o <a href="../contact">Administrador</a> em caso de dúvidas ou comentários.</message>
-	
+
 	<!-- org.dspace.app.xmlui.eperson.EditProfile.java -->
 	<message key="xmlui.EPerson.EditProfile.title_update">Alterar perfil</message>
 	<message key="xmlui.EPerson.EditProfile.title_create">Criar perfil</message>
@@ -372,7 +358,7 @@
 	<message key="xmlui.EPerson.EditProfile.head_auth">Grupos de permissão a que pertence</message>
 	<message key="xmlui.EPerson.EditProfile.head_identify">Identificação</message>
 	<message key="xmlui.EPerson.EditProfile.head_security">Segurança</message>
-	
+
 	<!-- org.dspace.app.xmlui.eperson.EPersonUtils.java -->
 	<message key="xmlui.EPerson.EPersonUtils.register_verify_email">Verificar Email</message>
 	<message key="xmlui.EPerson.EPersonUtils.register_create_profile">Criar Perfil</message>
@@ -385,14 +371,14 @@
 	<message key="xmlui.EPerson.ForgotPasswordFinished.title">Mudança de senha</message>
 	<message key="xmlui.EPerson.ForgotPasswordFinished.head">Mudança de senha</message>
 	<message key="xmlui.EPerson.ForgotPasswordFinished.para1">Sua senha foi alterada.</message>
-	
+
 	<!-- org.dspace.app.xmlui.eperson.InvalidToken.java -->
 	<message key="xmlui.EPerson.InvalidToken.title">Endereço inválido</message>
 	<message key="xmlui.EPerson.InvalidToken.trail">Endereço inválido</message>
 	<message key="xmlui.EPerson.InvalidToken.head">Endereço inválido</message>
 	<message key="xmlui.EPerson.InvalidToken.para1">A URL informada não é válida. O endereço da URL pode ter sido quebrada em várias linhas na mensagen, como esta:</message>
 	<message key="xmlui.EPerson.InvalidToken.para2">Caso isso ocorra, copie e cole o endereço completo diretamente na barra de endereçamento da browser, ao inves de clicar no link. A barra de endereçamento deve conter alguma coisa como:</message>
-	
+
 	<!-- org.dspace.app.xmlui.eperson.Navigation.java -->
 	<message key="xmlui.EPerson.Navigation.my_account">Minha conta</message>
 	<message key="xmlui.EPerson.Navigation.profile">Perfil</message>
@@ -413,7 +399,7 @@
 	<message key="xmlui.EPerson.PasswordLogin.head2">Cadastrar-se</message>
 	<message key="xmlui.EPerson.PasswordLogin.para1">Cadastre-se e inscreva-se nas coleções para receber notificações quando novos itens forem depositados neste repositório.</message>
 	<message key="xmlui.EPerson.PasswordLogin.register_link">Clique aqui para se cadastrar.</message>
-	
+
 	<!-- org.dspace.app.xmlui.eperson.LDAPLogin.java -->
 	<message key="xmlui.EPerson.LDAPLogin.title">Entrar</message>
 	<message key="xmlui.EPerson.LDAPLogin.trail">Entrar</message>
