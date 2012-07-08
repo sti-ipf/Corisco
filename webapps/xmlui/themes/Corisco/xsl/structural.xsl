@@ -1971,12 +1971,6 @@
     </xsl:template>
 
     <xsl:template match="dri:options/dri:list[dri:list][@n='discovery']" priority="4">
-        <div id="titulo-listar" class="borda">
-            <h3 id="filtrar-por"><i18n:text>xmlui.dri2xhtml.structural.search-filter</i18n:text></h3>
-        </div>
-
-        <xsl:apply-templates select="*[not(name()='head')]" mode="nested"/>
-
         <xsl:apply-templates select="//dri:div[@interactive='yes'][@n='general-query']/dri:list[@n='search-query']/dri:item[@n='search-filter-list']" />
     </xsl:template>
 
@@ -2061,7 +2055,7 @@
 
     <xsl:template match="dri:options/dri:list/dri:head" priority="3">
         <div id="titulo-listar" class="borda">
-            <h3>
+            <h3 id="listar-por">
                 <xsl:apply-templates />
             </h3>
         </div>

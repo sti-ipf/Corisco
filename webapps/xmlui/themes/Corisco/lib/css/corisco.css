@@ -957,7 +957,7 @@ ul.links-paginacao li {
 #botao-enviar2:hover {
     background: url('../img/buscar_OVER2.png') no-repeat;
 }
-/* 
+/*
  CSS do menu
 */
 
@@ -1011,11 +1011,10 @@ ul.links-paginacao li {
 }
 
 #coluna-filtros .borda {
-	position: relative; 
-    margin-bottom: 10px; 
-	/*padding-bottom:10px;*/
-    border-top: none; 
-    border-right: none; 
+	position: relative;
+    margin-bottom: 10px;
+    border-top: none;
+    border-right: none;
     border-left: none;
 }
 
@@ -1024,20 +1023,20 @@ ul.links-paginacao li {
 }
 
 .mais-filtro {
-    position: absolute; 
-    top: 0; 
-    right: 0; 
+    position: absolute;
+    top: 0;
+    right: 0;
     cursor: pointer;
 }
 
 #coluna-filtros div ul {
-    margin-top: 5px; 
+    margin-top: 5px;
     padding: 6px;
 }
 
 .filtro-item {
-    line-height: 14px; 
-    padding: 0 0 11px 18px; 
+    line-height: 14px;
+    padding: 0 0 11px 18px;
     background: url('../img/mais.png') left top no-repeat;'
 }
 
@@ -1046,50 +1045,50 @@ ul.links-paginacao li {
 }
 
 .lista-item {
-    line-height: 14px; 
-    padding: 0 0 11px 18px; 
+    line-height: 14px;
+    padding: 0 0 11px 18px;
     background: url('../img/seta.png') left top no-repeat;
 }
 
 #titulo-listar {
-    position: relative; 
-    height: 42px; 
-    margin-bottom: 0px !important; 
+    position: relative;
+    height: 42px;
+    margin-bottom: 0px !important;
     line-height: 28px;
 }
 
-#titulo-listar #filtrar-por {
-    background: url('../img/filtrar-por.png') no-repeat top left;
+#titulo-listar #listar-por {
+    background: url('../img/listar-por.png') no-repeat top left;
     height: 37px;
     text-indent: -6000px;
     width: 190px;
 }
 
 .caixa-listar {
-    padding: 1px 0; 
-    border-bottom: 2px solid #D11E1B; 
+    padding: 1px 0;
+    border-bottom: 2px solid #D11E1B;
     border-top: 1px solid #D11E1B;
 }
 
 .caixa-listar ul {
-    margin-top: 0 !important; 
-    padding-bottom: 0 !important; 
+    margin-top: 0 !important;
+    padding-bottom: 0 !important;
     background: #f9f9f9;
 }
 
 #conteudo-baixo {
-    clear: both; 
-    position: relative; 
-    width: 950px; 
-    height: auto; 
-    padding: 0 0 25px; 
+    clear: both;
+    position: relative;
+    width: 950px;
+    height: auto;
+    padding: 0 0 25px;
     border: none;
 }
 
 #conteudo-baixo .caixa {
-    position: relative; 
-    height: 35px; 
-    font-size: 12px; 
+    position: relative;
+    height: 35px;
+    font-size: 12px;
     line-height: 25px;
 }
 
@@ -1130,120 +1129,120 @@ ul.links-paginacao li {
     cursor: pointer;
 }
 
-.icone_barra.logo { 
-    background: url('../img/logo_icon.png') no-repeat; 
+.icone_barra.logo {
+    background: url('../img/logo_icon.png') no-repeat;
 }
 
-.icone_barra.one_page_mode { 
-    background: url('../img/modo_pg_unica.png') no-repeat; 
+.icone_barra.one_page_mode {
+    background: url('../img/modo_pg_unica.png') no-repeat;
 }
 
-.icone_barra.one_page_mode:hover { 
-    background: url('../img/modo_pg_unicaOVER.png') no-repeat; 
+.icone_barra.one_page_mode:hover {
+    background: url('../img/modo_pg_unicaOVER.png') no-repeat;
 }
 
-.icone_barra.one_page_mode.selected { 
-    background: url('../img/modo_pg_unicaON.png') no-repeat; 
+.icone_barra.one_page_mode.selected {
+    background: url('../img/modo_pg_unicaON.png') no-repeat;
 }
 
-.icone_barra.two_page_mode { 
-    background: url('../img/modo_pg_dupla.png') no-repeat; 
+.icone_barra.two_page_mode {
+    background: url('../img/modo_pg_dupla.png') no-repeat;
 }
 
-.icone_barra.two_page_mode:hover { 
-    background: url('../img/modo_pg_duplaOVER.png') no-repeat; 
+.icone_barra.two_page_mode:hover {
+    background: url('../img/modo_pg_duplaOVER.png') no-repeat;
 }
 
-.icone_barra.two_page_mode.selected { 
-    background: url('../img/modo_pg_duplaON.png') no-repeat; 
+.icone_barra.two_page_mode.selected {
+    background: url('../img/modo_pg_duplaON.png') no-repeat;
 }
 
-.icone_barra.thumbnail_mode { 
-    background: url('../img/modo_mosaico.png') no-repeat; 
+.icone_barra.thumbnail_mode {
+    background: url('../img/modo_mosaico.png') no-repeat;
 }
 
-.icone_barra.thumbnail_mode:hover { 
-    background: url('../img/modo_mosaicoOVER.png') no-repeat; 
+.icone_barra.thumbnail_mode:hover {
+    background: url('../img/modo_mosaicoOVER.png') no-repeat;
 }
 
-.icone_barra.thumbnail_mode.selected { 
-    background: url('../img/modo_mosaicoON.png') no-repeat; 
+.icone_barra.thumbnail_mode.selected {
+    background: url('../img/modo_mosaicoON.png') no-repeat;
 }
 
-.icone_barra.ocr_mode { 
-    background: url('../img/modo_ocr.png') no-repeat; 
+.icone_barra.ocr_mode {
+    background: url('../img/modo_ocr.png') no-repeat;
 }
 
-.icone_barra.ocr_mode:hover { 
-    background: url('../img/modo_ocrOVER.png') no-repeat; 
+.icone_barra.ocr_mode:hover {
+    background: url('../img/modo_ocrOVER.png') no-repeat;
 }
 
-.icone_barra.ocr_mode.selected { 
-    background: url('../img/modo_ocrON.png') no-repeat; 
+.icone_barra.ocr_mode.selected {
+    background: url('../img/modo_ocrON.png') no-repeat;
 }
 
-.icone_barra.print { 
-    background: url('../img/func_imprimir.png') no-repeat; 
+.icone_barra.print {
+    background: url('../img/func_imprimir.png') no-repeat;
 }
 
-.icone_barra.download { 
-    background: url('../img/func_baixar.png') no-repeat; 
+.icone_barra.download {
+    background: url('../img/func_baixar.png') no-repeat;
 }
 
-.icone_barra.cite { 
-    background: url('../img/func_citar.png') no-repeat; 
+.icone_barra.cite {
+    background: url('../img/func_citar.png') no-repeat;
 }
 
-.icone_barra.link { 
-    background: url('../img/func_link.png') no-repeat; 
+.icone_barra.link {
+    background: url('../img/func_link.png') no-repeat;
 }
 
-.icone_barra.zoom_out { 
-    background: url('../BookReader/images/zoom_out_icon.png') no-repeat; 
+.icone_barra.zoom_out {
+    background: url('../BookReader/images/zoom_out_icon.png') no-repeat;
 }
 
-.icone_barra.zoom_out:hover { 
-    background: url('../BookReader/images/zoom_out_iconOVER.png') no-repeat; 
+.icone_barra.zoom_out:hover {
+    background: url('../BookReader/images/zoom_out_iconOVER.png') no-repeat;
 }
 
-.icone_barra.zoom_in { 
-    background: url('../BookReader/images/zoom_in_icon.png') no-repeat; 
+.icone_barra.zoom_in {
+    background: url('../BookReader/images/zoom_in_icon.png') no-repeat;
 }
 
-.icone_barra.zoom_in:hover { 
-    background: url('../BookReader/images/zoom_in_iconOVER.png') no-repeat; 
+.icone_barra.zoom_in:hover {
+    background: url('../BookReader/images/zoom_in_iconOVER.png') no-repeat;
 }
 
-.icone_barra.book_left { 
-    background: url('../BookReader/images/book_left_icon.png') no-repeat; 
+.icone_barra.book_left {
+    background: url('../BookReader/images/book_left_icon.png') no-repeat;
 }
 
-.icone_barra.book_left:hover { 
-    background: url('../BookReader/images/book_left_iconOVER.png') no-repeat; 
+.icone_barra.book_left:hover {
+    background: url('../BookReader/images/book_left_iconOVER.png') no-repeat;
 }
 
-.icone_barra.book_right { 
-    background: url('../BookReader/images/book_right_icon.png') no-repeat; 
+.icone_barra.book_right {
+    background: url('../BookReader/images/book_right_icon.png') no-repeat;
 }
 
-.icone_barra.book_right:hover { 
-    background: url('../BookReader/images/book_right_iconOVER.png') no-repeat; 
+.icone_barra.book_right:hover {
+    background: url('../BookReader/images/book_right_iconOVER.png') no-repeat;
 }
 
-.icone_barra.book_up { 
-    background: url('../BookReader/images/book_up_icon.png') no-repeat; 
+.icone_barra.book_up {
+    background: url('../BookReader/images/book_up_icon.png') no-repeat;
 }
 
-.icone_barra.book_up:hover { 
-    background: url('../BookReader/images/book_up_iconOVER.png') no-repeat; 
+.icone_barra.book_up:hover {
+    background: url('../BookReader/images/book_up_iconOVER.png') no-repeat;
 }
 
-.icone_barra.book_down { 
-    background: url('../BookReader/images/book_down_icon.png') no-repeat; 
+.icone_barra.book_down {
+    background: url('../BookReader/images/book_down_icon.png') no-repeat;
 }
 
-.icone_barra.book_down:hover { 
-    background: url('../BookReader/images/book_down_iconOVER.png') no-repeat; 
+.icone_barra.book_down:hover {
+    background: url('../BookReader/images/book_down_iconOVER.png') no-repeat;
 }
 
 .icone_barra.book_leftmost { 
