@@ -336,7 +336,7 @@
                                         });
                                     },
                                     onClose: function(e) {
-                                      jwplayer("jwp-" + a.attr("href").substring(1)).pause();  
+                                      jwplayer("jwp-" + a.attr("href").substring(1)).pause();
                                     }
                                 });
                             </xsl:otherwise>
