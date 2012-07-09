@@ -4,29 +4,29 @@
   DS-METS-1.0-DIM.xsl
 
   Version: 1
- 
+
   Date: 2011-02-15 09:30:00 -0200 (Tue, 15 Feb 2011)
- 
+
   Copyright (c) 2010-2011, Brasiliana Digital Library (http://brasiliana.usp.br).
   Copyright (c) 2002-2005, Hewlett-Packard Company and Massachusetts
   Institute of Technology.  All rights reserved.
- 
+
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
   met:
- 
+
   - Redistributions of source code must retain the above copyright
   notice, this list of conditions and the following disclaimer.
- 
+
   - Redistributions in binary form must reproduce the above copyright
   notice, this list of conditions and the following disclaimer in the
   documentation and/or other materials provided with the distribution.
- 
+
   - Neither the name of the Hewlett-Packard Company nor the name of the
   Massachusetts Institute of Technology nor the names of their
   contributors may be used to endorse or promote products derived from
   this software without specific prior written permission.
- 
+
   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
   ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -46,11 +46,11 @@
     Author: Fabio N. Kepler
 -->
 
-<xsl:stylesheet 
+<xsl:stylesheet
     xmlns:i18n="http://apache.org/cocoon/i18n/2.1"
     xmlns:dri="http://di.tamu.edu/DRI/1.0/"
     xmlns:mets="http://www.loc.gov/METS/"
-    xmlns:dim="http://www.dspace.org/xmlns/dspace/dim" 
+    xmlns:dim="http://www.dspace.org/xmlns/dspace/dim"
     xmlns:xlink="http://www.w3.org/TR/xlink/"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
     xmlns:atom="http://www.w3.org/2005/Atom"
@@ -58,15 +58,14 @@
     xmlns:oreatom="http://www.openarchives.org/ore/atom/"
     xmlns:fn="http://www.w3.org/2005/xpath-functions"
     xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:xalan="http://xml.apache.org/xalan" 
+    xmlns:xalan="http://xml.apache.org/xalan"
     xmlns:encoder="xalan://java.net.URLEncoder"
     exclude-result-prefixes="xalan encoder i18n dri mets dim  xlink xsl fn oreatom ore atom">
-    <!--  
+    <!--
     the above should be replaced with if Saxon is going to be used.
-    
      -->
     <xsl:output indent="yes"/>
-    
+
     <xsl:template match="mets:METS[mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']]" mode="summaryGrid">
         <xsl:param name="position"/>
         <xsl:choose>
@@ -110,7 +109,6 @@
             <xsl:with-param name="position" select="$position"/>
         </xsl:apply-templates>
     </xsl:template>
-    
 
     <xsl:template match="dim:dim" mode="itemSummaryGrid-DIM">
         <xsl:param name="position"/>
@@ -144,10 +142,10 @@
         </div>
     </xsl:template>
 
-    <!-- 
-        The summaryList display type; used to generate simple surrogates for the item involved 
+    <!--
+        The summaryList display type; used to generate simple surrogates for the item involved
     -->
-        
+
     <xsl:template match="mets:METS[mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']]" mode="summaryList">
         <xsl:param name="position"/>
             <xsl:choose>
@@ -165,15 +163,15 @@
                 <xsl:call-template name="collectionSummaryList-DIM">
                     <xsl:with-param name="position" select="$position"/>
                 </xsl:call-template>
-            </xsl:when>                
+            </xsl:when>
             <xsl:otherwise>
                 <i18n:text>xmlui.dri2xhtml.METS-1.0.non-conformant</i18n:text>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 
-    <!-- 
-        The templates that handle the respective cases of summaryList: item, collection, and community 
+    <!--
+        The templates that handle the respective cases of summaryList: item, collection, and community
     -->
 
     <!-- An item rendered in the summaryList pattern. Commonly encountered in various browse-by pages and search results. -->
@@ -191,7 +189,29 @@
         </xsl:apply-templates>
     </xsl:template>
 
-    
+    <xsl:template name="format_date">
+        <xsl:param name="date" />
+
+        <xsl:variable name="dia" select="substring($date,9,2)" />
+        <xsl:variable name="mes" select="substring($date,6,2)" />
+        <xsl:variable name="ano" select="substring($date,1,4)" />
+
+        <xsl:if test="$dia">
+            <xsl:value-of select="$dia"/>
+            <xsl:text>/</xsl:text>
+        </xsl:if>
+
+        <xsl:if test="$mes">
+            <xsl:value-of select="$mes"/>
+            <xsl:text>/</xsl:text>
+        </xsl:if>
+
+        <xsl:if test="$ano">
+            <xsl:value-of select="$ano"/>
+        </xsl:if>
+    </xsl:template>
+
+
     <!-- Generate the info about the item from the metadata section -->
     <xsl:template match="dim:dim" mode="itemSummaryList-DIM">
         <xsl:param name="position"/>
@@ -220,7 +240,6 @@
             </div>
 
             <div class="caixa-borda" id="full-item-record">
-<!--                <xsl:call-template name="ficha-metadados"/>-->
                 <xsl:apply-templates select="." mode="itemMetadata" />
             </div>
 
@@ -318,7 +337,9 @@
                             <xsl:text>, </xsl:text>
                         </xsl:if>
                         <span class="date">
-                            <xsl:value-of select="substring(dim:field[@element='date' and @qualifier='issued']/node(),1,10)"/>
+                            <xsl:call-template name="format_date">
+                                <xsl:with-param name="date" select="substring(dim:field[@element='date' and @qualifier='issued']/node(),1,10)"/>
+                            </xsl:call-template>
                         </span>
                         <xsl:text>)</xsl:text>
                     </span>
@@ -329,7 +350,7 @@
 
     <xsl:template name="funcoes-resultado">
         <xsl:param name="mets-context"/>
-        
+
         <div class="funcoes-resultado">
             <div class="visualizar-item">
                 <a>
@@ -482,11 +503,9 @@
                     </span>
                     <!-- Content column -->
                     <span class="dado-item">
-                        <xsl:choose>
-                            <xsl:otherwise>
-                                <xsl:copy-of select="./node()"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:call-template name="format_date">
+                            <xsl:with-param name="date" select="./node()"/>
+                        </xsl:call-template>
                     </span>
                 </xsl:otherwise>
             </xsl:choose>
@@ -1166,7 +1185,7 @@
 
     <xsl:template name="commColl-funcoes-resultado">
         <xsl:param name="mets-context"/>
-        
+
         <div class="funcoes-resultado">
             <div class="visualizar-item">
                 <a>
@@ -1200,7 +1219,6 @@
         </div>
     </xsl:template>
 
-<!--    <xsl:template name="ficha-metadados">-->
     <xsl:template match="dim:dim" mode="communityCollectionMetadata">
         <xsl:if test="dim:field[@element='description' and not(@qualifier)] != ''">
             <xsl:apply-templates select="dim:field[@element='description' and not(@qualifier)]" mode="itemSummaryList-DIM"/>
@@ -1225,7 +1243,6 @@
         </xsl:if>
     </xsl:template>
 
-    
     <xsl:template name="collectionSummaryGrid-DIM">
         <xsl:param name="position"/>
         <!-- Generate the thumbnail, if present, from the file section -->
@@ -1239,7 +1256,6 @@
             <xsl:with-param name="position" select="$position"/>
         </xsl:apply-templates>
     </xsl:template>
-    
 
     <xsl:template match="dim:dim" mode="collectionSummaryGrid-DIM">
         <xsl:param name="position"/>
@@ -1272,15 +1288,12 @@
             </p>
         </div>
     </xsl:template>
-    
-    
-    
-    
-    <!-- 
+
+    <!--
         The detailList display type; used to generate simple surrogates for the item involved, but with
-        a slightly higher level of information provided. Not commonly used. 
+        a slightly higher level of information provided. Not commonly used.
     -->
-    
+
     <xsl:template match="mets:METS[mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']]" mode="detailList">
         <xsl:choose>
             <xsl:when test="@LABEL='DSpace Item'">
@@ -1291,26 +1304,26 @@
             </xsl:when>
             <xsl:when test="@LABEL='DSpace Community'">
                 <xsl:call-template name="communityDetailList-DIM"/>
-            </xsl:when>                
+            </xsl:when>
             <xsl:otherwise>
                 <i18n:text>xmlui.dri2xhtml.METS-1.0.non-conformant</i18n:text>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-        
-    <!-- An item rendered in the detailList pattern. Currently Manakin does not have a separate use for 
-        detailList on items, so the logic of summaryList is used in its place. --> 
+
+    <!-- An item rendered in the detailList pattern. Currently Manakin does not have a separate use for
+        detailList on items, so the logic of summaryList is used in its place. -->
     <xsl:template name="itemDetailList-DIM">
-        
+
         <!-- Generate the info about the item from the metadata section -->
         <xsl:apply-templates select="./mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']/mets:xmlData/dim:dim" mode="itemSummaryList-DIM"/>
-        
+
         <!-- Generate the thunbnail, if present, from the file section -->
         <xsl:apply-templates select="./mets:fileSec" mode="artifact-preview"/>
     </xsl:template>
-    
-    
-    <!-- A collection rendered in the detailList pattern. Encountered on the item view page as 
+
+
+    <!-- A collection rendered in the detailList pattern. Encountered on the item view page as
         the "this item is part of these collections" list -->
     <xsl:template name="collectionDetailList-DIM">
         <xsl:variable name="data" select="./mets:dmdSec/mets:mdWrap/mets:xmlData/dim:dim"/>
@@ -1340,7 +1353,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
+
     <!-- A community rendered in the detailList pattern. Not currently used. -->
     <xsl:template name="communityDetailList-DIM">
         <xsl:variable name="data" select="./mets:dmdSec/mets:mdWrap/mets:xmlData/dim:dim"/>
@@ -1371,11 +1384,11 @@
                 </xsl:otherwise>
             </xsl:choose>
         </span>
-    </xsl:template>   
-    
-    <!-- 
+    </xsl:template>
+
+    <!--
         The summaryView display type; used to generate a near-complete view of the item involved. It is currently
-        not applicable to communities and collections. 
+        not applicable to communities and collections.
     -->
     <xsl:template match="mets:METS[mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']]" mode="summaryView">
         <xsl:choose>
@@ -1387,18 +1400,18 @@
             </xsl:when>
             <xsl:when test="@LABEL='DSpace Community'">
                 <xsl:call-template name="communitySummaryView-DIM"/>
-            </xsl:when>                
+            </xsl:when>
             <xsl:otherwise>
                 <i18n:text>xmlui.dri2xhtml.METS-1.0.non-conformant</i18n:text>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
+
     <!-- An item rendered in the summaryView pattern. This is the default way to view a DSpace item in Manakin. -->
     <xsl:template name="itemSummaryView-DIM">
         <!-- Generate the info about the item from the metadata section -->
         <xsl:apply-templates select="./mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']/mets:xmlData/dim:dim" mode="itemSummaryView-DIM"/>
-        
+
         <!-- Generate the bitstream information from the file section -->
         <xsl:choose>
             <xsl:when test="./mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL']">
@@ -1431,10 +1444,8 @@
 
         <!-- Generate the Creative Commons license information from the file section (DSpace deposit license hidden by default)-->
         <xsl:apply-templates select="./mets:fileSec/mets:fileGrp[@USE='CC-LICENSE']"/>
-
     </xsl:template>
-    
-    
+
     <!-- Generate the info about the item from the metadata section -->
     <xsl:template match="dim:dim" mode="itemSummaryView-DIM">
         <table class="ds-includeSet-table">
@@ -1618,10 +1629,10 @@
 	                <td><span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-date</i18n:text>:</span></td>
 	                <td>
 		                <xsl:for-each select="dim:field[@element='date' and @qualifier='issued']">
-		                	<xsl:copy-of select="substring(./node(),1,10)"/>
-		                	 <xsl:if test="count(following-sibling::dim:field[@element='date' and @qualifier='issued']) != 0">
-	                    	<br/>
-	                    </xsl:if>
+		                	<xsl:copy-of select="substring(./node(),1,10)" />
+		                	<xsl:if test="count(following-sibling::dim:field[@element='date' and @qualifier='issued']) != 0">
+	                    	  <br/>
+                            </xsl:if>
 		                </xsl:for-each>
 	                </td>
 	            </tr>
@@ -1644,19 +1655,18 @@
         </xsl:choose>
     </xsl:template>
 
-    
     <!-- The summaryView of communities and collections is undefined. -->
     <xsl:template name="collectionSummaryView-DIM">
         <i18n:text>xmlui.dri2xhtml.METS-1.0.collection-not-implemented</i18n:text>
     </xsl:template>
-    
+
     <xsl:template name="communitySummaryView-DIM">
         <i18n:text>xmlui.dri2xhtml.METS-1.0.community-not-implemented</i18n:text>
     </xsl:template>
-    
-    <!-- 
+
+    <!--
         The detailView display type; used to generate a complete view of the object involved. It is currently
-        used with the "full item record" view of items as well as the default views of communities and collections. 
+        used with the "full item record" view of items as well as the default views of communities and collections.
     -->
     <xsl:template match="mets:METS[mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']]" mode="detailView">
         <xsl:choose>
@@ -1668,14 +1678,13 @@
             </xsl:when>
             <xsl:when test="@LABEL='DSpace Community'">
                 <xsl:call-template name="communityDetailView-DIM"/>
-            </xsl:when>                
+            </xsl:when>
             <xsl:otherwise>
                 <i18n:text>xmlui.dri2xhtml.METS-1.0.non-conformant</i18n:text>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
-    
+
     <xsl:template match="mets:METS[mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']]" mode="detailViewImage">
         <xsl:choose>
             <xsl:when test="@LABEL='DSpace Item'">
@@ -1685,7 +1694,7 @@
                 <i18n:text>xmlui.dri2xhtml.METS-1.0.non-conformant</i18n:text>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>    
+    </xsl:template>
 
     <xsl:template match="mets:METS[mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']]" mode="detailViewBook">
         <xsl:choose>
@@ -1785,7 +1794,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
+
     <xsl:template name="itemDetailViewBook-DIM">
         <xsl:choose>
             <xsl:when test="./mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL']">
@@ -1891,7 +1900,7 @@
                                     <xsl:when test="$handle != ''">
                                         <xsl:value-of select="$context-path"/>
                                         <xsl:text>/handle/</xsl:text>
-                                        <xsl:value-of select="$handle"/>                                        
+                                        <xsl:value-of select="$handle"/>
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:value-of select="$context-path"/>
@@ -1963,7 +1972,7 @@
                             <xsl:value-of select="//dim:dim/dim:field[@element='title'][1]"/>
                             <xsl:text>']);</xsl:text>
                         </xsl:variable>
-                    
+
                         <xsl:attribute name="onClick">
                             <xsl:value-of select="$event"/>
                             <xsl:value-of select="'printURL(iip.getCompleteImageOpenURL()); return false;'"/>
@@ -1996,7 +2005,7 @@
                             <xsl:value-of select="//dim:dim/dim:field[@element='title'][1]"/>
                             <xsl:text>']);</xsl:text>
                         </xsl:variable>
-                    
+
                         <xsl:attribute name="onClick">
                             <xsl:value-of select="$event"/>
                         </xsl:attribute>
@@ -2278,7 +2287,7 @@
                             <xsl:value-of select="//dim:dim/dim:field[@element='title'][1]"/>
                             <xsl:text>']);</xsl:text>
                         </xsl:variable>
-                    
+
                         <xsl:attribute name="onClick">
                             <xsl:value-of select="$event"/>
                             <xsl:value-of select="'; printURL(br.getPrintURI()); return false;'"/>
@@ -2311,7 +2320,7 @@
                             <xsl:value-of select="//dim:dim/dim:field[@element='title'][1]"/>
                             <xsl:text>']);</xsl:text>
                         </xsl:variable>
-                    
+
                         <xsl:attribute name="onClick">
                             <xsl:value-of select="$event"/>
                         </xsl:attribute>
@@ -2364,7 +2373,7 @@
 		    <xsl:apply-templates mode="itemDetailView-DIM"/>
 		</table>
     </xsl:template>
-            
+
     <xsl:template match="dim:field" mode="itemDetailView-DIM">
         <xsl:if test="not(@element='description' and @qualifier='provenance')">
             <tr>
@@ -2394,7 +2403,7 @@
             </tr>
         </xsl:if>
     </xsl:template>
-	
+
     <!-- A collection rendered in the detailView pattern; default way of viewing a collection. -->
     <xsl:template name="collectionDetailView-DIM">
         <div class="detail-view">&#160;
@@ -2407,13 +2416,13 @@
     </xsl:template>
 
     <!-- Generate the info about the collection from the metadata section -->
-    <xsl:template match="dim:dim" mode="collectionDetailView-DIM"> 
+    <xsl:template match="dim:dim" mode="collectionDetailView-DIM">
         <xsl:if test="string-length(dim:field[@element='description'][not(@qualifier)])&gt;0">
             <p class="intro-text">
                 <xsl:copy-of select="dim:field[@element='description'][not(@qualifier)]/node()"/>
             </p>
         </xsl:if>
-        
+
         <xsl:if test="string-length(dim:field[@element='description'][@qualifier='tableofcontents'])&gt;0">
         	<div class="detail-view-news">
         		<h3><i18n:text>xmlui.dri2xhtml.METS-1.0.news</i18n:text></h3>
@@ -2422,7 +2431,7 @@
         		</p>
         	</div>
         </xsl:if>
-        
+
         <xsl:if test="string-length(dim:field[@element='rights'][not(@qualifier)])&gt;0">
         	<div class="detail-view-rights-and-license">
 		        <xsl:if test="string-length(dim:field[@element='rights'][not(@qualifier)])&gt;0">
@@ -2434,7 +2443,6 @@
         </xsl:if>
     </xsl:template>
 
-    
     <xsl:template name="collectionHeadDetailView-DIM">
         <div id="dados-item">
             <h3>
@@ -2522,7 +2530,7 @@
             </div>
         </xsl:if>
     </xsl:template>
-    
+
     <!-- Rendering the file list from an Atom ReM bitstream stored in the ORE bundle -->
     <xsl:template match="mets:fileGrp[@USE='ORE']">
         <xsl:variable name="AtomMapURL" select="concat('cocoon:/',substring-after(mets:file/mets:FLocat[@LOCTYPE='URL']//@*[local-name(.)='href'],$context-path))"/>
@@ -2542,9 +2550,9 @@
                 </xsl:apply-templates>
             </tbody>
         </table>
-    </xsl:template>    
-	
-	
+    </xsl:template>
+
+
     <!-- Iterate over the links in the ORE resource maps and make them into bitstream references in the file section -->
     <xsl:template match="atom:link[@rel='http://www.openarchives.org/ore/terms/aggregates']">
         <tr>
@@ -2584,7 +2592,7 @@
                     </xsl:choose>
                 </a>
             </td>
-            <!-- File size always comes in bytes and thus needs conversion --> 
+            <!-- File size always comes in bytes and thus needs conversion -->
             <td>
                 <xsl:choose>
                     <xsl:when test="@length &lt; 1000">
@@ -2607,7 +2615,7 @@
                     <xsl:otherwise><xsl:text>n/a</xsl:text></xsl:otherwise>
                 </xsl:choose>
             </td>
-            <!-- Currently format carries forward the mime type. In the original DSpace, this 
+            <!-- Currently format carries forward the mime type. In the original DSpace, this
                 would get resolved to an application via the Bitstream Registry, but we are
                 constrained by the capabilities of METS and can't really pass that info through. -->
             <td>
@@ -2625,9 +2633,9 @@
             </td>
         </tr>
     </xsl:template>
-    
-    
-    
+
+
+
     <!-- A community rendered in the detailView pattern; default way of viewing a community. -->
     <xsl:template name="communityDetailView-DIM">
         <div class="detail-view">&#160;
@@ -2640,13 +2648,13 @@
     </xsl:template>
 
     <!-- Generate the info about the community from the metadata section -->
-    <xsl:template match="dim:dim" mode="communityDetailView-DIM"> 
+    <xsl:template match="dim:dim" mode="communityDetailView-DIM">
         <xsl:if test="string-length(dim:field[@element='description'][not(@qualifier)])&gt;0">
             <p class="intro-text">
                 <xsl:copy-of select="dim:field[@element='description'][not(@qualifier)]/node()"/>
             </p>
         </xsl:if>
-        
+
         <xsl:if test="string-length(dim:field[@element='description'][@qualifier='tableofcontents'])&gt;0">
         	<div class="detail-view-news">
         		<h3><i18n:text>xmlui.dri2xhtml.METS-1.0.news</i18n:text></h3>
@@ -2655,7 +2663,7 @@
         		</p>
         	</div>
         </xsl:if>
-        
+
         <xsl:if test="string-length(dim:field[@element='rights'][not(@qualifier)])&gt;0">
         	<div class="detail-view-rights-and-license">
 	            <p class="copyright-text">
@@ -2664,8 +2672,8 @@
             </div>
         </xsl:if>
     </xsl:template>
-   
-    
+
+
     <xsl:template name="communityHeadDetailView-DIM">
         <div id="dados-item">
             <h3>
@@ -2754,15 +2762,14 @@
         </xsl:if>
     </xsl:template>
 
-    
-       <!--  
+       <!--
     *********************************************
     OpenURL COinS Rendering Template
     *********************************************
- 
+
     COinS Example:
-    
-    <span class="Z3988" 
+
+    <span class="Z3988"
     title="ctx_ver=Z39.88-2004&amp;
     rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;
     rfr_id=info%3Asid%2Focoins.info%3Agenerator&amp;
@@ -2780,7 +2787,6 @@
     This Code does not parse authors names, instead relying on dc.contributor to populate the
     coins
      -->
-
     <xsl:template name="renderCOinS">
        <xsl:text>ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;</xsl:text>
        <xsl:for-each select=".//dim:field[@element = 'identifier']">
@@ -2796,7 +2802,5 @@
             </xsl:if>
         </xsl:for-each>
     </xsl:template>
-    
-    
 </xsl:stylesheet>
 
