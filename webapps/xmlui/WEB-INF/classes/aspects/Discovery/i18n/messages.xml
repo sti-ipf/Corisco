@@ -134,6 +134,8 @@
     <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.title_browse">Título</message>
     <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.subject_browse">Assunto</message>
     <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.other_browse">Outros Colaboradores</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.identifier.other_browse">Outros Identificadores</message>
+    
     <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dateissued.year_browse">Ano de Publicação</message>
 
     <message key="xmlui.ArtifactBrowser.AbstractSearch.result_query_head">Mostrando resultados para:</message>
