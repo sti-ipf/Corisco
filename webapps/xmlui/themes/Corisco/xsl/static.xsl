@@ -4,9 +4,9 @@
   static.xsl
 
   Version: 1
- 
+
   Date: 2011-02-15 09:30:00 -0200 (Tue, 15 Feb 2011)
- 
+
   Copyright (c) 2011, Brasiliana Digital Library (http://brasiliana.usp.br).
   All rights reserved. Modified BSD License.
 
@@ -56,16 +56,16 @@ nor the
   <xsl:template name="cabecalho-menu">
     <ul id="cabecalho-menu">
       <li class="item-menu">
-        <a href="http://www.paulofreire.org/centro-de-referencia/repositorio-digital">O Repositório</a>
+        <a href="/xmlui/repositorio-digital">O Repositório</a>
       </li>
       <li class="item-menu">
-        <a href="http://www.paulofreire.org/paulo-freire-memoria-e-presenca">O Projeto</a>
+        <a href="/xmlui/o-projeto">O Projeto</a>
       </li>
       <li class="item-menu">
         <a href="https://github.com/brasiliana/Corisco" target="_blank">O Corisco</a>
       </li>
       <li class="item-menu">
-        <a href="http://www.paulofreire.org/centro-de-referencia/repositorio-digital" target="_blank">Como nos enviar materiais</a>
+        <a href="/xmlui/repositorio-digital" target="_blank">Como nos enviar materiais</a>
       </li>
       <li class="item-menu">
         <a href="mailto:acervo@paulofreire.org">Contato</a>

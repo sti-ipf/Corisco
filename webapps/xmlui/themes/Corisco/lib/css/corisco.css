@@ -1491,3 +1491,49 @@ h3.separador {
 .div-item-description-video {
     padding: 5px;
 }
+
+/* Páginas estáticas */
+#static-content {
+    margin: 20px;
+}
+
+#static-content a {
+    color: #A80000;
+}
+
+#static-content h2, #static-content h3, #static-content h4 {
+    color: #A80000;
+    float: none;
+    font-weight: bold;
+    margin-top: 20px;
+    width: 100%;
+}
+
+#static-content h2 {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+#static-content h3 {
+    font-size: 16px;
+}
+
+#static-content h4 {
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+#static-content p {
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 10px;
+    text-align: justify;
+    text-indent: 40px;
+}
+
+#static-content li {
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 5px;
+    margin-left: 40px;
+}
