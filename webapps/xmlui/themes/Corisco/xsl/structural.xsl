@@ -539,7 +539,7 @@
         The template to handle dri:options. Since it contains only dri:list tags (which carry the actual
         information), the only things than need to be done is creating the ds-options div and applying
         the templates inside it.
-        
+
         In fact, the only bit of real work this template does is add the search box, which has to be
         handled specially in that it is not actually included in the options div, and is instead built
         from metadata available under pageMeta.
@@ -829,7 +829,7 @@
             </xsl:choose>
             <xsl:if test="count(//dri:body/dri:div[@n='item-view'])=0">
                 <xsl:apply-templates select="//dri:options"/>
-            </xsl:if>            
+            </xsl:if>
         </div>
 
         <xsl:call-template name="conteudo-baixo" />
@@ -869,7 +869,7 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
+
     <xsl:template match="dri:table[@n='search-controls']" priority="4">
         <div class="caixa">
             <xsl:apply-templates select="//dri:div[@interactive='yes'][@n='general-query']/dri:table//dri:cell[dri:field[@n='view']]" mode="searchControls"/>
@@ -1279,7 +1279,7 @@
             <xsl:with-param name="position">bottom</xsl:with-param>
         </xsl:apply-templates>
     </xsl:template>
-    
+
     <!-- Special case for divs tagged as "notice" -->
     <xsl:template match="dri:div[@n='general-message']" priority="3">
         <div>
@@ -1673,27 +1673,27 @@
     </xsl:template>
 
     <xsl:template match="dri:list[@type='form']/dri:item" priority="3">
-            <xsl:choose>
-                <xsl:when test="dri:field[@type='composite']">
-                    <xsl:call-template name="pick-label"/>
-                    <xsl:apply-templates mode="formComposite"/>
-                </xsl:when>
-                <xsl:when test="dri:list[@type='form']">
+        <xsl:choose>
+            <xsl:when test="dri:field[@type='composite']">
+                <xsl:call-template name="pick-label"/>
+                <xsl:apply-templates mode="formComposite"/>
+            </xsl:when>
+            <xsl:when test="dri:list[@type='form']">
+                <xsl:apply-templates />
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="pick-label"/>
+                <div id="adicionar-busca" class="ds-form-content2">
                     <xsl:apply-templates />
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:call-template name="pick-label"/>
-                    <div id="adicionar-busca" class="ds-form-content2">
-                        <xsl:apply-templates />
-                        <!-- special name used in submission UI review page -->
-                        <xsl:if test="@n = 'submit-review-field-with-authority'">
-                            <xsl:call-template name="authorityConfidenceIcon">
-                                <xsl:with-param name="confidence" select="substring-after(./@rend, 'cf-')"/>
-                            </xsl:call-template>
-                        </xsl:if>
-                    </div>
-                </xsl:otherwise>
-            </xsl:choose>
+                    <!-- special name used in submission UI review page -->
+                    <xsl:if test="@n = 'submit-review-field-with-authority'">
+                        <xsl:call-template name="authorityConfidenceIcon">
+                            <xsl:with-param name="confidence" select="substring-after(./@rend, 'cf-')"/>
+                        </xsl:call-template>
+                    </xsl:if>
+                </div>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template match="dri:list[@type='form']/dri:item" priority="3" mode="Corisco">
@@ -1763,12 +1763,12 @@
                         <xsl:when test="(count(../../..//dri:item) - count(../../..//dri:list[@type='form'])) mod 2 = 1">
                             <xsl:if test="(count(preceding-sibling::dri:item | ../../preceding-sibling::dri:item/dri:list[@type='form']/dri:item) mod 2 = 1)">even </xsl:if>
                             <xsl:if test="(count(preceding-sibling::dri:item | ../../preceding-sibling::dri:item/dri:list[@type='form']/dri:item) mod 2 = 0)">odd </xsl:if>
-                        
+
                         </xsl:when>
                     </xsl:choose>
                 </xsl:with-param>
             </xsl:call-template>
-            
+
             <xsl:call-template name="pick-label"/>
 
             <xsl:choose>
@@ -1789,7 +1789,7 @@
             </xsl:choose>
         </li>
     </xsl:template>
-    
+
     <xsl:template name="pick-label">
         <xsl:choose>
             <xsl:when test="dri:field/dri:label">
@@ -1822,7 +1822,7 @@
                         </span>
                     </xsl:otherwise>
                 </xsl:choose>
-                
+
             </xsl:when>
             <xsl:when test="dri:field">
                 <xsl:choose>
@@ -2789,7 +2789,6 @@
     <xsl:template match="dri:field" mode="normalField">
         <xsl:variable name="confidenceIndicatorID" select="concat(translate(@id,'.','_'),'_confidence_indicator')"/>
         <xsl:choose>
-            <!-- TODO: this has changed drammatically (see form3.xml) -->
             <xsl:when test="@type= 'select'">
                 <select>
                     <xsl:call-template name="fieldAttributes"/>
@@ -2801,7 +2800,7 @@
             <xsl:when test="@type= 'textarea'">
                 <textarea>
                     <xsl:call-template name="fieldAttributes"/>
-                                    
+
                     <!--
                         if the cols and rows attributes are not defined we need to call
                         the tempaltes for them since they are required attributes in strict xhtml
@@ -2816,7 +2815,7 @@
                             <xsl:call-template name="textAreaRows"/>
                         </xsl:when>
                     </xsl:choose>
-                                    
+
                     <xsl:apply-templates />
                     <xsl:choose>
                         <xsl:when test="./dri:value[@type='raw']">
@@ -2830,7 +2829,7 @@
                         <i18n:text>xmlui.dri2xhtml.default.textarea.value</i18n:text>
                     </xsl:if>
                 </textarea>
-                                    
+
 
               <!-- add place to store authority value -->
                 <xsl:if test="dri:params/@authorityControlled">
