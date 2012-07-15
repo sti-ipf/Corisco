@@ -17,7 +17,7 @@
  * limitations under the License.
  -->
 
-<!-- 
+<!--
   Simple transform of Solr query results to HTML
  -->
 <xsl:stylesheet version='1.0'
@@ -25,9 +25,9 @@
 >
 
   <xsl:output media-type="text/html; charset=UTF-8" encoding="UTF-8"/> 
-  
+
   <xsl:variable name="title" select="concat('Solr search results (',response/result/@numFound,' documents)')"/>
-  
+
   <xsl:template match='/'>
     <html>
       <head>
@@ -44,7 +44,7 @@
       </body>
     </html>
   </xsl:template>
-  
+
   <xsl:template match="doc">
     <xsl:variable name="pos" select="position()"/>
     <div class="doc">
@@ -110,7 +110,7 @@
   </xsl:template>
 
   <xsl:template match="*"/>
-  
+
   <xsl:template name="css">
     <script>
       function toggle(id) {

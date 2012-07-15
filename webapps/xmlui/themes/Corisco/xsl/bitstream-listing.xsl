@@ -4,13 +4,13 @@
   bitstream-listing.xsl
 
   Version: 1
- 
+
   Date: 2011-02-15 09:30:00 -0200 (Tue, 15 Feb 2011)
- 
+
   Copyright (c) 2010-2011, Brasiliana Digital Library (http://brasiliana.usp.br).
   Copyright (c) 2002-2005, Hewlett-Packard Company and Massachusetts
   Institute of Technology.  All rights reserved.
- 
+
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
   met:

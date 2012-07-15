@@ -420,8 +420,8 @@
      <field name="type" type="string" indexed="true" stored="true" multiValued="false" omitNorms="true" />
 
      <field name="taxon" type="string" indexed="true" stored="true" multiValued="true" omitNorms="true" />
-     
-     
+
+
      <field name="publisher" type="string" indexed="true" stored="true" multiValued="true" omitNorms="true" />
 
 <!--
@@ -545,7 +545,7 @@
 
    <dynamicField name="*_t"  type="text"    indexed="true"  stored="true" multiValued="true" />
    <dynamicField name="*_lc" type="lowerCaseSort"    indexed="true"  stored="true" multiValued="true"/>
-  
+
   <dynamicField name="*" type="text" multiValued="true"/>
 
  </fields>
