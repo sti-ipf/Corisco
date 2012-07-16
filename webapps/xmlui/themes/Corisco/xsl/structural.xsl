@@ -57,9 +57,10 @@
         xmlns:dc="http://purl.org/dc/elements/1.1/"
         xmlns:exsl="http://exslt.org/common"
         xmlns:fn="http://www.w3.org/2005/xpath-functions"
+        xmlns:confman="org.dspace.core.ConfigurationManager"
         xmlns="http://www.w3.org/1999/xhtml"
         extension-element-prefixes="exsl"
-        exclude-result-prefixes="#default dri mets xlink xsl dim xhtml mods dc exsl fn">
+        exclude-result-prefixes="#default dri mets xlink xsl dim xhtml mods dc exsl fn confman">
 
     <xsl:output indent="yes"/>
 
@@ -3498,9 +3499,36 @@
                     <ul id="lista-resultados">
                         <xsl:apply-templates select="*[not(name()='head')]" mode="summaryList"/>
                     </ul>
+                    <div id="ultimas-publicacoes">
+                        <h1>Últimas Publicações</h1>
+                        <ul>
+                            <xsl:variable name="solr-search-url" select="concat(confman:getProperty('dspace.baseUrl'), '/solr/search')" />
+                            <xsl:variable name="query" select="concat($solr-search-url, '/select?q=search.resourcetype:2&amp;sort=dc.date.accessioned_dt%20desc&amp;rows=5&amp;omitHeader=true')" />
+                            <xsl:comment>
+                                <xsl:value-of select="$query" />
+                            </xsl:comment>
+                            <xsl:apply-templates select="document($query)" mode="ultimasPublicacoes" />
+                        </ul>
+                    </div>
                 </xsl:otherwise>
             </xsl:choose>
         </div>
+    </xsl:template>
+
+    <xsl:template match="*" mode="ultimasPublicacoes">
+        <xsl:apply-templates select="*" mode="ultimasPublicacoes" />
+    </xsl:template>
+
+    <xsl:template match="/response/result/doc" mode="ultimasPublicacoes" priority="1">
+        <li>
+            <a>
+                <xsl:attribute name="href">
+                    <xsl:value-of select="concat(confman:getProperty('dspace.url'), '/handle/', str[@name='handle'])" />
+                </xsl:attribute>
+                <xsl:value-of select="arr[@name='dc.title']/str" />
+            </a>
+            <xsl:value-of select="text()" />
+        </li>
     </xsl:template>
 
     <!-- First, the detail list case -->

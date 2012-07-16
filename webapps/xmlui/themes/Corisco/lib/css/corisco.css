@@ -1537,3 +1537,20 @@ h3.separador {
     margin-bottom: 5px;
     margin-left: 40px;
 }
+
+/*
+ * ÚLTIMAS PUBLICAÇÕES
+ */
+
+#ultimas-publicacoes h1 {
+    background: url("../img/ultimas-publicacoes.png") top left;
+    height: 46px;
+    text-indent: -999999px;
+    margin: 10px auto;
+    width: 524px;
+}
+
+#ultimas-publicacoes li {
+    border-bottom: 1px dotted black;
+    padding: 10px;
+}
