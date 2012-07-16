@@ -76,7 +76,7 @@ and searching the repository.
 
 
         </map:transformers>
-               
+
 
         <map:matchers default="wildcard">
             <map:matcher name="HandleTypeMatcher" src="org.dspace.app.xmlui.aspect.general.HandleTypeMatcher"/>
@@ -160,7 +160,7 @@ and searching the repository.
                 <map:transform type="NavigationBrowse"/>
                 <map:transform type="IncludePageMeta">
                     <map:parameter name="stylesheet.screen.discovery#1" value="../../static/css/discovery/style.css"/>
-                    
+
                     <map:parameter name="javascript.static#1" value="static/js/discovery/core/Core.js"/>
                     <map:parameter name="javascript.static#2" value="static/js/discovery/core/AbstractManager.js"/>
                     <map:parameter name="javascript.static#3" value="static/js/discovery/core/Parameter.js"/>
