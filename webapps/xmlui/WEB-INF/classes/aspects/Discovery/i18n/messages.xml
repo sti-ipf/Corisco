@@ -168,7 +168,7 @@
     <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.subject.lcsh">Assunto</message>
     <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.description">Descrição</message>
     <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.description_t">Descrição</message>
-    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.type">Tipo</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.type">Tipo de Documento</message>
     <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dateissued.year">Ano</message>
     <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.author_t">Autor</message>
     <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.content">Texto</message>
