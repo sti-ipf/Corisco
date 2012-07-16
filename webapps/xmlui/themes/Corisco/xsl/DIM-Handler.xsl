@@ -198,19 +198,19 @@
                 <xsl:variable name="mes" select="substring($date,6,2)" />
                 <xsl:variable name="ano" select="substring($date,1,4)" />
 
-                <xsl:if test="$dia">
-                    <xsl:value-of select="$dia"/>
-                    <xsl:text>/</xsl:text>
-                </xsl:if>
+                <xsl:value-of select="$dia"/>
+                <xsl:text>/</xsl:text>
+                <xsl:value-of select="$mes"/>
+                <xsl:text>/</xsl:text>
+                <xsl:value-of select="$ano"/>
+            </xsl:when>
+            <xsl:when test="string-length($date) = 7 and substring($date,5,1) = '-'">
+                <xsl:variable name="mes" select="substring($date,6,2)" />
+                <xsl:variable name="ano" select="substring($date,1,4)" />
 
-                <xsl:if test="$mes">
-                    <xsl:value-of select="$mes"/>
-                    <xsl:text>/</xsl:text>
-                </xsl:if>
-
-                <xsl:if test="$ano">
-                    <xsl:value-of select="$ano"/>
-                </xsl:if>
+                <xsl:value-of select="$mes"/>
+                <xsl:text>/</xsl:text>
+                <xsl:value-of select="$ano"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$date" />
