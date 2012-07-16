@@ -135,7 +135,7 @@
     <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.subject_browse">Assunto</message>
     <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.other_browse">Outros Colaboradores</message>
     <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.identifier.other_browse">Outros Identificadores</message>
-    
+
     <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dateissued.year_browse">Ano de Publicação</message>
 
     <message key="xmlui.ArtifactBrowser.AbstractSearch.result_query_head">Mostrando resultados para:</message>
@@ -155,6 +155,7 @@
     <message key="xmlui.ArtifactBrowser.Navigation.browse_dc.contributor.author">Autor</message>
     <message key="xmlui.ArtifactBrowser.Navigation.browse_dc.subject">Assunto</message>
     <message key="xmlui.ArtifactBrowser.Navigation.browse_dateissued.year">Ano de publicação</message>
+    <message key="xmlui.ArtifactBrowser.Navigation.browse_dc.type">Tipo de documento</message>
 
     <!-- SimpleSearch -->
     <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.all">Tudo</message>

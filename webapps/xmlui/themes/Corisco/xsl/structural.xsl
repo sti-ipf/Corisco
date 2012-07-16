@@ -1985,11 +1985,6 @@
             <div class="caixa-listar">
                 <ul>
                     <xsl:apply-templates select="*[not(name()='head')]" mode="Corisco"/>
-                    <li class="lista-item">
-                        <span>
-                            <a href="/xmlui/browse?field=dc.type">Tipo de Documento</a>
-                        </span>
-                    </li>
                 </ul>
             </div>
         </xsl:if>
