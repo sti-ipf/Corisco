@@ -3465,7 +3465,8 @@
             <xsl:choose>
                 <xsl:when test="//dri:div[@id='aspect.discovery.SimpleSearch.div.search-results']/@rend = 'list'">
                     <ul id="lista-resultados">
-                        <xsl:apply-templates select="*[not(name()='head')]" mode="summaryList"/>
+                        <P class="cor1" style="text-align:center;">Alguns documentos possuem somente a capa. Até  o final de julho,eles serão atualizados.</P>
+			<xsl:apply-templates select="*[not(name()='head')]" mode="summaryList"/>
                     </ul>
                 </xsl:when>
                 <xsl:when test="//dri:div[@id='aspect.discovery.SimpleSearch.div.search-results']/@rend = 'grid'">
@@ -3497,6 +3498,7 @@
                 </xsl:when>
                 <xsl:otherwise>
                     <ul id="lista-resultados">
+                        <P class="cor1" style="text-align:center;">Alguns documentos possuem somente a capa. Até  o final de julho,eles serão atualizados.</P>
                         <xsl:apply-templates select="*[not(name()='head')]" mode="summaryList"/>
                     </ul>
                     <div id="ultimas-publicacoes">
