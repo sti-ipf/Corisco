@@ -86,8 +86,7 @@
     <fieldType name="sint" class="solr.SortableIntField" sortMissingLast="true" omitNorms="true"/>
     <fieldType name="slong" class="solr.SortableLongField" sortMissingLast="true" omitNorms="true"/>
     <fieldType name="sfloat" class="solr.SortableFloatField" sortMissingLast="true" omitNorms="true"/>
-    <fieldType name="sdouble" class="solr.SortableDoubleField" sortMissingLast="true"
-      omitNorms="true"/>
+    <fieldType name="sdouble" class="solr.SortableDoubleField" sortMissingLast="true" omitNorms="true"/>
 
 
     <!-- The format for this date field is of the form 1995-12-31T23:59:59Z, and
@@ -255,9 +254,7 @@
 
              http://java.sun.com/j2se/1.5.0/docs/api/java/util/regex/package-summary.html
           -->
-        <filter class="solr.PatternReplaceFilterFactory"
-                pattern="([^a-z])" replacement="" replace="all"
-        />
+        <filter class="solr.PatternReplaceFilterFactory" pattern="([^a-z])" replacement="" replace="all" />
       </analyzer>
     </fieldType>
 
@@ -333,7 +330,7 @@
          them will be ignored outright
      -->
     <fieldType name="ignored" stored="false" indexed="false" class="solr.StrField"/>
-
+    <fieldType name="rand" class="solr.RandomSortField" indexed="true" />
  </types>
 
 
@@ -547,7 +544,7 @@
    <dynamicField name="*_lc" type="lowerCaseSort"    indexed="true"  stored="true" multiValued="true"/>
 
   <dynamicField name="*" type="text" multiValued="true"/>
-
+  <dynamicField name="random*" type="rand" indexed="true" stored="false"/>
  </fields>
 
  <!-- Field to use to determine and enforce document uniqueness.
