@@ -46,7 +46,8 @@
     Author: Fabio N. Kepler
 -->
 
-<xsl:stylesheet xmlns:i18n="http://apache.org/cocoon/i18n/2.1"
+<xsl:stylesheet
+        xmlns:i18n="http://apache.org/cocoon/i18n/2.1"
         xmlns:dri="http://di.tamu.edu/DRI/1.0/"
         xmlns:mets="http://www.loc.gov/METS/"
         xmlns:xlink="http://www.w3.org/TR/xlink/"
@@ -59,6 +60,7 @@
         xmlns:fn="http://www.w3.org/2005/xpath-functions"
         xmlns:confman="org.dspace.core.ConfigurationManager"
         xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:math="java.lang.Math"
         extension-element-prefixes="exsl"
         exclude-result-prefixes="#default dri mets xlink xsl dim xhtml mods dc exsl fn confman">
 
@@ -3496,26 +3498,35 @@
                     </table>
                 </xsl:when>
                 <xsl:otherwise>
+                    <xsl:variable name="solr-search-url" select="concat(confman:getProperty('dspace.baseUrl'), '/solr/search')" />
                     <ul id="lista-resultados">
-                        <xsl:apply-templates select="*[not(name()='head')]" mode="summaryList"/>
+                        <xsl:choose>
+                            <xsl:when test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI']=''">
+                                <xsl:variable name="query" select="concat($solr-search-url, '/select?q=search.resourcetype:2&amp;sort=random_', math:random(), '%20desc&amp;rows=20&amp;omitHeader=true')" />
+                                <xsl:apply-templates select="document($query)" mode="items-aleatorios" />
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:apply-templates select="*[not(name()='head')]" mode="summaryList"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </ul>
-                    <div id="ultimas-publicacoes">
-                        <h1>Últimas Publicações</h1>
-                        <ul>
-                            <xsl:variable name="solr-search-url" select="concat(confman:getProperty('dspace.baseUrl'), '/solr/search')" />
-                            <xsl:variable name="query" select="concat($solr-search-url, '/select?q=search.resourcetype:2&amp;sort=dc.date.accessioned_dt%20desc&amp;rows=5&amp;omitHeader=true')" />
-                            <xsl:comment>
-                                <xsl:value-of select="$query" />
-                            </xsl:comment>
-                            <xsl:apply-templates select="document($query)" mode="ultimasPublicacoes" />
-                        </ul>
-                    </div>
+                    <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI']=''">
+                        <div id="ultimas-publicacoes">
+                            <h1>Últimas Publicações</h1>
+                            <ul>
+                                <xsl:variable name="query" select="concat($solr-search-url, '/select?q=search.resourcetype:2&amp;sort=dc.date.accessioned%20desc&amp;rows=5&amp;omitHeader=true')" />
+
+                                <xsl:apply-templates select="document($query)" mode="ultimasPublicacoes" />
+                            </ul>
+                        </div>
+                    </xsl:if>
                 </xsl:otherwise>
             </xsl:choose>
         </div>
     </xsl:template>
 
     <xsl:template match="*" mode="ultimasPublicacoes">
+        <!-- Evita problemas com o template -->
         <xsl:apply-templates select="*" mode="ultimasPublicacoes" />
     </xsl:template>
 
@@ -3527,7 +3538,24 @@
                 </xsl:attribute>
                 <xsl:value-of select="arr[@name='dc.title']/str" />
             </a>
-            <xsl:value-of select="text()" />
+        </li>
+    </xsl:template>
+
+    <xsl:template match="*" mode="items-aleatorios">
+        <xsl:apply-templates select="*" mode="items-aleatorios" />
+    </xsl:template>
+
+    <xsl:template match="/response/result/doc" mode="items-aleatorios" priority="1">
+        <xsl:variable name="externalMetadataURL">
+            <xsl:value-of select="concat(confman:getProperty('dspace.baseUrl'), '/xmlui/metadata/handle/')" />
+            <xsl:value-of select="str[@name='handle']"/>
+            <xsl:text>/mets.xml?sections=dmdSec,fileSec,structMap</xsl:text>
+        </xsl:variable>
+
+        <li>
+            <xsl:apply-templates select="document($externalMetadataURL)/mets:METS" mode="summaryList">
+                <xsl:with-param name="position" select="position()"/>
+            </xsl:apply-templates>
         </li>
     </xsl:template>
 
