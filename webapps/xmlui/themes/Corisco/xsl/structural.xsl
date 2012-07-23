@@ -3467,7 +3467,8 @@
             <xsl:choose>
                 <xsl:when test="//dri:div[@id='aspect.discovery.SimpleSearch.div.search-results']/@rend = 'list'">
                     <ul id="lista-resultados">
-                        <xsl:apply-templates select="*[not(name()='head')]" mode="summaryList"/>
+                        <P class="cor1" style="text-align:center;">Alguns documentos possuem somente a capa. Até  o final de julho,eles serão atualizados.</P>
+			<xsl:apply-templates select="*[not(name()='head')]" mode="summaryList"/>
                     </ul>
                 </xsl:when>
                 <xsl:when test="//dri:div[@id='aspect.discovery.SimpleSearch.div.search-results']/@rend = 'grid'">
@@ -3499,6 +3500,7 @@
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:variable name="solr-search-url" select="concat(confman:getProperty('dspace.baseUrl'), '/solr/search')" />
+                    <p class="cor1" style="text-align:center;">Alguns documentos possuem somente a capa. Até  o final de julho,eles serão atualizados.</p>
                     <ul id="lista-resultados">
                         <xsl:choose>
                             <xsl:when test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI']=''">
@@ -3509,6 +3511,7 @@
                                 <xsl:apply-templates select="*[not(name()='head')]" mode="summaryList"/>
                             </xsl:otherwise>
                         </xsl:choose>
+                        <xsl:apply-templates select="*[not(name()='head')]" mode="summaryList"/>
                     </ul>
                     <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI']=''">
                         <div id="ultimas-publicacoes">
