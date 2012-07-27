@@ -65,7 +65,7 @@ nor the
         <a href="https://github.com/brasiliana/Corisco" target="_blank">O Corisco</a>
       </li>
       <li class="item-menu">
-        <a href="/xmlui/repositorio-digital" target="_blank">Como nos enviar materiais</a>
+        <a href="/xmlui/repositorio-digital">Como nos enviar materiais</a>
       </li>
       <li class="item-menu">
         <a href="mailto:acervo@paulofreire.org">Contato</a>

@@ -261,7 +261,6 @@
         <xsl:variable name="itemWithdrawn" select="@withdrawn" />
         <div class="info-resultado">
             <h2 class="titulo-resultado">
-                <span class="numero-resultado"><xsl:value-of select="$position"/>. </span>
                 <span class="cor1">
                     <xsl:element name="a">
                         <xsl:attribute name="href">

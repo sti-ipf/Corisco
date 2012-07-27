@@ -67,7 +67,16 @@
 
         <a href="{ancestor::mets:METS/@OBJID}">
             <xsl:choose>
-                <xsl:when test="$primaryBitstream != -1">
+                
+                <xsl:when test="mets:fileGrp[@USE='THUMBNAIL']">
+                    <img class="preview-thumbnail" alt="Thumbnail">
+                        <xsl:attribute name="src">
+                            <xsl:value-of select="mets:fileGrp[@USE='THUMBNAIL']/mets:file/mets:FLocat[@LOCTYPE='URL']/@xlink:href" />
+                        </xsl:attribute>
+                    </img>
+                </xsl:when>
+
+		<xsl:when test="$primaryBitstream != -1">
                     <xsl:choose>
                         <xsl:when test="mets:fileGrp[@USE='THUMBNAIL']/mets:file[@ID=$primaryBitstream]">
                             <img class="preview-thumbnail" alt="Thumbnail">
@@ -82,7 +91,7 @@
                                 <xsl:value-of select="//mets:structMap[@TYPE='LOGICAL']/mets:div[@TYPE='DSpace Item']//mets:fptr[@FILEID=$primaryBitstream]/@FILEINTERNALID"/>
                             </xsl:variable>
 
-                            <img class="preview-thumbnail" alt="Thumbnail" onerror="this.onerror=null;this.src='{$bookreader-path}/images/transparent.png';">
+                            <img class="preview-thumbnail" alt="Thumbnail" onerror="this.onerror=null;this.src='{$bookreader-path}images/video_01.jpg';">
                                 <xsl:attribute name="src">
                                     <xsl:value-of select="$thumbnail-path"/>
                                 </xsl:attribute>
@@ -91,13 +100,6 @@
                     </xsl:choose>
                 </xsl:when>
 
-                <xsl:when test="mets:fileGrp[@USE='THUMBNAIL']">
-                    <img class="preview-thumbnail" alt="Thumbnail">
-                        <xsl:attribute name="src">
-                            <xsl:value-of select="mets:fileGrp[@USE='THUMBNAIL']/mets:file/mets:FLocat[@LOCTYPE='URL']/@xlink:href" />
-                        </xsl:attribute>
-                    </img>
-                </xsl:when>
 
                 <xsl:when test="mets:fileGrp[@USE='LOGO']">
                     <xsl:comment>@USE='LOGO' preview-thumbnail</xsl:comment>
@@ -113,7 +115,7 @@
                         <xsl:value-of select="//mets:structMap[@TYPE='LOGICAL']/mets:div[@TYPE='DSpace Item']//mets:fptr[@FILEID=$fileid]/@FILEINTERNALID"/>
                     </xsl:variable>
 
-                    <img class="preview-thumbnail" alt="Thumbnail" onerror="this.onerror=null;this.src='{$bookreader-path}/images/transparent.png';">
+                    <img class="preview-thumbnail" alt="Thumbnail" onerror="this.onerror=null;this.src='{$bookreader-path}images/video_01.jpg';">
                         <xsl:attribute name="src">
                             <xsl:value-of select="$thumbnail-path"/>
                         </xsl:attribute>

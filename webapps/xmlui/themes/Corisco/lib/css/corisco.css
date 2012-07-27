@@ -100,6 +100,11 @@ a:hover {
     color: #D71A20;
 }
 
+.informe {
+    text-align: center;
+    font-weight: bold;
+}
+
 .funcoes-resultado div a, .dado-item a, li span a {
 	color:#FFFF;    /*color: #303030;*/
 }
@@ -799,10 +804,11 @@ ul.links-paginacao li {
 .info {
     width: 430px;
     float: right;
+    position:relative;
 }
 
 .info-resultado {
-    padding-bottom: 25px;
+    padding-bottom: 15px;
 }
 
 .titulo-resultado {
@@ -831,6 +837,9 @@ ul.links-paginacao li {
 
 .colecao-resultado {
     float: right;
+    position: absolute;
+    right: 0px;
+    bottom: 1px;
 }
 
 .total-colecao{
@@ -1486,6 +1495,7 @@ h3.separador {
 
 #show-full-item-record {
     clear: both;
+    margin-top: 10px;
 }
 
 .div-item-description-video {
@@ -1555,3 +1565,49 @@ h3.separador {
     border-bottom: 1px dotted black;
     padding: 10px;
 }
+
+a.voltar{
+background-color: #4D90FE;
+background-image: -webkit-gradient(linear,left top,left bottom,from(#b11015),to(#9f0b10));
+background-image: -webkit-linear-gradient(top,#b11015,#9f0b10);
+background-image: -moz-linear-gradient(top,#b11015,#9f0b10);
+background-image: -ms-linear-gradient(top,#b11015,#9f0b10);
+background-image: -o-linear-gradient(top,#b11015,#9f0b10);
+background-image: linear-gradient(top,#b11015,#9f0b10);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#b11015',EndColorStr='#9f0b10');
+border: 1px solid #690003;
+color: white !important;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+border-radius: 4px;
+display: inline-block;
+font-family:sans-serif !important;
+font-size:13px;
+font-weight: bold;
+height: 29px;
+line-height: 29px;
+min-width: 54px;
+padding: 0 8px;
+text-align: center;
+text-decoration: none !important;
+-moz-user-select: none;
+-webkit-user-select: none;
+cursor:pointer;
+}
+
+a.voltar:hover{
+background-image: -webkit-gradient(linear,left top,left bottom,from(#c3151b),to(#b11015));
+background-image: -webkit-linear-gradient(top,#c3151b,#b11015);
+background-image: -moz-linear-gradient(top,#c3151b,#b11015);
+background-image: -ms-linear-gradient(top,#c3151b,#b11015);
+background-image: -o-linear-gradient(top,#c3151b,#b11015);
+background-image: linear-gradient(top,#c3151b,#b11015);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#c3151b',EndColorStr='#b11015');
+cursor:pointer;
+}
+
+a.voltar span{
+	font-weight:normal;
+	font-size:17px;
+}
+
