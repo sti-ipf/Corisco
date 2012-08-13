@@ -56,13 +56,16 @@ nor the
   <xsl:template name="cabecalho-menu">
     <ul id="cabecalho-menu">
       <li class="item-menu">
+        <a href="http://www.paulofreire.org/centro-de-referencia" target="blank">O Centro de Refer&#234;ncia Paulo Freire</a>
+      </li>
+      <li class="item-menu">
         <a href="/xmlui/repositorio-digital">O Repositório</a>
       </li>
       <li class="item-menu">
         <a href="/xmlui/o-projeto">O Projeto</a>
       </li>
       <li class="item-menu">
-        <a href="https://github.com/brasiliana/Corisco" target="_blank">O Corisco</a>
+        <a href="/xmlui/noticias">Not&#237;cias</a>
       </li>
       <li class="item-menu">
         <a href="/xmlui/repositorio-digital">Como nos enviar materiais</a>

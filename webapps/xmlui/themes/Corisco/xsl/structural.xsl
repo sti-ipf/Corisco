@@ -288,6 +288,9 @@
                     <xsl:when test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI']='o-projeto'">
                         <xsl:text>O Projeto</xsl:text>
                     </xsl:when>
+                    <xsl:when test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI']='noticias'">
+                        <xsl:text>Not&#237;cias</xsl:text>
+                    </xsl:when>
                     <xsl:when test="not($page_title)">
                         <xsl:text>  </xsl:text>
                     </xsl:when>
@@ -481,6 +484,20 @@
                 <xsl:when test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI']='o-projeto'">
                     <xsl:copy-of select="document('../static/o-projeto.html')" />
                 </xsl:when>
+                <xsl:when test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI']='noticias'">
+		<div id="static-content">
+	        <h2>Not&#237;cias sobre o Paulo Freire Mem&#243;ria e Presen&#231;a</h2>
+
+        	<div class="content">
+                	Vejam o que j&#225; saiu na m&#237;dia sobre o projeto:
+                	<h3><a href="http://bit.ly/RBztGu">Di&#225;rio Oficial</a></h3>
+                	<h3><a href="http://bit.ly/RZETcd">Site da USP</a></h3>
+        	</div>
+        	<a href="/" class="voltar"><span>Voltar</span></a>
+		</div>
+
+
+		</xsl:when>
                 <xsl:otherwise>
                     <xsl:if test="count(//dri:body/dri:div[@n='item-view'])=0">
                         <xsl:call-template name="collections-column" />
@@ -730,8 +747,7 @@
 
         <script type="text/javascript">
             $(function() {
-                $(".collections").hide();
-                $(".subcommunities .img-btn-plus-minus").attr("src", "<xsl:value-of select="$images-path"/>plus.png");
+                $(".subcommunities .img-btn-plus-minus").attr("src", "<xsl:value-of select="$images-path"/>minus.png");
 
                 $(".btn-plus-minus").click(function() {
                     var $obj_img = $("img", this);
@@ -868,10 +884,11 @@
     <xsl:template name="caixa-barra">
         <xsl:param name="position" select="'top'"/>
         <xsl:choose>
-            <xsl:when test="/dri:document/dri:body/dri:div[@n='search']">
+           
+           <xsl:when test="/dri:document/dri:body/dri:div[@n='search']">
                 <xsl:apply-templates select="//dri:body/dri:div[@n='search']//dri:table[@n='search-controls']"/>
-            </xsl:when>
-            <xsl:when test="/dri:document/dri:body/dri:div[starts-with(@n, 'browse-by-')]">
+            </xsl:when> 
+	   <xsl:when test="/dri:document/dri:body/dri:div[starts-with(@n, 'browse-by-')]">
                 <xsl:apply-templates select="//dri:body/dri:div[starts-with(@n, 'browse-by-')]/dri:div[@n='browse-controls']"/>
             </xsl:when>
             <xsl:when test="/dri:document/dri:body/dri:div[@n='item-view']">
@@ -3280,9 +3297,6 @@
             <xsl:choose>
                 <xsl:when test="//dri:div[@id='aspect.discovery.SimpleSearch.div.search-results']/@rend = 'list'">
                     <ul id="lista-resultados">
-                        <P class="cor1 informe">
-				Informe: Alguns documentos, por estarem em processo de digitaliza&#231;&#227;o, possuem somente a capa. At&#233; o final de julho de 2012, todos os documentos estar&#227;o disponibilizados.
-			</P>
 			<xsl:apply-templates select="*[not(name()='head')]" mode="summaryList"/>
                     </ul>
                 </xsl:when>
@@ -3315,22 +3329,22 @@
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:variable name="solr-search-url" select="concat(confman:getProperty('dspace.baseUrl'), '/solr/search')" />
-                    <p class="cor1 informe">
-		     Informe: Alguns documentos, por estarem em processo de digitaliza&#231;&#227;o, possuem somente a capa. At&#233; o final de julho de 2012, todos os documentos estar&#227;o disponibilizados.    
-		    </p>
                     <ul id="lista-resultados">
                         <xsl:choose>
                             <xsl:when test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI']=''">
 
 
-                                <xsl:variable name="query" select="concat($solr-search-url, '/select?q=dc.type:Imagem%20OR%20dc.type:Fotografia&amp;start=0&amp;sort=random_', math:random(), '%20desc&amp;rows=1&amp;omitHeader=true')" />
+                                <xsl:variable name="query" select="concat($solr-search-url, '/select?q=dc.type:Fotografia&amp;sort=random_', math:random(), '%20desc&amp;rows=1&amp;omitHeader=true')" />
                                 <xsl:apply-templates select="document($query)" mode="items-aleatorios" />
 
                                 <xsl:variable name="query2" select="concat($solr-search-url, '/select?q=dc.type:Manuscrito%20OR%20dc.type:Artigo*%20OR%20dc.type:Livro%20OR%20dc.type:Entrevistas&amp;start=0&amp;sort=random_', math:random(), '%20desc&amp;rows=3&amp;omitHeader=true')" />
                                 <xsl:apply-templates select="document($query2)" mode="items-aleatorios" />
 
-                                <xsl:variable name="query3" select="concat($solr-search-url, '/select?q=dc.type:V&#237;deo&amp;start=0&amp;sort=random_', math:random(), '%20desc&amp;rows=1&amp;omitHeader=true')" />
+                                <xsl:variable name="query3" select="concat($solr-search-url, '/select?q=dc.type:&#193;udio&amp;start=0&amp;sort=random_', math:random(), '%20desc&amp;rows=1&amp;omitHeader=true')" />
                                 <xsl:apply-templates select="document($query3)" mode="items-aleatorios" />
+
+                                <xsl:variable name="query4" select="concat($solr-search-url, '/select?q=dc.type:V&#237;deo&amp;start=0&amp;sort=random_', math:random(), '%20desc&amp;rows=1&amp;omitHeader=true')" />
+                                <xsl:apply-templates select="document($query4)" mode="items-aleatorios" />
 
 			    </xsl:when>
                             <xsl:otherwise>
@@ -3342,7 +3356,7 @@
                         <div id="ultimas-publicacoes">
                             <h1>Últimas Publicações</h1>
                             <ul>
-                                <xsl:variable name="query" select="concat($solr-search-url, '/select?q=search.resourcetype:2&amp;sort=dc.date.accessioned%20desc&amp;rows=5&amp;omitHeader=true')" />
+                                <xsl:variable name="query" select="concat($solr-search-url, '/select?q=search.resourcetype:2&amp;sort=dc.date.accessioned%20desc&amp;rows=6&amp;omitHeader=true')" />
 
                                 <xsl:apply-templates select="document($query)" mode="ultimasPublicacoes" />
                             </ul>

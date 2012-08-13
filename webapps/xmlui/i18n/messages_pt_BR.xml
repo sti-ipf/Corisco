@@ -1738,8 +1738,18 @@
 
 
 
+        <message key="xmlui.news">
+	<div id="static-content">
+        	<h2>Not&#237;cias sobre o Paulo Freire Memória e Presença</h2>
 
-
+        	<div class="content">
+                	<p>Vejam o que já saiu na m&#237;dia sobre o projeto:</p>
+                	<h3><a href="http://diariooficial.imprensaoficial.com.br/nav_v4/index.asp?c=4&e=20120718&p=1">Diário Oficial</a></h3>
+                	<h3><a href="http://www5.usp.br/13652/parceria-de-usp-e-instituto-paulo-freire-poe-obra-do-educador-na-internet/">Site da USP</a></h3>
+        	</div>
+        	<a href="/" class="voltar"><span>Voltar</span></a>
+	</div>
+	</message>
 	<!-- structural.xsl -->
 	<message key="xmlui.dri2xhtml.structural.footer-promotional">
       <div class="area_rodape">

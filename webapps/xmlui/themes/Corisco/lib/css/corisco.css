@@ -165,7 +165,7 @@ a:hover {
 	padding-top: 8px;
 	margin: 0 auto;
     padding-top: 5px;
-    width: 500px;
+    width: 700px;
 }
 
 #cabecalho-menu .item-menu {
@@ -223,7 +223,7 @@ a:hover {
 
 #formulario-busca-cabecalho #selecionar-filtro {
     -webkit-appearance: none;
-    color: #BEBEBE;
+    color: darkRed;
     overflow: hidden;
     left: 360px;
     top: 13px;
@@ -985,7 +985,7 @@ ul.links-paginacao li {
 }
 
 #communities-collections-column li {
-    padding: 7px 0;
+    padding: 4px 0;
 }
 
 #communities-collections-column a {
@@ -998,7 +998,6 @@ ul.links-paginacao li {
 }
 
 #communities-collections-column .subcommunities > li {
-    border-top: 3px solid #e9e9e9;
 }
 
 #communities-collections-column .subcommunities > li > a {
@@ -1008,13 +1007,13 @@ ul.links-paginacao li {
 }
 
 #communities-collections-column .collections {
-    background-color: #e9e9e9;
+    background-color: #FFF;
     margin-top: 7px;
 }
 
 #communities-collections-column .collections li {
-    border-bottom: 1px dotted #FFF;
-    padding-left: 20px;
+    border-bottom: 2px solid #e0e0e0;
+    margin-left: 20px;
     padding-right: 10px;
 	font-size: 12px;
 }
@@ -1593,6 +1592,8 @@ text-decoration: none !important;
 -moz-user-select: none;
 -webkit-user-select: none;
 cursor:pointer;
+float:right;
+margin-bottom:10px;
 }
 
 a.voltar:hover{
