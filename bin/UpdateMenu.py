@@ -45,7 +45,7 @@ class GenerateMenu:
     def getCollections(self, community_id):
         query = self.getConnection().cursor()
         query.execute("\
-            SELECT Handle.handle, collection.name \
+            SELECT collection.collection_id, collection.name \
             FROM collection, community2collection, Handle \
             WHERE community2collection.collection_id = collection.collection_id \
             AND Handle.resource_id = collection.collection_id \
@@ -72,7 +72,7 @@ class GenerateMenu:
         data = self.getCollections(community_id)
         for row in data:
             result += "<collection>"
-            result += "<handle>" + str(row[0]) + "</handle>"
+            result += "<id>" + str(row[0]) + "</id>"
             result += "<title>" + row[1] + "</title>"
             result += "</collection>"
         result += "</collections>"

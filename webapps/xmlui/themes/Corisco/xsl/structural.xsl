@@ -820,7 +820,7 @@
                         <li>
                             <a>
                                 <xsl:attribute name="href">
-                                    <xsl:text>/xmlui/handle/</xsl:text><xsl:value-of select="./handle" />
+                                    <xsl:text>/xmlui/search?fq=location.coll%3A</xsl:text><xsl:value-of select="./id" />
                                 </xsl:attribute>
                                 <xsl:value-of select="./title" />
                             </a>
@@ -3332,8 +3332,6 @@
                     <ul id="lista-resultados">
                         <xsl:choose>
                             <xsl:when test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI']=''">
-
-
                                 <xsl:variable name="query" select="concat($solr-search-url, '/select?q=dc.type:Fotografia&amp;sort=random_', math:random(), '%20desc&amp;rows=1&amp;omitHeader=true')" />
                                 <xsl:apply-templates select="document($query)" mode="items-aleatorios" />
 
@@ -3345,8 +3343,7 @@
 
                                 <xsl:variable name="query4" select="concat($solr-search-url, '/select?q=dc.type:V&#237;deo&amp;start=0&amp;sort=random_', math:random(), '%20desc&amp;rows=1&amp;omitHeader=true')" />
                                 <xsl:apply-templates select="document($query4)" mode="items-aleatorios" />
-
-			    </xsl:when>
+                            </xsl:when>
                             <xsl:otherwise>
                                 <xsl:apply-templates select="*[not(name()='head')]" mode="summaryList"/>
                             </xsl:otherwise>
