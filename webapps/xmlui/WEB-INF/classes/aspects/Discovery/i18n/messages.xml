@@ -172,6 +172,7 @@
     <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dateissued.year">Ano</message>
     <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.author_t">Autor</message>
     <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.content">Texto</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.location.coll">Coleção</message>
     <message key="xmlui.ArtifactBrowser.SimpleSearch.selected_filters">Filtros selecionados</message>
 
     <!-- Discovery SimpleSearch -->
