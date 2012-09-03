@@ -295,7 +295,7 @@
                         <xsl:text>  </xsl:text>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:copy-of select="$page_title/node()" />
+			Acervo Paulo Freire
                     </xsl:otherwise>
                 </xsl:choose>
             </title>
@@ -490,9 +490,65 @@
 
         	<div class="content">
                 	Vejam o que j&#225; saiu na m&#237;dia sobre o projeto:
-                	<h3><a href="http://bit.ly/RBztGu">Di&#225;rio Oficial</a></h3>
-                	<h3><a href="http://bit.ly/RZETcd">Site da USP</a></h3>
-        	</div>
+        
+<h3><a href="http://www.inclusive.org.br/?p=20119">Lan&#231;amento do Projeto Paulo Freire Mem&#243;ria e Presen&#231;a
+</a></h3>Inclusive &#8211; Inclus&#227;o e Cidadania
+
+<h3><a href="http://bibliotecaucs.wordpress.com/2012/04/25/projeto-paulo-freire-memoria-e-presenca-disponibiliza-mais-de-3-mil-fotos/">Projeto &#8220;Paulo Freire Mem&#243;ria e Presen&#231;a&#8221; disponibiliza mais de 3 mil fotos
+</a></h3>UCS &#8211; Universidade de Caxias do Sul &#8211; Sistema de Bibliotecas &#8211; Blog
+
+<h3><a href="http://www.coletivodigital.org.br/index.php/noticias/90-memoria-e-presenca-paulo-freire">Coletivo Digital colabora com o Projeto Paulo Freire Mem&#243;ria e Presen&#231;a
+</a></h3>Coletivo Digital
+
+<h3><a href="http://blog.midiaseducacao.com/2012/04/projeto-paulo-freire-memoria-e-presenca.html">Projeto &#8220;Paulo Freire Mem&#243;ria e Presen&#231;a&#8221; disponibiliza mais de 3 mil fotos
+</a></h3>Blog do M&#237;dias na Educa&#231;&#227;o
+
+
+<h3><a href="http://www.paulofreire.org/paulo-freire-memoria-e-presenca">Paulo Freire Mem&#243;ria e Presen&#231;a preserva&#231;&#227;o e democratiza&#231;&#227;o do acesso ao patrim&#244;nio cultural brasileiro
+</a></h3>Instituto Paulo Freire
+
+
+<h3><a href="http://www.paulofreire.org/ipf-inicia-projeto-paulo-freire-memoria-e-presenca">IPF inicia projeto Paulo Freire Mem&#243;ria e Presen&#231;a
+</a></h3>Instituto Paulo Freire
+
+
+<h3><a href="http://www.paulofreire.org/projeto-paulo-freire-memoria-e-presenca-apresenta-atividades-realizadas-em-2011#more-1846">Projeto Paulo Freire Mem&#243;ria e Presen&#231;a apresenta atividades realizadas em 2011
+</a></h3>Instituto Paulo Freire
+
+<h3><a href="http://www.paulofreire.org/parceria-com-ipf-para-divulgacao-da-obra-de-paulo-freire-e-noticiada-no-site-da-usp">Parceria com IPF para divulga&#231;&#227;o da obra de Paulo Freire &#233; npoticiada no site da USP.
+</a></h3>Instituto Paulo Freire
+
+<h3><a href="http://rea.net.br/site/paulo-freire-memoria-e-presenca/">Paulo Freire Mem&#243;ria e Presen&#231;a... preserva&#231;&#227;o e democratiza&#231;&#227;o do acesso ao patrim&#244;nio cultural brasileiro
+</a></h3>Recursos Educacionais Abertos
+
+<h3><a href="http://www.casacivil.sp.gov.br/biblioteca-ccivil/noticias/MostraNoti.asp?par=922">Paulo Freire, agora na internet.
+</a></h3>Biblioteca da Casa Civil
+
+<h3><a href="http://www.punf.uff.br/biblioteca/index.php/noticias/120-usp-dispinibiliza-obras-de-paulo-freire-na-internet-usando-dspace">USP disponibiliza obras de Paulo Freire na internet usando Dspace
+</a></h3>Biblioteca Nova Friburgo &#8211; Superintend&#234;ncia de Documenta&#231;&#227;o
+
+<h3><a href="http://www.pavablog.com/2012/07/18/obras-de-paulo-freire-disponiveis-na-internet/">Obras de Paulo Freire dispon&#237;veis na internet
+</a></h3>Pavablog
+
+<h3><a href="http://g1.globo.com/acao/noticia/2011/10/projeto-mova-leva-alfabetizacao-aos-jovens-e-adultos-de-todo-brasil.html">Projeto MOVA leva alfabetiza&#231;&#227;o aos jovens e adultos de todo Brasil
+</a></h3>Globo.com
+
+<h3><a href="http://www5.usp.br/tag/educacao-3/">Parceria de USP e Instituto Paulo Freire coloca obra do educador na internet
+</a></h3>USP
+
+
+<h3><a href="http://mundodeoz.files.wordpress.com/2012/07/doe-de-18-07-2012.pdf">Paulo Freire, agora na internet
+</a></h3>Di&#225;rio Oficial &#8211; Poder Executivo
+
+<h3><a href="http://www.cornelionoticias.com.br/posts/4035/geral/">Projeto MOVA leva alfabetiza&#231;&#227;o aos jovens e adultos de todo Brasil
+</a></h3>Corn&#233;lio Not&#237;cias
+
+<h3><a href="http://people.softwarelivre.org/wsl/2012/52.pdf">Plataforma Corisco os casos da Brasiliana USP e do Instituto Paulo Freire
+</a></h3>Workshop Software Livre - Sociedade Brasileira de Computa&#231;&#227;o
+
+
+	
+		</div>
         	<a href="/" class="voltar"><span>Voltar</span></a>
 		</div>
 
@@ -3335,7 +3391,7 @@
                                 <xsl:variable name="query" select="concat($solr-search-url, '/select?q=dc.type:Fotografia&amp;sort=random_', math:random(), '%20desc&amp;rows=1&amp;omitHeader=true')" />
                                 <xsl:apply-templates select="document($query)" mode="items-aleatorios" />
 
-                                <xsl:variable name="query2" select="concat($solr-search-url, '/select?q=dc.type:Manuscrito%20OR%20dc.type:Artigo*%20OR%20dc.type:Livro%20OR%20dc.type:Entrevistas&amp;start=0&amp;sort=random_', math:random(), '%20desc&amp;rows=3&amp;omitHeader=true')" />
+                                <xsl:variable name="query2" select="concat($solr-search-url, '/select?q=dc.type:Manuscrito%20OR%20dc.type:Artigo*%20OR%20dc.type:Livro%20OR%20dc.type:Entrevistas&amp;start=0&amp;sort=random_', math:random(), '%20desc&amp;rows=2&amp;omitHeader=true')" />
                                 <xsl:apply-templates select="document($query2)" mode="items-aleatorios" />
 
                                 <xsl:variable name="query3" select="concat($solr-search-url, '/select?q=dc.type:&#193;udio&amp;start=0&amp;sort=random_', math:random(), '%20desc&amp;rows=1&amp;omitHeader=true')" />
