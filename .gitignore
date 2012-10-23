@@ -4,6 +4,7 @@ bin/dspace
 config/
 exports/
 log/
+controle/
 search/
 solr/statistics/data
 solr/search/data
