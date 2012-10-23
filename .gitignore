@@ -4,7 +4,7 @@ bin/dspace
 config/
 exports/
 log/
-controle/
+webapps/controle/
 search/
 solr/statistics/data
 solr/search/data
