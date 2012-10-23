@@ -1815,6 +1815,7 @@
 	<message key="xmlui.dri2xhtml.METS-1.0.item-files-size">Tamanho</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-files-format">Formato</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-files-view">Visualizar</message>
+        <message key="xmlui.dri2xhtml.METS-1.0.collection-view">Visualizar</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-files-viewOpen">Visualizar/<wbr/>Abrir</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-no-files">Não há arquivos associados a esse Item.</message>
 
@@ -1975,7 +1976,9 @@
   <message key="xmlui.ChoiceLookupTransformer.field.dc_contributor_author.help.first">Primeiro nome(s) e.g. "João"</message>
   <message key="xmlui.ChoiceLookupTransformer.field.dc_contributor_author.title">Busca de autor na LC Name Authority</message>
   <message key="xmlui.ChoiceLookupTransformer.field.dc_contributor_author.nonauthority">Valor local "@1@" (fora da Autoridade de Nomes)</message>
-
+  <message key="custom.left.menu.Cartazes">Teste</message>
+ 	 
+   <message key="xmlui.dri2xhtml.METS-1.0.no-author">Autor Desconhecido</message>
 </catalogue>
 
  	  	 

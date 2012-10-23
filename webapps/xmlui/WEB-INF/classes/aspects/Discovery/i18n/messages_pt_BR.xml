@@ -1,0 +1,346 @@
+<?xml version="1.0"?>
+<!--
+    Copyright (c) 2002-2010, DuraSpace.  All rights reserved
+    Licensed under the DuraSpace License.
+
+    A copy of the DuraSpace License has been included in this
+    distribution and is available at: http://www.dspace.org/license
+
+    Modified by Brasiliana Digital Library (http://brasiliana.usp.br), 2010-2011.
+-->
+<catalogue xml:lang="pt-BR" xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://apache.org/cocoon/i18n/2.1">
+    <!--
+        The format used by all keys is as follows
+
+        xmlui.<Aspect>.<Java Class>.<name>
+
+        There are a few exceptions to this nameing format,
+        1) Some general keys are in the xmlui.general namespace
+           because they are used very frequently.
+        2) Some general keys which are specific to a particular aspect
+           may be found at xmlui.<Aspect> without specifiying a
+           particular java class.
+        -->
+
+    <!-- General keys -->
+    <message key="xmlui.general.add_filter">Adicionar</message>
+    <message key="xmlui.general.main_tab">Tudo</message>
+
+    <message key="xmlui.general.static_menu.1">SOBRE ESTE REPOSITÓRIO</message>
+    <message key="xmlui.general.static_menu.2">CONTATO</message>
+    <message key="xmlui.general.static_menu.about_corisco">SOBRE CORISCO</message>
+
+    <!-- Theme keys -->
+    <message key="xmlui.dri2xhtml.structural.pagination-info">Itens {0}-{1}</message>
+    <message key="xmlui.dri2xhtml.structural.search-filter">Filtrar por</message>
+
+    <message key="xmlui.corisco.viewer.image.loading">Carregando</message>
+    <message key="xmlui.corisco.viewer.image.toolbar_tip">* Arraste para mover<br/>* Duplo clique para mostrar/esconder botões de navegação</message>
+    <message key="xmlui.corisco.viewer.image.zoom_in">Maior</message>
+    <message key="xmlui.corisco.viewer.image.zoom_out">Menor</message>
+    <message key="xmlui.corisco.viewer.image.reset">Melhor ajuste</message>
+    <message key="xmlui.corisco.viewer.image.snapshot">Salvar visualização</message>
+    <message key="xmlui.corisco.viewer.image.shift_left">Mover à esquerda</message>
+    <message key="xmlui.corisco.viewer.image.shift_up">Mover para cima</message>
+    <message key="xmlui.corisco.viewer.image.shift_down">Mover para baixo</message>
+    <message key="xmlui.corisco.viewer.image.shift_right">Mover à direita</message>
+
+    <!-- Labels for metadata fields -->
+    <message key="xmlui.dri2xhtml.METS-1.0.various-authors">Vários autores</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-files-download">Baixar</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-files-thumbnail">Miniatura</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-files-description">Descrição</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.collection-view">Listar itens</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-dateissued">Publicado</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-date-issued">Ano de Publicação</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-identifier-uri">URI</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-identifier-issn">ISSN</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-format-medium">Descrição Física</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-language">Idioma</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-subject">Assunto</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-subject-other">Assunto</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-type">Tipo</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-contributor-author">Autor</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-contributor-other">Colaborador</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-description-abstract">Resumo</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-relation">Relação</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-relation-ispartofseries">Série</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-relation-isversionof">Versão</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-title-alternative">Título alternativo</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-title">Título</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-description-provenance">Procedência</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-provenance">Procedência</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-description-tableofcontents">Conteúdo</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-description-sponsorship">Patrocínio</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-description-version">Edição</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-relation-ispartof">Parte de</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-relation-ispartof.long">Este item é parte de</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-relation-haspart">Possui parte</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-relation-hasversion">Possui versão</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-relation-isbasedon">Baseado em</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-relation-isreferencedby">Referenciado por</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-relation-requires">Vinculado com</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-relation-uri">Recurso relacionado</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-isformatof">É formato de</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-identifier-citation">Citação</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-identifier-isbn">ISBN</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-subject-lcsh">Subject</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-coverage-spatial">Cobertura geográfica</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-coverage-temporal">Período</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-identifier-other">Identificador</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-publisher">Local de  Publicação</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-rights">Direitos</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-files-view">Visualizar</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-description-tableofcontents.pictures">Imagens catalogadas nesse item</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-description-tableofcontents.pictures-head1">Imagem</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-description-tableofcontents.pictures-head2">Título</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-identifier-level">Tipo de Arquivo</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.item-contributor-advisor">Assessor</message>
+
+    <!-- org.dspace.app.xmlui.artifactbrowser.AdvancedSearch.java -->
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_author_lc">Autor</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_dc.contributor.author">Autor</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_subject_lc">Assunto</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_dc.subject">Assunto</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_dc.type">Tipo de Documento</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_dc.date.issued">Data de Publicação</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_dc.relation.ispartofseries">Série</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_dateissued">Data de Publicação</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_dateissued.year">Ano de Publicação</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_type">Tipo</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_publisher">Editor</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_dateissued">Data de Publicação</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_location.comm">Comunidade</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_location.coll">Coleção</message>
+
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.filter_by.head">Adicionar à busca</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.view_more">Ver mais</message>
+
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.and">E (AND) </message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.or">OU (OR)</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.not">NÃO (NOT)</message>
+
+    <!-- Site Level Recently Added Content -->
+    <message key="xmlui.ArtifactBrowser.SiteViewer.head_recent_submissions">Adições Recentes</message>
+
+    <!-- org.dspace.app.xmlui.artifactbrowser.AbstractSearch.java -->
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.ispartof">Parte de</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.group_by">Agrupar resultados por</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.group_by.none">Nenhum</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.group_by.publication_grp">Publicação</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.result_empty_query">A busca produziu {0} resultado(s).</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.browse_head">Listagem por:</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.contributor.author_browse">Autor</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.type_browse">Tipo de Documento</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.title_browse">Título</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.subject_browse">Assunto</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.subject.pt_BR_browse">Assunto</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.other_browse">Outros Colaboradores</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.identifier.other_browse">Outros Identificadores</message>
+
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dateissued.year_browse">Ano de Publicação</message>
+
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.result_query_head">Mostrando resultados para:</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.result_empty_query_head">Lista de itens</message>
+
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.view">Modos de visualização:</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.view.listing">Listagem</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.view.grid">Mosaico</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.view.list">Lista</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.view.cloud">Nuvem</message>
+
+    <!-- ArtifactBrowser ConfigurableBrowse -->
+    <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.no_results">Desculpe, não há resultados para esta busca.</message>
+
+    <!-- ArtifactBrowser Navigation -->
+    <message key="xmlui.ArtifactBrowser.Navigation.browse_dc.title">Título</message>
+    <message key="xmlui.ArtifactBrowser.Navigation.browse_dc.contributor.author">Autor</message>
+    <message key="xmlui.ArtifactBrowser.Navigation.browse_dc.subject">Assunto</message>
+    <message key="xmlui.ArtifactBrowser.Navigation.browse_dc.subject.pt_BR">Assunto</message>
+    <message key="xmlui.ArtifactBrowser.Navigation.browse_dateissued.year">Ano de publicação</message>
+    <message key="xmlui.ArtifactBrowser.Navigation.browse_dc.type">Tipo de documento</message>
+
+    <!-- SimpleSearch -->
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.all">Tudo</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.title">Título</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.title_t">Título</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.contributor.author">Autor</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.contributor.author_t">Autor</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.subject">Assunto</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.subject.en">Subject</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.subject.pt_BR">Assunto</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.subject_t">Assunto</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.subject.lcsh">Assunto</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.description">Descrição</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.description_t">Descrição</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dc.type">Tipo de Documento</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dateissued.year">Ano</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.author_t">Autor</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.content">Texto</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.location.coll">Coleção</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.selected_filters">Filtros selecionados</message>
+
+    <!-- Discovery SimpleSearch -->
+    <message key="xmlui.Discovery.SimpleSearch.filter_help">Entre algum texto para filtrar os resultados.</message>
+    <message key="xmlui.Discovery.SimpleSearch.filter_head">Adicionar à busca</message>
+
+    <!-- org.dspace.app.xmlui.discovery.Navigation.java -->
+    <message key="xmlui.Discovery.Navigation.head_browse">Listar por</message>
+    <message key="xmlui.Discovery.Navigation.head_all_of_dspace">Todo o repositório</message>
+    <message key="xmlui.Discovery.Navigation.communities_and_collections">Tipos de documentos</message>
+    <message key="xmlui.Discovery.Navigation.browse_title">Título</message>
+    <message key="xmlui.Discovery.Navigation.browse_author">Autor</message>
+    <message key="xmlui.Discovery.Navigation.browse_subject">Assunto</message>
+    <message key="xmlui.Discovery.Navigation.browse_dateissued">Ano de publicação</message>
+    <message key="xmlui.Discovery.Navigation.browse_dateaccessioned">Pela data de submissão</message>
+    <message key="xmlui.Discovery.Navigation.head_this_collection">Esta Coleção</message>
+    <message key="xmlui.Discovery.Navigation.head_this_community">Esta Comunidade</message>
+    <message key="xmlui.Discovery.Navigation.top-search.head">Pesquisa</message>
+    <message key="xmlui.Discovery.Navigation.top-search.help">Pesquisa no acervo digital</message>
+    <message key="xmlui.Discovery.BrowseFacet.browse_century_head">Século</message>
+    <message key="xmlui.Discovery.BrowseFacet.browse_century">{0}</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.view_modes">Modos de visualização:</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.navigation">Navegação:</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.jump_to_page">Ir à página:</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.logo">Inicial</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.zoom_in">Maior</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.zoom_out">Menor</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.one_page_mode">Ver uma página</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.two_page_mode">Ver duas páginas</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.thumbnail_mode">Ver mosaico</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.ocr_mode">Ver OCR</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.embed">Embed bookreader</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.print">Imprimir página</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.download">Baixar arquivo completo</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.cite">Citar documento (desabilitado)</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.permalink">Ver link permanente para este documento</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.permalink_head">Link permanente</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.book_left">Folhear à esquerda</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.book_right">Folhear à direita</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.book_up">Página acima</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.book_down">Página abaixo</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.play">Play</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.pause">Pausa</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.book_top">Primeira página</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.book_bottom">Última página</message>
+    <message key="xmlui.Discovery.ItemViewer.toolbar.close">Fechar</message>
+
+   <message key="xmlui.ArtifactBrowser.ItemViewer.show_full">Mostrar Detalhes</message>
+   <message key="custom.left.menu.Cartazes">Cartazes</message>
+   <message key="custom.left.menu.Charges">Charges</message>
+   <message key="custom.left.menu.Fotografias">Fotografias</message>
+   <message key="custom.left.menu.Ilustrações">Ilustrações</message>
+   <message key="custom.left.menu.Artigos">Artigos</message>
+   <message key="custom.left.menu.Áudios">Áudios</message>
+   <message key="custom.left.menu.Capítulos">Capítulos</message>
+   <message key="custom.left.menu.Cartilhas">Cartilhas</message>
+   <message key="custom.left.menu.Correspondências">Correspondências</message>
+   <message key="custom.left.menu.Diálogos">Diálogos</message>
+   <message key="custom.left.menu.Entrevistas">Entrevistas</message>
+   <message key="custom.left.menu.Eventos">Eventos</message>
+   <message key="custom.left.menu.Folhetos">Folhetos</message>
+   <message key="custom.left.menu.Livros">Livros</message>
+   <message key="custom.left.menu.Manuscritos">Manuscritos</message>
+   <message key="custom.left.menu.Marginálias">Marginálias</message>
+   <message key="custom.left.menu.Prefácios e apresentações">Prefácios e apresentações</message>
+   <message key="custom.left.menu.Projetos">Projetos</message>
+   <message key="custom.left.menu.Relatórios">Relatórios</message>
+   <message key="custom.left.menu.Teses">Teses</message>
+   <message key="custom.left.menu.Títulos">Títulos</message>
+   <message key="custom.left.menu.Vídeos">Vídeos</message>
+   <message key="custom.left.menu.Artigos">Artigos</message>
+   <message key="custom.left.menu.Áudios">Áudios</message>
+   <message key="custom.left.menu.Bibliografias">Bibliografias</message>
+   <message key="custom.left.menu.Biografias">Biografias</message>
+   <message key="custom.left.menu.Dissertações">Dissertações</message>
+   <message key="custom.left.menu.Documentos Avulsos">Documentos Avulsos</message>
+   <message key="custom.left.menu.Histórias em quadrinhos">Histórias em quadrinhos</message>
+   <message key="custom.left.menu.Legislação">Legislação</message>
+   <message key="custom.left.menu.Literaturas de Cordel">Literaturas de Cordel</message>
+   <message key="custom.left.menu.Monografias">Monografias</message>
+   <message key="custom.left.menu.Prefácios">Prefácios</message>
+   <message key="custom.left.menu.Programas">Programas</message>
+
+   <message key="custom.left.menu.Acervo Paulo Freire">Acervo Paulo Freire</message>
+   <message key="custom.left.menu.Iconografia">Iconografia</message>
+   <message key="custom.left.menu.Obra">Obra</message>
+   <message key="custom.left.menu.Produção de Terceiros">Produção de Terceiros</message>
+   
+   <message key="custom.cabecalho.title">O Centro de Referência Paulo Freire</message>
+   <message key="custom.cabecalho.repository">O Repositório</message>
+   <message key="custom.cabecalho.project">O Projeto</message>
+   <message key="custom.cabecalho.news">Notícias</message>
+   <message key="custom.cabecalho.send.material">Como nos enviar materiais</message>
+   <message key="custom.cabecalho.contact">Contato</message>
+   
+   <message key="xmlui.dri2xhtml.METS-1.0.item-format-extent">Tamanho</message>
+   <message key="xmlui.dri2xhtml.METS-1.0.no-author">Autor Desconhecido</message>	
+   <message key="xmlui.dri2xhtml.METS-1.0.item-description">Descrição</message>	
+ 
+   <message key="custom.Fotografia">Fotografia</message>
+   <message key="custom.Artigo de imprensa">Artigo de imprensa</message>
+   <message key="custom.Artigo de periódico">Artigo de periódico</message>
+   <message key="custom.Livro">Livro</message>
+   <message key="custom.Áudio">Áudio</message>
+   <message key="custom.Vídeo">Vídeo</message>
+   <message key="custom.Manuscrito">Manuscrito</message> 
+   <message key="custom.Livro do professor">Livro do professor</message>	
+   <message key="custom.Livro didático">Livro didático</message>	
+   <message key="custom.Cartilha">Cartilha</message>	
+   <message key="custom.Imagem">Imagem</message>	
+   <message key="custom.Ilustração">Ilustração</message>	
+   <message key="custom.Documento avulso">Documento avulso</message>	
+   <message key="custom.Entrevista">Entrevista</message>	
+   <message key="custom.Publicação seriada">Publicação seriada</message>	
+   <message key="custom.Artigo científico">Artigo científico</message>	
+   <message key="custom.Capítulo de documento">Capítulo de documento</message>	
+   <message key="custom.Ofício">Ofício</message>	
+   <message key="custom.Carta">Carta</message>	
+   <message key="custom.Documento avulso Evento">Documento avulso Evento</message>	
+   <message key="custom.Evento">Evento</message>	
+   <message key="custom.Programa">Programa</message>	
+   <message key="custom.Recomendações">Recomendações</message>	
+   <message key="custom.Decreto">Decreto</message>	
+   <message key="custom.Despacho">Despacho</message>	
+   <message key="custom.Relatório">Relatório</message>	
+   <message key="custom.Projeto">Projeto</message>	
+   <message key="custom.Boletim">Boletim</message>	
+   <message key="custom.Tese">Tese</message>		
+   <message key="custom.Folheto">Folheto</message>	
+   <message key="custom.Discurso">Discurso</message>
+   <message key="custom.Palestra">Palestra</message>
+   <message key="custom.Artigo">Artigo</message>
+   <message key="custom.Carta Manuscrito">Carta Manuscrito</message>
+   <message key="custom.Biografia">Biografia</message>
+   <message key="custom.Dissertação">Dissertação</message>
+   <message key="custom.Portaria">Portaria</message>
+   <message key="custom.Encarte">Encarte</message>
+   <message key="custom.Anais">Anais</message>
+   <message key="custom.História em quadrinhos">História em quadrinhos</message>
+   <message key="custom.Decreto-Lei">Decreto-lei</message>
+   <message key="custom.Cordel">Cordel</message>
+   <message key="custom.Monografia">Monografia</message>
+   <message key="custom.Projeto de lei">Projeto de lei</message>
+   <message key="custom.Documento de trabalho">Documento de trabalho</message>
+   <message key="custom.Estatuto">Estatuto</message>
+   <message key="custom.Depoimento">Depoimento</message>
+   <message key="custom.Livro diadático">Livro Didático</message>
+   <message key="locale">pt_BR</message>
+   <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.location.coll">Coleção</message>
+	<message key="xmlui.dri2xhtml.structural.footer-promotional">
+   	<div class="area_rodape">
+			<a href="http://github.com/brasiliana/corisco" id="ds-logo-link">
+				<span id="ds-footer-logo">&#160;</span>
+        	</a>
+         <p>
+              A <a href="http://github.com/brasiliana/corisco">Plataforma Corisco</a>,
+              desenvolvida pela <a href="http://brasiliana.usp.br">Brasiliana USP</a>,
+              integra <a href="http://dspace.org">DSpace</a> com:
+              buscas via <a href="http://lucene.apache.org/solr/">Solr</a>, servidor de imagem 
+              <a href="http://djatoka.sourceforge.net/">Djatoka</a>,
+              e <a href="http://sourceforge.net/apps/mediawiki/djatoka/index.php?title=Viewers#djatoka_IIPImage_Viewer">IIPimage</a>
+              e Visualizador de conteúdo <a href="http://openlibrary.org/dev/docs/bookreader">BookReader</a>.
+          </p>
+      </div>
+	</message>
+</catalogue>
