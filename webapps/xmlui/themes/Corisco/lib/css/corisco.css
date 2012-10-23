@@ -140,10 +140,6 @@ a:hover {
     background: #FFFFFF !important;
 }
 
-#cabecalho-barra {
-    background: #000000;
-}
-
 /* ---------- fim da customização ---------- */
 
 .clear {
@@ -175,9 +171,16 @@ a:hover {
 }
 
 #cabecalho-barra {
-    background: url('../img/topo.png') center no-repeat;
     height: 180px;
     position: relative;
+}
+
+.cabecalho-barra-en{
+    background: url('../img/topo.png') center no-repeat;
+}
+
+.cabecalho-barra-pt_BR{
+    background: url('../img/topo.png') center no-repeat;
 }
 
 #link-logotipo {
@@ -198,7 +201,6 @@ a:hover {
     background: url('../img/barra-busca.png') no-repeat left top;
     float: left;
     height: 48px;
-    margin-bottom: 10px;
     margin-left: 10px;
     position: relative;
     width: 560px;
@@ -316,6 +318,7 @@ a:hover {
 
 #mais-metadados {
     cursor: pointer;
+    font-size: 12px;	
 }
 
 #ficha-meta {
@@ -343,7 +346,7 @@ a:hover {
 #colecao-item {
     float: right;
     margin-right: 15px;
-    width: 100px;
+    width: 150px;
 }
 #colecao-item #nome-colecao {
     padding-right: 10px;
@@ -509,7 +512,7 @@ ul.links-paginacao li {
 
 #conteudo-central {
     float: left;
-    margin-left: 10px;
+    margin-left: 4px;
     position: relative;
     width: 760px;
 }
@@ -707,7 +710,8 @@ ul.links-paginacao li {
 #coluna-resultados {
     clear: both;
     float: left; 
-    width: 560px; 
+    width: 569px;
+	padding-top: 10px; 
 }
 
 /*--- listas ---*/
@@ -780,17 +784,19 @@ ul.links-paginacao li {
     padding: 10px;
     position: relative;
     z-index: 10;
+	padding-top: 0px;
 }
 
 #lista-resultados li {
-    border-bottom: 1px solid #D11E1B;
+    /*border-bottom: 1px solid #D11E1B;*/
+    border-bottom: 1px solid #E0E0E0;
     padding: 15px 0;
     position: relative;
 }
 
 #lista-resultados li .caixa {
     float: left;
-    width: 100px;
+    width: 90px;
     height: 100px;
     margin-right: 9px;
     text-align: center;
@@ -802,7 +808,7 @@ ul.links-paginacao li {
 }
 
 .info {
-    width: 430px;
+    width: 405px;
     float: right;
     position:relative;
 }
@@ -912,7 +918,7 @@ ul.links-paginacao li {
 #coluna-filtros {
     right: 0;
     position: absolute;
-    top: -58px;
+    top: -46px;
     float: left;
     margin-left: 10px;
     width: 190px;
@@ -1098,6 +1104,7 @@ ul.links-paginacao li {
     height: 35px;
     font-size: 12px;
     line-height: 25px;
+	left: 144px;
 }
 
 #rodape {
@@ -1109,7 +1116,7 @@ ul.links-paginacao li {
 #rodape div.area_rodape{
     width:900px;
     margin: 0 auto;
-    padding-top:95px;
+    padding-top:100px;
 }
 
 #rodape p {
@@ -1557,6 +1564,16 @@ h3.separador {
  * ÚLTIMAS PUBLICAÇÕES
  */
 
+#ultimas-publicacoes  {
+   top: 5px;
+   position: relative;
+   border: 1px solid #F2F2F2;
+   padding: 10px;
+   border-radius: 20px;
+   -webkit-box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.3), -10px -10px 60px 0px rgba(242, 242, 242, 1) inset;
+   -moz-box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.3), -10px -10px 60px 0px rgba(242, 242, 242, 1) inset;
+   box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.3), -10px -10px 60px 0px rgba(242, 242, 242, 1) inset;
+}
 #ultimas-publicacoes h1 {
     background: url("../img/ultimas-publicacoes.png") top left;
     height: 46px;
@@ -1617,3 +1634,141 @@ a.voltar span{
 	font-size:17px;
 }
 
+#locale-options{
+	bottom: 160px;
+    position: absolute;
+    right: -34px;
+}
+
+#locale-flag-gb{
+ background: url("../../images/gb.png") no-repeat;
+cursor:pointer;	
+}
+
+#locale-flag-br{
+ background: url("../../images/br.png") no-repeat;
+cursor:pointer;	
+}
+
+.langChangeOn label{
+	visibility: hidden;
+}
+
+.fakeLinks{
+	position:relative;
+	z-index:999;
+	cursor: pointer;
+	float: left;
+}
+
+#petrobras{
+	position: relative;
+	width: 200px;
+	height: 100px;
+	left: 356px;
+}
+
+#ipf{
+height: 100px;
+width: 100px;
+left: 100px;	
+}
+
+#mic{
+height: 100px;
+width: 100px;
+left: 379px;
+}
+
+.videoItemLi{
+	position:relative;
+	float: left;
+	width: 48%;
+	border: solid 1px #F4F4F4;
+	padding: 0px;
+	margin: 3px;
+}
+
+.videoItemLi img{
+	height: 155px;
+	width: 250px;
+}
+
+.videoPreview{
+	height: 155px;
+	width: 250px;
+}
+
+.videoItemLi .info {
+	height: 60px;
+	overflow: hidden;
+	width: 100%;
+}
+
+.videoItemLi h2{
+	font-weight: bold;
+	color: #A80000;
+	 text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+}
+
+.customAcervoTitle{
+	color: #8C8C8C;
+	width: 556px;
+	position: relative;
+	float: left;
+	background: #F4F4F4;
+	height: 35px;
+	border-radius: 12px;
+}
+
+.customAcervoTitle span{
+	padding: 10px;
+	top: 7px;
+	position: relative;
+}
+
+.customAcervoTitle label{
+	color: #A80000;
+}
+
+#formulario-busca-cabecalho .selectBox-dropdown{
+	background: transparent;
+	left: 367px;
+	top: 11px;
+	color: darkRed;
+	font-size: 14px;	
+}
+#formulario-busca-cabecalho .selectBox-arrow{
+	border: 0px;
+	background: url("../img/seta-select.png") no-repeat scroll left center transparent;
+	right: 139px;
+}
+
+.selectBox-options li a{
+	color:darkRed;
+	font-size: 14px;	
+}
+
+.selectBox-options li.selectBox-selected a{
+/*	background-color:darkRed;
+	color: white;
+*/
+}
+
+#lista-resultados{
+	position: relative;
+	border: 1px solid #F2F2F2;
+	border-radius: 20px;
+	-webkit-box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.3), -10px -10px 60px 0px rgba(242, 242, 242, 1) inset;
+	-moz-box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.3), -10px -10px 60px 0px rgba(242, 242, 242, 1) inset;
+	box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.3), -10px -10px 60px 0px rgba(242, 242, 242, 1) inset;
+	padding:10px;
+	padding-top:0px;
+}
+
+#dados-item h3{
+	margin-left: 15px;
+}

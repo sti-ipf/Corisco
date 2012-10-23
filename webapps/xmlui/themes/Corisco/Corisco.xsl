@@ -92,6 +92,7 @@
         context-path paramater.
     -->
     <xsl:variable name="context-path" select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='contextPath'][not(@qualifier)]"/>
+    <xsl:variable name="queryString" select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='queryString']"/>
 
     <!--
         Theme path represents the full path back to theme. This is usefull for
@@ -122,7 +123,7 @@
 
     <xsl:variable name="djatoka-thumbnail-base-url">
         <xsl:value-of select="$djatoka-resolver-url"/>
-        <xsl:text>?url_ver=Z39.88-2004&amp;svc_id=info:lanl-repo/svc/getRegion&amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpg&amp;svc.format=image/png&amp;svc.clayer=0&amp;svc.level=1</xsl:text>
+        <xsl:text>?url_ver=Z39.88-2004&amp;svc_id=info:lanl-repo/svc/getRegion&amp;svc_val_fmt=info:ofi/fmt:kev:mtx:jpg&amp;svc.format=image/png&amp;svc.clayer=1&amp;svc.level=1</xsl:text>
         <xsl:text>&amp;rft_id=</xsl:text>
     </xsl:variable>
 </xsl:stylesheet>

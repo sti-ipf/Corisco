@@ -50,11 +50,12 @@ function alternarMaisMetadados(){
 ( function($) {
     if ($('#ficha-meta').is(':visible')){
         $('#ficha-meta').stop().fadeOut(500);
-        $('#mais-metadados').children('img').attr('src', images_path + 'mais_filtro.png');
+        $('#mais-metadados').children('img').attr('src', images_path + 'mais.png');
     } else {
         $('#ficha-meta').stop().fadeIn(500);
+        $('#ficha-meta').draggable();
         $('#ficha-meta').stop().fadeTo(500, 1);
-        $('#mais-metadados').children('img').attr('src', images_path + 'menos_filtro.png');
+        $('#mais-metadados').children('img').attr('src', images_path + 'menos.png');
     }
 })(jQuery);
 }
@@ -75,7 +76,7 @@ if ($('#fechar-meta') != null && $('#fechar-meta').length) {
     $('#fechar-meta').click(
         function(){
             $('#ficha-meta').fadeOut(500);
-            $('#mais-metadados').children('img').attr('src', images_path + 'mais_filtro.png');
+            $('#mais-metadados').children('img').attr('src', images_path + 'mais.png');
         }
     );
 }
