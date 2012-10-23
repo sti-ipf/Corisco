@@ -95,6 +95,7 @@
                 <map:transform type="IncludePageMeta">
                     <map:parameter name="stylesheet.screen#1" value="lib/fancybox/jquery.fancybox.css" />
                     <map:parameter name="stylesheet.screen#2" value="lib/css/corisco.css" />
+                    <map:parameter name="stylesheet.screen#3" value="lib/css/jquery.selectBox.css" />
                     <map:parameter name="javascript.external#1" value="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"/>
                     <map:parameter name="javascript.external#2" value="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js"/>
                     <map:parameter name="javascript#1" value="lib/js/jwplayer.js"/>                    
@@ -102,6 +103,8 @@
                     <map:parameter name="javascript#3" value="lib/fancybox/jquery.mousewheel.pack.js"/>
                     <map:parameter name="javascript#4" value="lib/fancybox/jquery.fancybox.pack.js"/>
                     <map:parameter name="javascript#5" value="lib/js/corisco.js"/>
+                    <map:parameter name="javascript#6" value="lib/js/jquery.qrcode.min.js"/>                    
+                    <map:parameter name="javascript#7" value="lib/js/jquery.selectBox.min.js"/>                    
                 </map:transform>
 
                 <map:select type="browser">

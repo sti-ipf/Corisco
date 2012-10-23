@@ -117,7 +117,7 @@
 
                     <img class="preview-thumbnail" alt="Thumbnail" onerror="this.onerror=null;this.src='{$bookreader-path}images/video_01.jpg';">
                         <xsl:attribute name="src">
-                            <xsl:value-of select="$thumbnail-path"/>
+                        	/xmlui/themes/Corisco/lib/img/videos_preview/<xsl:value-of select="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL']/mets:file[@ID=$fileid]/mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>.png
                         </xsl:attribute>
                     </img>
                 </xsl:otherwise>
@@ -163,7 +163,7 @@
 
                     $(function() {
                         <xsl:choose>
-                            <xsl:when test="mets:file/@MIMETYPE='audio/x-mpeg'">
+                            <xsl:when test="mets:file/@MIMETYPE='audio/x-mpegaaaaa'">
                                 <xsl:for-each select="mets:file">
                                     var link = "<xsl:value-of select="substring-before(mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')" />";
                                     var key = link.replace(/[\/%_\.]/g, "")
@@ -201,6 +201,25 @@
                                 });
                             </xsl:when>
                             <xsl:otherwise>
+
+				function getStreamingFile(fullpath) {
+					<xsl:choose>
+                        		    <xsl:when test="mets:file/@MIMETYPE='audio/x-mpeg'">
+						var path = 'http://177.11.48.108/acervo_audios/';
+                                            </xsl:when>
+                                            <xsl:otherwise>
+						var path = 'http://177.11.48.108/acervo_videos/';
+					    </xsl:otherwise>   
+					</xsl:choose>	
+			
+															
+					var firstIndex = fullpath.lastIndexOf('/');
+					var lastIndex = fullpath.length;
+					
+					var file = fullpath.substring(firstIndex + 1, lastIndex);
+					return path + file;
+				}
+
                                 function textoQualidade(sigla) {
                                     var texto = "";
 
@@ -241,10 +260,10 @@
                                     var conf = $(this).attr("alt").split("|");
                                     var width = parseInt(conf[1]);
                                     var height = parseInt(conf[2]);
-
+				    var filename = getStreamingFile(conf[0]);
                                     jwplayer(id)
                                         .load([{
-                                            'file': conf[0],
+                                            'file': filename,
                                             'image': "/xmlui/themes/Corisco/images/chamada-video.png"}])
                                         .resize(width, height)
                                         .play();
@@ -326,15 +345,16 @@
                                     titleShow: false,
                                     autoDimensions: true,
                                     onComplete: function(a) {
+					var filename = getStreamingFile(a.attr("rel"));
                                         var resolution = getResolution('B');
                                         resizeFancybox(resolution.width, resolution.height);
                                         jwplayer("jwp-" + a.attr("href").substring(1)).setup({
                                             'flashplayer': '<xsl:value-of select="$theme-path"/>/lib/js/player.swf',
                                             'autostart': true,
                                             'image': '<xsl:value-of select="$theme-path"/>/images/chamada-video.png',
-                                            'file': a.attr("rel"),
+                                            'file':  filename,
                                             'width': resolution.width,
-                                            'height': resolution.height
+                                            'height': resolution.height,
                                         });
                                     },
                                     onClose: function(e) {

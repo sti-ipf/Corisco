@@ -110,6 +110,46 @@
                 </xsl:when>
                 <xsl:otherwise>
                     <body>
+					 	<script type="text/javascript">
+							$(document).ready(function(){
+								$('.content_pt_BR').hide();
+								$('.content_en').hide();
+								var locale = $("#locale").val();
+								var subject = 'dc.subject.pt_BR';
+								if(locale == "en"){
+									$("#cabecalho-barra").addClass("cabecalho-barra-en");
+									$('.content_en').show();
+									subject = 'dc.subject.en';
+									$('.subject_pt_BR').hide();
+								}else{
+									$("#cabecalho-barra").addClass("cabecalho-barra-pt_BR");
+									$('.content_pt_BR').show();
+									$('.subject_en').hide();
+								}
+
+								$("#lista-resultados li").each(function(){
+									var element = $(this).children(".info").children("#full-item-record");
+									var url = element.children('.qrcodeHome').children('.qrcodehome_url').val();
+                                					$(element).children('.qrcodeHome').qrcode({width: 200,height: 200,text: url});
+
+								});
+								
+								$('#selecionar-filtro option').each(function(){
+									if(this.value == 'dc.subject_t')
+										this.value = subject; 
+								});
+
+								$('#coluna-filtros .caixa-listar a').each(function(){
+									if(this.href.indexOf('dc.subject') != -1)
+										if(this.href.indexOf('dc.subject.' + locale) == -1)
+											this.href = this.href + '.' + locale;
+								});
+									
+								$('#selecionar-filtro').selectBox();
+								
+								$('#lista-resultados li').last().css('border-bottom', '0px');	
+							});
+						</script>
                         <div id="pagina">
                         <!--
                             The header div, complete with title, subtitle, trail and other junk. The trail is
@@ -129,17 +169,6 @@
                             <xsl:call-template name="buildFooter"/>
                         </div>
 
-                        <script type="text/javascript">
-                            var _gaq = _gaq || [];
-                            _gaq.push(['_setAccount', 'UA-29571734-1']);
-                            _gaq.push(['_trackPageview']);
-
-                            (function() {
-                                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                            })();
-                        </script>
                     </body>
                 </xsl:otherwise>
             </xsl:choose>
@@ -280,7 +309,7 @@
 
             <!-- Add the title in -->
             <xsl:variable name="page_title" select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='title']" />
-            <title>
+		<title>
                 <xsl:choose>
                     <xsl:when test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI']='repositorio-digital'">
                         <xsl:text>Repositório Digital</xsl:text>
@@ -324,14 +353,29 @@
                 </script>
             </xsl:if>
 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-29571734-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
         </head>
     </xsl:template>
 
     <!-- The header (distinct from the HTML head element) contains the title, subtitle, login box and various
         placeholders for header images -->
     <xsl:template name="buildHeader">
+		<input id="locale" type="hidden" value="locale" i18n:attr="value"/>
         <div id="cabecalho">
-            <div id="cabecalho-barra">
+			<div id="cabecalho-barra">
                 <xsl:call-template name="cabecalho-menu"/>
 
                 <a id="link-logotipo">
@@ -388,6 +432,15 @@
                         </li>
         			</ul>
                 </div>
+				<div id='locale-options'>
+		  			<a id='locale-flag-gb' onclick="javascript:document['repost']['locale-attribute'].value='en'; document.repost.submit();" class="langChangeOn">
+						<label>Eng</label>
+					</a>
+					
+					<a id='locale-flag-br' onclick="javascript:document['repost']['locale-attribute'].value='pt_BR'; document.repost.submit();" class="langChangeOn">
+        				<label>Portuguese</label>
+					</a>
+				</div>
             </div>
 
             <xsl:choose>
@@ -424,6 +477,9 @@
     <!-- Like the header, the footer contains various miscellanious text, links, and image placeholders -->
     <xsl:template name="buildFooter">
         <div id="rodape">
+            <!--div class="fakeLinks" id="ipf" onclick="location.href='http://www.paulofreire.org'"><br/></div-->   		
+            <div class="fakeLinks" id="petrobras" onclick="location.href='http://www.petrobras.com.br'"><br/></div>   		
+            <div class="fakeLinks" id="mic" onclick="location.href='http://www.cultura.gov.br/site/'"><br/></div>   		
             <i18n:text>xmlui.dri2xhtml.structural.footer-promotional</i18n:text>
             <!--Invisible link to HTML sitemap (for search engines) -->
             <a>
@@ -479,80 +535,24 @@
         <div id="conteudo">
             <xsl:choose>
                 <xsl:when test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI']='repositorio-digital'">
+		<div class='content_pt_BR'>
                     <xsl:copy-of select="document('../static/repositorio-digital.html')" />
+		</div>
+		<div class='content_en'>
+                    <xsl:copy-of select="document('../static/repositorio-digital-en.html')" />
+		</div>
                 </xsl:when>
                 <xsl:when test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI']='o-projeto'">
-                    <xsl:copy-of select="document('../static/o-projeto.html')" />
+		
+		<div class='content_pt_BR'>
+                  	<xsl:copy-of select="document('../static/o-projeto.html')" />
+		</div>
+		<div class='content_en'>
+ 			<xsl:copy-of select="document('../static/o-projeto-en.html')" />
+		</div>
                 </xsl:when>
                 <xsl:when test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI']='noticias'">
-		<div id="static-content">
-	        <h2>Not&#237;cias sobre o Paulo Freire Mem&#243;ria e Presen&#231;a</h2>
-
-        	<div class="content">
-                	Vejam o que j&#225; saiu na m&#237;dia sobre o projeto:
-        
-<h3><a href="http://www.inclusive.org.br/?p=20119">Lan&#231;amento do Projeto Paulo Freire Mem&#243;ria e Presen&#231;a
-</a></h3>Inclusive &#8211; Inclus&#227;o e Cidadania
-
-<h3><a href="http://bibliotecaucs.wordpress.com/2012/04/25/projeto-paulo-freire-memoria-e-presenca-disponibiliza-mais-de-3-mil-fotos/">Projeto &#8220;Paulo Freire Mem&#243;ria e Presen&#231;a&#8221; disponibiliza mais de 3 mil fotos
-</a></h3>UCS &#8211; Universidade de Caxias do Sul &#8211; Sistema de Bibliotecas &#8211; Blog
-
-<h3><a href="http://www.coletivodigital.org.br/index.php/noticias/90-memoria-e-presenca-paulo-freire">Coletivo Digital colabora com o Projeto Paulo Freire Mem&#243;ria e Presen&#231;a
-</a></h3>Coletivo Digital
-
-<h3><a href="http://blog.midiaseducacao.com/2012/04/projeto-paulo-freire-memoria-e-presenca.html">Projeto &#8220;Paulo Freire Mem&#243;ria e Presen&#231;a&#8221; disponibiliza mais de 3 mil fotos
-</a></h3>Blog do M&#237;dias na Educa&#231;&#227;o
-
-
-<h3><a href="http://www.paulofreire.org/paulo-freire-memoria-e-presenca">Paulo Freire Mem&#243;ria e Presen&#231;a preserva&#231;&#227;o e democratiza&#231;&#227;o do acesso ao patrim&#244;nio cultural brasileiro
-</a></h3>Instituto Paulo Freire
-
-
-<h3><a href="http://www.paulofreire.org/ipf-inicia-projeto-paulo-freire-memoria-e-presenca">IPF inicia projeto Paulo Freire Mem&#243;ria e Presen&#231;a
-</a></h3>Instituto Paulo Freire
-
-
-<h3><a href="http://www.paulofreire.org/projeto-paulo-freire-memoria-e-presenca-apresenta-atividades-realizadas-em-2011#more-1846">Projeto Paulo Freire Mem&#243;ria e Presen&#231;a apresenta atividades realizadas em 2011
-</a></h3>Instituto Paulo Freire
-
-<h3><a href="http://www.paulofreire.org/parceria-com-ipf-para-divulgacao-da-obra-de-paulo-freire-e-noticiada-no-site-da-usp">Parceria com IPF para divulga&#231;&#227;o da obra de Paulo Freire &#233; npoticiada no site da USP.
-</a></h3>Instituto Paulo Freire
-
-<h3><a href="http://rea.net.br/site/paulo-freire-memoria-e-presenca/">Paulo Freire Mem&#243;ria e Presen&#231;a... preserva&#231;&#227;o e democratiza&#231;&#227;o do acesso ao patrim&#244;nio cultural brasileiro
-</a></h3>Recursos Educacionais Abertos
-
-<h3><a href="http://www.casacivil.sp.gov.br/biblioteca-ccivil/noticias/MostraNoti.asp?par=922">Paulo Freire, agora na internet.
-</a></h3>Biblioteca da Casa Civil
-
-<h3><a href="http://www.punf.uff.br/biblioteca/index.php/noticias/120-usp-dispinibiliza-obras-de-paulo-freire-na-internet-usando-dspace">USP disponibiliza obras de Paulo Freire na internet usando Dspace
-</a></h3>Biblioteca Nova Friburgo &#8211; Superintend&#234;ncia de Documenta&#231;&#227;o
-
-<h3><a href="http://www.pavablog.com/2012/07/18/obras-de-paulo-freire-disponiveis-na-internet/">Obras de Paulo Freire dispon&#237;veis na internet
-</a></h3>Pavablog
-
-<h3><a href="http://g1.globo.com/acao/noticia/2011/10/projeto-mova-leva-alfabetizacao-aos-jovens-e-adultos-de-todo-brasil.html">Projeto MOVA leva alfabetiza&#231;&#227;o aos jovens e adultos de todo Brasil
-</a></h3>Globo.com
-
-<h3><a href="http://www5.usp.br/tag/educacao-3/">Parceria de USP e Instituto Paulo Freire coloca obra do educador na internet
-</a></h3>USP
-
-
-<h3><a href="http://mundodeoz.files.wordpress.com/2012/07/doe-de-18-07-2012.pdf">Paulo Freire, agora na internet
-</a></h3>Di&#225;rio Oficial &#8211; Poder Executivo
-
-<h3><a href="http://www.cornelionoticias.com.br/posts/4035/geral/">Projeto MOVA leva alfabetiza&#231;&#227;o aos jovens e adultos de todo Brasil
-</a></h3>Corn&#233;lio Not&#237;cias
-
-<h3><a href="http://people.softwarelivre.org/wsl/2012/52.pdf">Plataforma Corisco os casos da Brasiliana USP e do Instituto Paulo Freire
-</a></h3>Workshop Software Livre - Sociedade Brasileira de Computa&#231;&#227;o
-
-
-	
-		</div>
-        	<a href="/" class="voltar"><span>Voltar</span></a>
-		</div>
-
-
+			<xsl:copy-of select="document('../static/noticias.html')" />
 		</xsl:when>
                 <xsl:otherwise>
                     <xsl:if test="count(//dri:body/dri:div[@n='item-view'])=0">
@@ -745,23 +745,23 @@
                 <xsl:when test="//dri:body//dri:div[@id='aspect.discovery.SimpleSearch.div.search-results']">
                     <div id="dados-item">
                         <h3>
-                            <span id="nome-item">
-                                <xsl:choose>
-                                    <!-- If query is empty and there is no facet filter, display a possible different header. -->
-                                    <xsl:when test="//dri:body//dri:field[@id='aspect.discovery.SimpleSearch.field.query']/dri:value = ''
-                                            and not(//dri:div[@interactive='yes'][@n='general-query']/dri:list[@n='search-query']/dri:item/dri:field[@n='facet-controls'])">
-                                        <i18n:text>xmlui.ArtifactBrowser.AbstractSearch.result_empty_query_head</i18n:text>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <i18n:text>xmlui.ArtifactBrowser.AbstractSearch.result_query_head</i18n:text>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </span>
-                            <span id="autoria-item">
-                                <xsl:value-of select="//dri:body//dri:field[@id='aspect.discovery.SimpleSearch.field.query']/dri:value"/>
-                                <xsl:apply-templates select="//dri:div[@interactive='yes'][@n='general-query']/dri:list[@n='search-query']/dri:item/dri:field[@n='query']" mode="dados-item"/>
-                                <xsl:apply-templates select="//dri:div[@interactive='yes'][@n='general-query']/dri:list[@n='search-query']/dri:item/dri:field[@n='facet-controls']/dri:field" mode="dados-item"/>
-                            </span>
+									<span id="nome-item">
+										<xsl:choose>
+											<!-- If query is empty and there is no facet filter, display a possible different header. -->
+											<xsl:when test="//dri:body//dri:field[@id='aspect.discovery.SimpleSearch.field.query']/dri:value = ''
+													and not(//dri:div[@interactive='yes'][@n='general-query']/dri:list[@n='search-query']/dri:item/dri:field[@n='facet-controls'])">
+												<i18n:text>xmlui.ArtifactBrowser.AbstractSearch.result_empty_query_head</i18n:text>
+											</xsl:when>
+											<xsl:otherwise>
+												<i18n:text>xmlui.ArtifactBrowser.AbstractSearch.result_query_head</i18n:text>
+											</xsl:otherwise>
+										</xsl:choose>
+									</span>
+									<span id="autoria-item">
+										<xsl:value-of select="//dri:body//dri:field[@id='aspect.discovery.SimpleSearch.field.query']/dri:value"/> 
+										<xsl:apply-templates select="//dri:div[@interactive='yes'][@n='general-query']/dri:list[@n='search-query']/dri:item/dri:field[@n='query']" mode="dados-item"/>
+										<xsl:apply-templates select="//dri:div[@interactive='yes'][@n='general-query']/dri:list[@n='search-query']/dri:item/dri:field[@n='facet-controls']/dri:field" mode="dados-item"/>
+									</span>
                         </h3>
                     </div>
                 </xsl:when>
@@ -848,7 +848,7 @@
                     <xsl:text>/xmlui/handle/</xsl:text>
                     <xsl:value-of select="./handle" />
                 </xsl:attribute>
-                <xsl:value-of select="./title" />
+                <i18n:text>custom.left.menu.<xsl:value-of select="./title" /></i18n:text>
             </a>
             <a class="btn-plus-minus" href="#">
                 <img class="img-btn-plus-minus">
@@ -878,7 +878,7 @@
                                 <xsl:attribute name="href">
                                     <xsl:text>/xmlui/search?fq=location.coll%3A</xsl:text><xsl:value-of select="./id" />
                                 </xsl:attribute>
-                                <xsl:value-of select="./title" />
+                                                   <i18n:text>custom.left.menu.<xsl:value-of select="./title" /></i18n:text>
                             </a>
                         </li>
                     </xsl:for-each>
@@ -944,14 +944,14 @@
            <xsl:when test="/dri:document/dri:body/dri:div[@n='search']">
                 <xsl:apply-templates select="//dri:body/dri:div[@n='search']//dri:table[@n='search-controls']"/>
             </xsl:when> 
-	   <xsl:when test="/dri:document/dri:body/dri:div[starts-with(@n, 'browse-by-')]">
+	   		<xsl:when test="/dri:document/dri:body/dri:div[starts-with(@n, 'browse-by-')]">
                 <xsl:apply-templates select="//dri:body/dri:div[starts-with(@n, 'browse-by-')]/dri:div[@n='browse-controls']"/>
             </xsl:when>
             <xsl:when test="/dri:document/dri:body/dri:div[@n='item-view']">
                 <xsl:comment>item-view empty</xsl:comment>
                 <xsl:if test="$position = 'bottom'">
-                    <div class="visualizador-barra caixa">
-                    </div>
+                    <!--div class="visualizador-barra caixa">
+                    </div-->
                 </xsl:if>
             </xsl:when>
             <xsl:otherwise>
@@ -2080,6 +2080,8 @@
                     </span>
                 </li>
             </xsl:when>
+	    
+	
             <xsl:otherwise>
                 <li class="lista-item">
                     <span><xsl:apply-templates /></span>

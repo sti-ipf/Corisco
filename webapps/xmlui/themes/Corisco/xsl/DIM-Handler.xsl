@@ -178,7 +178,8 @@
     <xsl:template name="itemSummaryList-DIM">
         <xsl:param name="position"/>
         <!-- Generate the thumbnail, if present, from the file section -->
-        <div class="caixa">
+        <div>
+	   	 	<xsl:attribute name="class">caixa</xsl:attribute>
             <xsl:apply-templates select="./mets:fileSec" mode="artifact-preview">
                 <xsl:with-param name="primaryBitstream" select="./mets:structMap/mets:div[@TYPE='DSpace Item']/mets:fptr/@FILEID"/>
             </xsl:apply-templates>
@@ -248,12 +249,31 @@
 
             <div class="caixa-borda" id="full-item-record">
                 <xsl:apply-templates select="." mode="itemMetadata" />
-            </div>
-
-        </div>
+					<div class='qrcodeHome'>
+						<xsl:variable name="type">
+							<xsl:value-of select="//dim:dim/dim:field[@element='type' and not(@qualifier)]"/>
+						</xsl:variable>
+						<xsl:variable name="primaryBitstream" select="//mets:structMap/mets:div[@TYPE='DSpace Item']/mets:fptr/@FILEID"/>
+						<xsl:variable name="fileid">
+							<xsl:choose>
+								<xsl:when test="$primaryBitstream != ''">
+									<xsl:value-of select="$primaryBitstream"/>
+								</xsl:when>
+								<xsl:otherwise>
+									<xsl:value-of select="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL']/mets:file[1]/@ID"/>
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:variable>
+						<input type='hidden' class='qrcodehome_url'>
+							<xsl:attribute name="value">http://acervo.paulofreire.org/<xsl:value-of select="substring-before(//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL']/mets:file[@ID=$fileid]/mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')"/></xsl:attribute>
+						</input>
+					</div>
+			</div>	
+		</div>
         <div class="clear">
             <xsl:comment>Empty</xsl:comment>
         </div>
+	
     </xsl:template>
 
     <xsl:template name="info-resultado">
@@ -410,7 +430,7 @@
             <span class="tipo-documento">
                 <xsl:choose>
                     <xsl:when test="dim:field[@element='type' and not(@qualifier)]">
-                        <xsl:value-of select="dim:field[@element='type' and not(@qualifier)]"/>
+                        <i18n:text>custom.<xsl:value-of select="dim:field[@element='type' and not(@qualifier)]"/></i18n:text>
                         <xsl:call-template name="getDocumentTypeThumbnail">
                             <xsl:with-param name="document_type_name" select="dim:field[@element='type' and not(@qualifier)]"/>
                         </xsl:call-template>
@@ -472,8 +492,8 @@
                 (@qualifier='tableofcontents')
                 )]" mode="itemSummaryList-DIM"/>
 
-            <xsl:if test="dim:field[@element='subject' and not(@qualifier)]">
-                <xsl:apply-templates select="dim:field[@element='subject' and not(@qualifier)]" mode="itemSummaryList-DIM"/>
+            <xsl:if test="dim:field[@element='subject']">
+                <xsl:apply-templates select="dim:field[@element='subject']" mode="itemSummaryList-DIM"/>
             </xsl:if>
             <xsl:if test="dim:field[@element='subject' and @qualifier='lcsh']">
                 <xsl:apply-templates select="dim:field[@element='subject' and @qualifier='lcsh']" mode="itemSummaryList-DIM"/>
@@ -763,7 +783,7 @@
         </p>
     </xsl:template>
 
-    <xsl:template match="dim:field[@element='subject' and not(@qualifier)]" mode="itemSummaryList-DIM" priority="10">
+    <xsl:template match="dim:field[@element='subject']" mode="itemSummaryList-DIM" priority="10">
         <xsl:choose>
         <xsl:when test="position() = 1">
             <p>
@@ -772,14 +792,26 @@
                     <br/>
                 </span>
                 <span class="dado-item">
-                    <xsl:call-template name="makeBrowseLink">
-                        <xsl:with-param name="type">dc.subject</xsl:with-param>
-                        <xsl:with-param name="value" select="."/>
-                    </xsl:call-template>
-                    <xsl:for-each select="following-sibling::dim:field[@element='subject' and not(@qualifier)]">
-                        <br/>
-                        <xsl:apply-templates select="." mode="DcSubject-DIM"/>
-                    </xsl:for-each>
+			   
+                    <span class='subject_pt_BR'>		
+                         
+                        <xsl:for-each select="following-sibling::dim:field[@element='subject' and @language='pt_BR']">
+                            <xsl:call-template name="makeBrowseLink">
+                                <xsl:with-param name="type">dc.subject.pt_BR</xsl:with-param>
+                                <xsl:with-param name="value" select="."/>
+                            </xsl:call-template>
+                            <br/>
+                        </xsl:for-each>
+                    </span>
+                    <span class='subject_en'>
+                        <xsl:for-each select="following-sibling::dim:field[@element='subject' and @language='en']">
+                             <xsl:call-template name="makeBrowseLink">
+                                <xsl:with-param name="type">dc.subject.en</xsl:with-param>
+                                <xsl:with-param name="value" select="."/>
+                            </xsl:call-template>
+                            <br/>
+                        </xsl:for-each>
+                    </span>
                 </span>
             </p>
         </xsl:when>
@@ -1842,7 +1874,8 @@
                     </xsl:if>
                 </span>
                 <span id="mais-metadados" onclick="alternarMaisMetadados();">
-                    <img src="{$images-path}/mais_filtro.png"/>
+                    <img src="/xmlui/themes/Corisco/lib/img/mais.png"/>
+			<i18n:text>xmlui.ArtifactBrowser.ItemViewer.show_full</i18n:text>
                 </span>
             </h3>
         </div>
@@ -1850,6 +1883,34 @@
         <div class="caixa-borda3 fichas" id="ficha-meta">
             <img class="icone_peq fechar" id="fechar-meta" />
             <xsl:apply-templates select="mets:dmdSec/mets:mdWrap[@OTHERMDTYPE='DIM']/mets:xmlData/dim:dim" mode="itemMetadata"/>
+	    <div id='qrcode'>
+	        <xsl:variable name="type">
+                    <xsl:value-of select="//dim:dim/dim:field[@element='type' and not(@qualifier)]"/>
+                </xsl:variable>
+                <xsl:variable name="primaryBitstream" select="//mets:structMap/mets:div[@TYPE='DSpace Item']/mets:fptr/@FILEID"/>
+                <xsl:variable name="fileid">
+                    <xsl:choose>
+                        <xsl:when test="$primaryBitstream != ''">
+                            <xsl:value-of select="$primaryBitstream"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL']/mets:file[1]/@ID"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+
+                        <input type='hidden' id='qrcode_url'>
+                                <xsl:attribute name="value">http://acervo.paulofreire.org/<xsl:value-of select="substring-before(//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL']/mets:file[@ID=$fileid]/mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')"/>
+
+                                </xsl:attribute>
+
+                        </input>
+                        <script>
+                                var url = $('#qrcode_url').val();
+                                $('#qrcode').qrcode({width: 200,height: 200,text: url});
+                        </script>
+            </div>
+
         </div>
 
         <div id="colecao-item">
@@ -1864,7 +1925,8 @@
             </xsl:call-template>
         </div>
 
-        <xsl:if test="//dim:field[@element='description' and @qualifier='tableofcontents'][contains(text(), '(Gravura')] or //dim:field[@element='relation' and @qualifier='ispartof']">
+	
+       <xsl:if test="//dim:field[@element='description' and @qualifier='tableofcontents'][contains(text(), '(Gravura')] or //dim:field[@element='relation' and @qualifier='ispartof']">
         <div id="caixas">
             <xsl:comment>Info</xsl:comment>
             <xsl:if test="//dim:field[@element='description' and @qualifier='tableofcontents'][contains(text(), '(Gravura')]">
@@ -2457,7 +2519,8 @@
                     <xsl:text>.</xsl:text>
                 </span>
                 <span id="mais-metadados" onclick="alternarMaisMetadados();">
-                    <img src="{$images-path}/mais_filtro.png"/>
+			 <img src="/xmlui/themes/Corisco/lib/img/mais.png"/>
+                         <i18n:text>xmlui.ArtifactBrowser.ItemViewer.show_full</i18n:text>
                 </span>
             </h3>
         </div>
@@ -2688,7 +2751,8 @@
                     <xsl:text>.</xsl:text>
                 </span>
                 <span id="mais-metadados" onclick="alternarMaisMetadados();">
-                    <img src="{$images-path}/mais_filtro.png"/>
+			 <img src="/xmlui/themes/Corisco/lib/img/mais.png"/>
+                         <i18n:text>xmlui.ArtifactBrowser.ItemViewer.show_full</i18n:text>
                 </span>
             </h3>
         </div>

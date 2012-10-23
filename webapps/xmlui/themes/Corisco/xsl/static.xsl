@@ -54,24 +54,27 @@ nor the
   <xsl:output indent="yes"/>
 
   <xsl:template name="cabecalho-menu">
+	<form action="" name="repost" method="get">
+          <input type="hidden" name="locale-attribute"/>
+        </form>
     <ul id="cabecalho-menu">
       <li class="item-menu">
-        <a href="http://www.paulofreire.org/centro-de-referencia" target="blank">O Centro de Refer&#234;ncia Paulo Freire</a>
+        <a href="http://www.paulofreire.org/centro-de-referencia" target="blank"><i18n:text>custom.cabecalho.title</i18n:text></a>
       </li>
       <li class="item-menu">
-        <a href="/xmlui/repositorio-digital">O Repositório</a>
+        <a href="/xmlui/repositorio-digital"><i18n:text>custom.cabecalho.repository</i18n:text></a>
       </li>
       <li class="item-menu">
-        <a href="/xmlui/o-projeto">O Projeto</a>
+        <a href="/xmlui/o-projeto"><i18n:text>custom.cabecalho.project</i18n:text></a>
       </li>
       <li class="item-menu">
-        <a href="/xmlui/noticias">Not&#237;cias</a>
+        <a href="/xmlui/noticias"><i18n:text>custom.cabecalho.news</i18n:text></a>
       </li>
       <li class="item-menu">
-        <a href="/xmlui/repositorio-digital">Como nos enviar materiais</a>
+        <a href="/xmlui/repositorio-digital"><i18n:text>custom.cabecalho.send.material</i18n:text></a>
       </li>
       <li class="item-menu">
-        <a href="mailto:acervo@paulofreire.org">Contato</a>
+        <a href="mailto:acervo@paulofreire.org"><i18n:text>custom.cabecalho.contact</i18n:text></a>
       </li>
     </ul>
   </xsl:template>
