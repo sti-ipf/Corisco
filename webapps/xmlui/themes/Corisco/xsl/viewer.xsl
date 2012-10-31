@@ -191,7 +191,7 @@
                     };
 
                 qsParm["toolbarLabels"] = {
-<!--                    '.modos_visualizador .label': 'Modos de visualização:',
+<!--                '.modos_visualizador .label': 'Modos de visualização:',
                     '.paginacao .label': 'Navegação:',
                     '.resultados-pagina .label': 'Ir à página:',
                     '.funcional #ficha-link .label': 'Link permanente para o documento:'-->

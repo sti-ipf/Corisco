@@ -15,6 +15,39 @@ jQuery.each(arr, function(i, s) {
 
 var images_path = fs_path + '../img/';
 
+
+
+function onErrorImgPreview(elem){
+	elem.src='/xmlui/themes/Corisco/images/chamada-video-pequena.png';
+}
+
+
+function sortVideoArray(elem1, elem2){
+	function removeAcento(str) {
+		str = str.replace(/^\s+|\s+$/g, ''); // trim
+		str = str.toLowerCase();
+
+		// remove accents, swap ñ for n, etc
+		var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+		var to   = "aaaaeeeeiiiioooouuuunc------";
+		for (var i=0, l=from.length ; i<l ; i++) {
+			str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+		}
+
+		str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+			.replace(/\s+/g, '-') // collapse whitespace and replace by -
+			.replace(/-+/g, '-'); // collapse dashes
+
+		return str;
+	}
+	
+	var word1 = removeAcento(elem1[1]);
+	var word2 = removeAcento(elem2[1]);
+	if(word1 < word2) return -1;
+	if(word1 > word2) return 1;
+	return 0;
+}
+
 function modosHover (){
 $('.modos').children('span').children('img').hover(
         function(){    

@@ -343,4 +343,6 @@
           </p>
       </div>
 	</message>
+  <message key="xmlui.dri2xhtml.structural.pagination-next">Próxima Página</message>
+  <message key="xmlui.ArtifactBrowser.Navigation.browse_dateaccessioned">Data de submissão</message>
 </catalogue>

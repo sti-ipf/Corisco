@@ -1428,10 +1428,21 @@ h3.separador {
     margin: 0 auto;
 }
 
-.lista-galeria-midia {
+.lista-galeria-video {
     clear: both;
     margin: 20px 10px;
     overflow: auto;
+}
+
+.lista-galeria-audio {
+	clear: left;
+	float: left;
+	margin: 0;
+	padding: 0px;
+	position: relative;
+	left: 50%;
+	text-align: center;
+	max-width: 400px;
 }
 
 .lista-galeria-midia .item {
@@ -1771,4 +1782,32 @@ left: 379px;
 
 #dados-item h3{
 	margin-left: 15px;
+}
+
+.blocos-midia{
+	text-align: center;
+	display: table;
+	margin: 0 auto;
+	float:left;
+	width: 100%;
+	position:relative;
+	overflow: hidden;
+}
+
+.itemAudio{
+	display: block;
+	float: left;
+	list-style: none;
+	margin: 0;
+	padding: 5px;
+	position: relative;
+	right: 50%;
+}
+
+.itemAudio label{
+	cursor: pointer;
+}
+
+#conteudo-baixo .caixa .modos{
+	display: none;
 }

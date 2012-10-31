@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <!--
   messages_pt_BR.xml
 
@@ -36,7 +36,7 @@
   USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
   DAMAGE.
 -->
-<catalogue xml:lang="pt-BR" xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
+<catalogue xml:lang="pt_BR" xmlns:i18n="http://apache.org/cocoon/i18n/2.1">
 
 	<!--
 		The format used by all keys is as follows
@@ -256,7 +256,7 @@
 	<message key="xmlui.ArtifactBrowser.ItemViewer.trail">Ver item</message>
 	<message key="xmlui.ArtifactBrowser.ItemViewer.head_parent_collections">Este item aparece na(s) seguinte(s) coleção(ções)</message>
 	<message key="xmlui.ArtifactBrowser.ItemViewer.show_simple">Apresentar o registro simples</message>
-	<message key="xmlui.ArtifactBrowser.ItemViewer.show_full">Ficha completa</message>
+	<message key="xmlui.ArtifactBrowser.ItemViewer.show_full">Mostrar Detalhes</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.Navigation.java -->
 	<message key="xmlui.ArtifactBrowser.Navigation.head_browse">Listar por</message>
@@ -1725,48 +1725,6 @@
     <message key="xmlui.statistics.Navigation.title">Estatísticas</message>
     <message key="xmlui.statistics.Navigation.view">Ver Estatísticas</message>
     <message key="xmlui.statistics.trail">Estatísticas</message>
-	
-	
-	
-	
-	
-	<!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		
-		                  dri2xhtml
-		
-		!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-
-
-
-        <message key="xmlui.news">
-	<div id="static-content">
-        	<h2>Not&#237;cias sobre o Paulo Freire Memória e Presença</h2>
-
-        	<div class="content">
-                	<p>Vejam o que já saiu na m&#237;dia sobre o projeto:</p>
-                	<h3><a href="http://diariooficial.imprensaoficial.com.br/nav_v4/index.asp?c=4&e=20120718&p=1">Diário Oficial</a></h3>
-                	<h3><a href="http://www5.usp.br/13652/parceria-de-usp-e-instituto-paulo-freire-poe-obra-do-educador-na-internet/">Site da USP</a></h3>
-        	</div>
-        	<a href="/" class="voltar"><span>Voltar</span></a>
-	</div>
-	</message>
-	<!-- structural.xsl -->
-	<message key="xmlui.dri2xhtml.structural.footer-promotional">
-      <div class="area_rodape">
-		      <a href="http://github.com/brasiliana/corisco" id="ds-logo-link">                            
-			      <span id="ds-footer-logo">&#160;</span>
-		      </a>
-          <p>
-              A <a href="http://github.com/brasiliana/corisco">Plataforma Corisco</a>,
-              desenvolvida pela <a href="http://brasiliana.usp.br">Brasiliana USP</a>,
-              integra o <a href="http://dspace.org">DSpace</a> com:
-                  busca facetada via <a href="http://lucene.apache.org/solr/">Solr</a>,
-                  servidor de imagens <a href="http://djatoka.sourceforge.net/">Djatoka</a>,
-                  e visualizadores de conteúdo <a href="http://sourceforge.net/apps/mediawiki/djatoka/index.php?title=Viewers#djatoka_IIPImage_Viewer">IIPimage</a>
-                  e <a href="http://openlibrary.org/dev/docs/bookreader">BookReader</a>.
-          </p>
-      </div>
-	</message>
 	<message key="xmlui.dri2xhtml.structural.contact-link">Contate-nos</message>
 	<message key="xmlui.dri2xhtml.structural.feedback-link">Fale conosco</message>
 	<message key="xmlui.dri2xhtml.structural.head-subtitle">Repositório DSpace/Manakin + Corisco</message>
@@ -1782,7 +1740,7 @@
 	<message key="xmlui.dri2xhtml.structural.pagination-previous">&#171;</message>
 	<message key="xmlui.dri2xhtml.structural.pagination-info">Resultados {0}-{1} de {2}</message>
 	<message key="xmlui.dri2xhtml.structural.pagination-info.no_results">Nenhum item</message>
-	<message key="xmlui.dri2xhtml.structural.pagination-next">&#187;</message>
+	<message key="xmlui.dri2xhtml.structural.pagination-next">Próxima Página</message>
 		
 	<message key="xmlui.dri2xhtml.structural.link_cc">Creative Commons</message>
 	<message key="xmlui.dri2xhtml.structural.link_original_license">Licença Original</message>

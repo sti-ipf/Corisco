@@ -115,11 +115,18 @@
                         <xsl:value-of select="//mets:structMap[@TYPE='LOGICAL']/mets:div[@TYPE='DSpace Item']//mets:fptr[@FILEID=$fileid]/@FILEINTERNALID"/>
                     </xsl:variable>
 
-                    <img class="preview-thumbnail" alt="Thumbnail" onerror="this.onerror=null;this.src='{$bookreader-path}images/video_01.jpg';">
+			<img class="preview-thumbnail" alt="Thumbnail" onerror="this.onerror=null;this.src='{$bookreader-path}images/video_01.jpg';">
+                                <xsl:attribute name="src">
+                                    <xsl:value-of select="$thumbnail-path"/>
+                                </xsl:attribute>
+                            </img>
+
+
+                    <!--img class="preview-thumbnail test" alt="Thumbnail" onerror="this.onerror=null;this.src='{$bookreader-path}images/video_01.jpg';">
                         <xsl:attribute name="src">
                         	/xmlui/themes/Corisco/lib/img/videos_preview/<xsl:value-of select="//mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL']/mets:file[@ID=$fileid]/mets:FLocat[@LOCTYPE='URL']/@xlink:title"/>.png
                         </xsl:attribute>
-                    </img>
+                    </img-->
                 </xsl:otherwise>
             </xsl:choose>
         </a>
@@ -202,8 +209,16 @@
                             </xsl:when>
                             <xsl:otherwise>
 
+				<xsl:variable name="identifier-other">
+				    <xsl:value-of select="//dim:field[@element='identifier' and @qualifier='other']"/>
+				</xsl:variable>
+			
+				var image_preview = 'http://177.11.48.108/acervo_preview_img/<xsl:value-of select="$identifier-other"/>.png';		
 				function getStreamingFile(fullpath) {
 					<xsl:choose>
+					   <xsl:when test="mets:file/@MIMETYPE='audio/ogg'">
+						var path = 'http://177.11.48.108/acervo_audios/';
+                                            </xsl:when>
                         		    <xsl:when test="mets:file/@MIMETYPE='audio/x-mpeg'">
 						var path = 'http://177.11.48.108/acervo_audios/';
                                             </xsl:when>
@@ -219,6 +234,20 @@
 					var file = fullpath.substring(firstIndex + 1, lastIndex);
 					return path + file;
 				}
+
+				function getMediaType(){
+					<xsl:choose>
+					   <xsl:when test="mets:file/@MIMETYPE='audio/ogg'">
+                                            	return 'audio';
+					    </xsl:when>
+                        		    <xsl:when test="mets:file/@MIMETYPE='audio/x-mpeg'">
+                                            	return 'audio';
+					    </xsl:when>
+                                            <xsl:otherwise>
+					    	return 'video';
+					    </xsl:otherwise>   
+					</xsl:choose>
+				}	
 
                                 function textoQualidade(sigla) {
                                     var texto = "";
@@ -264,7 +293,7 @@
                                     jwplayer(id)
                                         .load([{
                                             'file': filename,
-                                            'image': "/xmlui/themes/Corisco/images/chamada-video.png"}])
+                                            'image': image_preview}])
                                         .resize(width, height)
                                         .play();
 
@@ -272,75 +301,119 @@
 
                                     return false;
                                 }
+				
+				function makeFileObjects(files){
+					var obj = new Object()	
+					for (var i = 0; i <xsl:text disable-output-escaping="yes">&lt;</xsl:text> files.length; i++) {
+						var index = files[i][0].substr(0, files[i][0].lastIndexOf("_")).replace(/[\/%_]/g, "");
+						var iPos = files[i][0].lastIndexOf("_")+1;
+						var quality = files[i][0].substr(iPos, files[i][0].lastIndexOf(".")-iPos);
 
-                                var videos = [];
+						if (eval("obj." + index) == undefined) eval("obj." + index + " = new Object({defaultQuality: '" + quality + "', list: new Object})");
+						if (quality == "B") eval("obj." + index + ".defaultQuality = 'B'");
+
+						eval("obj." + index + ".list." + quality + " = ['" + files[i][0] + "', '" + files[i][1] + "']");
+					}
+					return obj;
+
+				}
+
+				function makeFancyBox(file){
+					var $hideBloco = $('<div style="display: none;" />');
+					var $bloco = $('<div class="div-midia-fancybox" id="' + key + '" />');
+					$bloco.append($('<div class="div-item-description-video" />').text(file.list[file.defaultQuality][1]));
+					$bloco.append('<div id="jwp-' + key + '">Carregando...</div>');
+
+					var $labelVisualizarEmQualidade = $('<strong />').text("Visualizar em qualidade: ");
+					var $labelFazerDownloadEmQualidade = $('<strong />').text("Baixar/Copiar em qualidade: ");
+
+					var $lista = $('<ul class="qualidades-video" />');
+					var $listaDownloads = $('<ul class="qualidades-video" />');
+					for (quality in file.list) {
+						var value = file.list[quality];
+
+						$listaDownloads.append($('<li />').append($('<a href="' + value[0] + '" alt="' + value[0] + '">' + textoQualidade(quality) + '</a>')));
+						if (quality != "C") {
+							var resolution = getResolution(quality)
+								value = value[0] + "|" + resolution.width + "|" + resolution.height;
+
+							$lista.append($('<li />').append($('<a href="javascript:void(0);" rel="jwp-' + key + '" alt="' + value + '">' + textoQualidade(quality) + '</a>').click(trocaQualidade)));
+						}
+					}
+
+					var pipesAdded = 0;
+					$listaDownloads.children().each(function(index) {
+							index += pipesAdded;
+							var not_is_last_item = (index <xsl:text disable-output-escaping="yes">&lt;</xsl:text> ($listaDownloads.children().length - 1));
+							if (not_is_last_item) {
+							$(this).after($('<strong />').text('|'));
+							pipesAdded += 1;
+							}
+							});
+
+					var pipesAdded = 0;
+					$lista.children().each(function(index) {
+							index += pipesAdded;
+							var not_is_last_item = (index <xsl:text disable-output-escaping="yes">&lt;</xsl:text> ($lista.children().length - 1));
+							if (not_is_last_item) {
+							$(this).after($('<strong />').text('|'));
+							pipesAdded += 1;
+							}
+							});
+
+					$hideBloco.append($bloco.append($('<br />')).append($labelVisualizarEmQualidade).append($lista).append($labelFazerDownloadEmQualidade).append($listaDownloads));
+
+					$(".blocos-midia").append($hideBloco);
+
+				}
+
+				function getFileItem(filename, filelink){
+					if(getMediaType() == 'video')
+					{
+						var descItem = $('<p class="description-item" />').text(filename);
+						return $('<li class="item" />').append(descItem).append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + filelink + '" title="Clique aqui para assistir ou fazer cópia do vídeo" />').append('<img alt="Clique aqui para assistir ou fazer cópia do vídeo" onError="onErrorImgPreview(this);"  src="'+image_preview+'" />'));
+					}
+					else
+					{
+						if(!filename)
+							filename = 'Audio';
+						var descItem = $('<label class="description-item" />').text(filename);
+						return $('<li class="item itemAudio" />').append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + filelink + '" title="Clique aqui para assistir ou fazer cópia do vídeo" />').append(descItem));
+
+					}
+
+				}
+				
+				function makeHtml(){
+					if(getMediaType() == 'audio'){
+						var img = '<img alt="Clique aqui para assistir ou fazer cópia do vídeo" onError="onErrorImgPreview(this);"  src="'+image_preview+'" />';
+						$('.blocos-midia').append('<div class="audio-preview">'+img+'</div>');
+						$('.blocos-midia').append('<ul class="lista-galeria-midia lista-galeria-audio"></ul>');
+					}else
+					{
+						$('.blocos-midia').append('<ul class="lista-galeria-midia lista-galeria-video"></ul>');
+					}
+
+				}
+				makeHtml();
+				var videos = [];
                                 <xsl:for-each select="mets:file">
                                     videos.push(["<xsl:value-of select="substring-before(mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')" />", "<xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label" />"]);
                                 </xsl:for-each>
-                                var videosReorganized = new Object;
-                                for (var iVideos = 0; iVideos <xsl:text disable-output-escaping="yes">&lt;</xsl:text> videos.length; iVideos++) {
-                                    var index = videos[iVideos][0].substr(0, videos[iVideos][0].lastIndexOf("_")).replace(/[\/%_]/g, "");
-                                    var iPos = videos[iVideos][0].lastIndexOf("_")+1;
-                                    var quality = videos[iVideos][0].substr(iPos, videos[iVideos][0].lastIndexOf(".")-iPos);
-
-                                    if (eval("videosReorganized." + index) == undefined) eval("videosReorganized." + index + " = new Object({defaultQuality: '" + quality + "', list: new Object})");
-                                    if (quality == "B") eval("videosReorganized." + index + ".defaultQuality = 'B'");
-
-                                    eval("videosReorganized." + index + ".list." + quality + " = ['" + videos[iVideos][0] + "', '" + videos[iVideos][1] + "']");
-                                }
-
-                                for (var key in videosReorganized) {
-                                    var descItem = $('<p class="description-item" />').text(videosReorganized[key].list[videosReorganized[key].defaultQuality][1]);
-                                    var item =  $('<li class="item" />').append(descItem).append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + videosReorganized[key].list[videosReorganized[key].defaultQuality][0] + '" title="Clique aqui para assistir ou fazer cópia do vídeo" />').append('<img alt="Clique aqui para assistir ou fazer cópia do vídeo" src="{$theme-path}/images/chamada-video-pequena.png" />'));
-                                    $(".lista-galeria-midia").append(item);
-
-                                    var $hideBloco = $('<div style="display: none;" />');
-                                    var $bloco = $('<div class="div-midia-fancybox" id="' + key + '" />');
-                                    $bloco.append($('<div class="div-item-description-video" />').text(videosReorganized[key].list[videosReorganized[key].defaultQuality][1]));
-                                    $bloco.append('<div id="jwp-' + key + '">Carregando...</div>');
-
-                                    var $labelVisualizarEmQualidade = $('<strong />').text("Visualizar em qualidade: ");
-                                    var $labelFazerDownloadEmQualidade = $('<strong />').text("Baixar/Copiar em qualidade: ");
-
-                                    var $lista = $('<ul class="qualidades-video" />');
-                                    var $listaDownloads = $('<ul class="qualidades-video" />');
-                                    for (quality in videosReorganized[key].list) {
-                                        var value = videosReorganized[key].list[quality];
-
-                                        $listaDownloads.append($('<li />').append($('<a href="' + value[0] + '" alt="' + value[0] + '">' + textoQualidade(quality) + '</a>')));
-                                        if (quality != "C") {
-                                            var resolution = getResolution(quality)
-                                            value = value[0] + "|" + resolution.width + "|" + resolution.height;
-
-                                            $lista.append($('<li />').append($('<a href="javascript:void(0);" rel="jwp-' + key + '" alt="' + value + '">' + textoQualidade(quality) + '</a>').click(trocaQualidade)));
-                                        }
-                                    }
-
-                                    var pipesAdded = 0;
-                                    $listaDownloads.children().each(function(index) {
-                                        index += pipesAdded;
-                                        var not_is_last_item = (index <xsl:text disable-output-escaping="yes">&lt;</xsl:text> ($listaDownloads.children().length - 1));
-                                        if (not_is_last_item) {
-                                            $(this).after($('<strong />').text('|'));
-                                            pipesAdded += 1;
-                                        }
-                                    });
-
-                                    var pipesAdded = 0;
-                                    $lista.children().each(function(index) {
-                                        index += pipesAdded;
-                                        var not_is_last_item = (index <xsl:text disable-output-escaping="yes">&lt;</xsl:text> ($lista.children().length - 1));
-                                        if (not_is_last_item) {
-                                            $(this).after($('<strong />').text('|'));
-                                            pipesAdded += 1;
-                                        }
-                                    });
-
-                                    $hideBloco.append($bloco.append($('<br />')).append($labelVisualizarEmQualidade).append($lista).append($labelFazerDownloadEmQualidade).append($listaDownloads));
-
-                                    $(".blocos-midia").append($hideBloco);
-                                }
-
+				videos.sort(sortVideoArray);	
+                                var fileObj = makeFileObjects(videos);
+				
+				for (var key in fileObj) {
+					var file =  fileObj[key];
+					var filename = file.list[file.defaultQuality][1];
+					var descItem = $('<p class="description-item" />').text(filename);
+					var filelink = file.list[file.defaultQuality][0];
+					
+					var item =  getFileItem(filename, filelink);
+					$(".lista-galeria-midia").append(item);
+					makeFancyBox(file);
+				}
+	
                                 $(".visualizar-midia.fancybox").fancybox({
                                     titleShow: false,
                                     autoDimensions: true,
@@ -351,7 +424,7 @@
                                         jwplayer("jwp-" + a.attr("href").substring(1)).setup({
                                             'flashplayer': '<xsl:value-of select="$theme-path"/>/lib/js/player.swf',
                                             'autostart': true,
-                                            'image': '<xsl:value-of select="$theme-path"/>/images/chamada-video.png',
+                                            'image': image_preview,
                                             'file':  filename,
                                             'width': resolution.width,
                                             'height': resolution.height,
@@ -361,14 +434,15 @@
                                       jwplayer("jwp-" + a.attr("href").substring(1)).pause();
                                     }
                                 });
+				
+				
                             </xsl:otherwise>
                         </xsl:choose>
                     });
                 </script>
+                <div class="blocos-midia"><span></span></div>
 
-                <div class="blocos-midia"></div>
-
-                <ul class="lista-galeria-midia"></ul>
+               
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
