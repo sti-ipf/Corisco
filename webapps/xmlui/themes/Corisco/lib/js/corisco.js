@@ -15,8 +15,6 @@ jQuery.each(arr, function(i, s) {
 
 var images_path = fs_path + '../img/';
 
-
-
 function onErrorImgPreview(elem){
 	elem.src='/xmlui/themes/Corisco/images/chamada-video-pequena.png';
 }

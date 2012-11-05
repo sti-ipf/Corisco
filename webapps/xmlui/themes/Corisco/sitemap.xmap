@@ -105,6 +105,7 @@
                     <map:parameter name="javascript#5" value="lib/js/corisco.js"/>
                     <map:parameter name="javascript#6" value="lib/js/jquery.qrcode.min.js"/>                    
                     <map:parameter name="javascript#7" value="lib/js/jquery.selectBox.min.js"/>                    
+                    <map:parameter name="javascript#8" value="lib/js/layout.js"/>                    
                 </map:transform>
 
                 <map:select type="browser">

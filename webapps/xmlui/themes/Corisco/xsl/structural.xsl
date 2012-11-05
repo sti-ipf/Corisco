@@ -147,7 +147,10 @@
 									
 								$('#selecionar-filtro').selectBox();
 								
-								$('#lista-resultados li').last().css('border-bottom', '0px');	
+								$('#lista-resultados li').last().css('border-bottom', '0px');
+
+								searchControl();
+								removeSeculos();
 							});
 						</script>
                         <div id="pagina">
@@ -2132,16 +2135,23 @@
     </xsl:template>
 
     <xsl:template match="dri:body/dri:div[starts-with(@n, 'browse-by')]" priority="1">
-        <div class="alfabeto cor1">
-            <xsl:apply-templates select="dri:div[@n='browse-navigation']/dri:list"/>
-        </div>
-        <div id="lista" class="caixa-borda cor1">
-            <xsl:apply-templates select="dri:div[starts-with(@n, 'browse-by-')]/dri:table" />
-            <xsl:comment>&#160;</xsl:comment>
-        </div>
-        <div class="alfabeto cor1">
-            <xsl:apply-templates select="dri:div[@n='browse-navigation']/dri:list"/>
-        </div>
+	<div id='resultados' class='borda'>
+		<div id='lista-resultados'>
+			<div class="alfabeto cor1">
+			    <xsl:apply-templates select="dri:div[@n='browse-navigation']/dri:list"/>
+			</div>
+			<div id='searchDiv' class='search'>
+				<span>   </span>
+			</div>
+			<div id="lista" class="caixa-borda cor1">
+			    <xsl:apply-templates select="dri:div[starts-with(@n, 'browse-by-')]/dri:table" />
+			    <xsl:comment>&#160;</xsl:comment>
+			</div>
+			<div class="alfabeto cor1">
+			    <xsl:apply-templates select="dri:div[@n='browse-navigation']/dri:list"/>
+			</div>
+		</div>
+	</div>
     </xsl:template>
 
     <!-- Next come the components of rich text containers, namely: hi, xref, figure and, in case of interactive
@@ -3407,19 +3417,21 @@
                             </xsl:otherwise>
                         </xsl:choose>
                     </ul>
-                    <xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI']=''">
-                        <div id="ultimas-publicacoes">
-                            <h1>Últimas Publicações</h1>
-                            <ul>
+                    
+                </xsl:otherwise>
+            </xsl:choose>
+        </div>
+	<xsl:if test="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='request'][@qualifier='URI']=''">
+		<div id="ultimas-publicacoes">
+                    <xsl:variable name="solr-search-url" select="concat(confman:getProperty('dspace.baseUrl'), '/solr/search')" />
+			<h1>Últimas Publicações</h1>
+			<ul>
                                 <xsl:variable name="query" select="concat($solr-search-url, '/select?q=search.resourcetype:2&amp;sort=dc.date.accessioned%20desc&amp;rows=6&amp;omitHeader=true')" />
 
                                 <xsl:apply-templates select="document($query)" mode="ultimasPublicacoes" />
                             </ul>
                         </div>
                     </xsl:if>
-                </xsl:otherwise>
-            </xsl:choose>
-        </div>
     </xsl:template>
 
     <xsl:template match="*" mode="ultimasPublicacoes">

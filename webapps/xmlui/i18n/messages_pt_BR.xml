@@ -114,7 +114,7 @@
 	<message key="xmlui.ArtifactBrowser.AbstractSearch.order">Em ordem</message>
 	<message key="xmlui.ArtifactBrowser.AbstractSearch.order.asc">Ascendente</message>
 	<message key="xmlui.ArtifactBrowser.AbstractSearch.order.desc">Descendente</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.rpp">Resultados por página:</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.rpp">Resultados/página:</message>
 
     <!-- org.dspace.app.xmlui.artifactbrowser.AdvancedSearch.java -->
 	<message key="xmlui.ArtifactBrowser.AdvancedSearch.title">Busca avançada</message>
@@ -1933,8 +1933,6 @@
   <message key="xmlui.ChoiceLookupTransformer.field.dc_contributor_author.help.last">Sobrenome, e.g. "Silva"</message>
   <message key="xmlui.ChoiceLookupTransformer.field.dc_contributor_author.help.first">Primeiro nome(s) e.g. "João"</message>
   <message key="xmlui.ChoiceLookupTransformer.field.dc_contributor_author.title">Busca de autor na LC Name Authority</message>
-  <message key="xmlui.ChoiceLookupTransformer.field.dc_contributor_author.nonauthority">Valor local "@1@" (fora da Autoridade de Nomes)</message>
-  <message key="custom.left.menu.Cartazes">Teste</message>
  	 
    <message key="xmlui.dri2xhtml.METS-1.0.no-author">Autor Desconhecido</message>
 </catalogue>

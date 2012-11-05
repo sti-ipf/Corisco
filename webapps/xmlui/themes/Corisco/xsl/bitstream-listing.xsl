@@ -318,7 +318,7 @@
 
 				}
 
-				function makeFancyBox(file){
+				function makeFancyBox(file, key){
 					var $hideBloco = $('<div style="display: none;" />');
 					var $bloco = $('<div class="div-midia-fancybox" id="' + key + '" />');
 					$bloco.append($('<div class="div-item-description-video" />').text(file.list[file.defaultQuality][1]));
@@ -384,9 +384,25 @@
 
 				}
 				
-				function makeHtml(){
+				function makeHtml(fileObj){
 					if(getMediaType() == 'audio'){
+						
+						for(var key in fileObj){
+							var file = fileObj[key];
+							var filename = file.list[file.defaultQuality][1];
+							var link = '';
+							if(filename == 'Áudiolivro completo')
+							{
+								var filelink = file.list[file.defaultQuality][0];
+								link = '<a href="#'+key+'" rel="'+filelink+'" class="audio-title visualizar-midia fancybox">'+filename+'</a>';
+								makeFancyBox(file, key);
+								delete fileObj[key];
+								break;
+							}
+						}
 						var img = '<img alt="Clique aqui para assistir ou fazer cópia do vídeo" onError="onErrorImgPreview(this);"  src="'+image_preview+'" />';
+						$('.blocos-midia').append('<div id="audio-title"></div>');
+						$('#audio-title').append(link);
 						$('.blocos-midia').append('<div class="audio-preview">'+img+'</div>');
 						$('.blocos-midia').append('<ul class="lista-galeria-midia lista-galeria-audio"></ul>');
 					}else
@@ -395,13 +411,15 @@
 					}
 
 				}
-				makeHtml();
 				var videos = [];
                                 <xsl:for-each select="mets:file">
                                     videos.push(["<xsl:value-of select="substring-before(mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')" />", "<xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label" />"]);
                                 </xsl:for-each>
+
 				videos.sort(sortVideoArray);	
                                 var fileObj = makeFileObjects(videos);
+				
+				makeHtml(fileObj);
 				
 				for (var key in fileObj) {
 					var file =  fileObj[key];
@@ -411,9 +429,10 @@
 					
 					var item =  getFileItem(filename, filelink);
 					$(".lista-galeria-midia").append(item);
-					makeFancyBox(file);
+					makeFancyBox(file, key);
 				}
 	
+                    				audioItensPipe();
                                 $(".visualizar-midia.fancybox").fancybox({
                                     titleShow: false,
                                     autoDimensions: true,
