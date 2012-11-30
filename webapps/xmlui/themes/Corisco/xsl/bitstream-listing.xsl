@@ -214,18 +214,13 @@
 				</xsl:variable>
 			
 				var image_preview = 'http://177.11.48.108/acervo_preview_img/<xsl:value-of select="$identifier-other"/>.png';		
-				function getStreamingFile(fullpath) {
-					<xsl:choose>
-					   <xsl:when test="mets:file/@MIMETYPE='audio/ogg'">
-						var path = 'http://177.11.48.108/acervo_audios/';
-                                            </xsl:when>
-                        		    <xsl:when test="mets:file/@MIMETYPE='audio/x-mpeg'">
-						var path = 'http://177.11.48.108/acervo_audios/';
-                                            </xsl:when>
-                                            <xsl:otherwise>
-						var path = 'http://177.11.48.108/acervo_videos/';
-					    </xsl:otherwise>   
-					</xsl:choose>	
+				function getStreamingFile(fullpath, type) {
+					
+					var path = '';
+					if(type == 'audio')
+						path = 'http://177.11.48.108/acervo_audios/';
+					else
+						path = 'http://177.11.48.108/acervo_videos/';
 			
 															
 					var firstIndex = fullpath.lastIndexOf('/');
@@ -236,17 +231,13 @@
 				}
 
 				function getMediaType(){
-					<xsl:choose>
-					   <xsl:when test="mets:file/@MIMETYPE='audio/ogg'">
-                                            	return 'audio';
-					    </xsl:when>
-                        		    <xsl:when test="mets:file/@MIMETYPE='audio/x-mpeg'">
-                                            	return 'audio';
-					    </xsl:when>
-                                            <xsl:otherwise>
-					    	return 'video';
-					    </xsl:otherwise>   
-					</xsl:choose>
+					var type = 'audio'; 	
+                                	<xsl:for-each select="mets:file">
+					   <xsl:if test="@MIMETYPE='video/ogg'">
+                                            	type =  'video';
+					   </xsl:if>
+					</xsl:for-each>
+					return type;		
 				}	
 
                                 function textoQualidade(sigla) {
@@ -287,9 +278,10 @@
                                 function trocaQualidade() {
                                     var id = $(this).attr("rel");
                                     var conf = $(this).attr("alt").split("|");
-                                    var width = parseInt(conf[1]);
+                                    var type = $(this).attr("type");
+				    var width = parseInt(conf[1]);
                                     var height = parseInt(conf[2]);
-				    var filename = getStreamingFile(conf[0]);
+				    var filename = getStreamingFile(conf[0], type);
                                     jwplayer(id)
                                         .load([{
                                             'file': filename,
@@ -302,55 +294,76 @@
                                     return false;
                                 }
 				
+				function getAttachFileType(mimetype){
+					var index = mimetype.indexOf('/');
+					return mimetype.substr(0, index);
+				}
+
 				function makeFileObjects(files){
 					var obj = new Object()	
 					for (var i = 0; i <xsl:text disable-output-escaping="yes">&lt;</xsl:text> files.length; i++) {
 						var index = files[i][0].substr(0, files[i][0].lastIndexOf("_")).replace(/[\/%_]/g, "");
 						var iPos = files[i][0].lastIndexOf("_")+1;
 						var quality = files[i][0].substr(iPos, files[i][0].lastIndexOf(".")-iPos);
+						var type = getAttachFileType(files[i][2]);
 
-						if (eval("obj." + index) == undefined) eval("obj." + index + " = new Object({defaultQuality: '" + quality + "', list: new Object})");
+						if (eval("obj." + index) == undefined) eval("obj." + index + " = new Object({defaultQuality: '" + quality + "', type: '"+type+"', key: '"+index+"', name: '"+files[i][1]+"', list: new Object})");
 						if (quality == "B") eval("obj." + index + ".defaultQuality = 'B'");
 
 						eval("obj." + index + ".list." + quality + " = ['" + files[i][0] + "', '" + files[i][1] + "']");
 					}
+
+					if(getMediaType() == 'video'){
+						for(var key in obj){
+							var file = obj[key];
+							if(file.type == 'audio'){
+								delete obj[key];
+								addAudioToYourVideo(file, obj);
+							}
+						}
+					}
+
 					return obj;
 
 				}
 
-				function makeFancyBox(file, key){
+				function addAudioToYourVideo(audioFile, fileObj){
+					for(var key in fileObj){
+						var file = fileObj[key];
+						if(file.type == 'video'){
+							if(file.name == audioFile.name)
+							{
+								file.audio = audioFile;
+								break;
+							}
+						}
+					}
+				}
+
+				function makeFancyBox(file){
 					var $hideBloco = $('<div style="display: none;" />');
-					var $bloco = $('<div class="div-midia-fancybox" id="' + key + '" />');
+					var $bloco = $('<div class="div-midia-fancybox" id="' + file.key + '" />');
 					$bloco.append($('<div class="div-item-description-video" />').text(file.list[file.defaultQuality][1]));
-					$bloco.append('<div id="jwp-' + key + '">Carregando...</div>');
+					$bloco.append('<div id="jwp-' + file.key + '">Carregando...</div>');
 
-					var $labelVisualizarEmQualidade = $('<strong />').text("Visualizar em qualidade: ");
-					var $labelFazerDownloadEmQualidade = $('<strong />').text("Baixar/Copiar em qualidade: ");
-
-					var $lista = $('<ul class="qualidades-video" />');
-					var $listaDownloads = $('<ul class="qualidades-video" />');
-					for (quality in file.list) {
-						var value = file.list[quality];
-
-						$listaDownloads.append($('<li />').append($('<a href="' + value[0] + '" alt="' + value[0] + '">' + textoQualidade(quality) + '</a>')));
-						if (quality != "C") {
-							var resolution = getResolution(quality)
-								value = value[0] + "|" + resolution.width + "|" + resolution.height;
-
-							$lista.append($('<li />').append($('<a href="javascript:void(0);" rel="jwp-' + key + '" alt="' + value + '">' + textoQualidade(quality) + '</a>').click(trocaQualidade)));
+					var $listaDiv = $('<div class="listaNormal" id="'+file.key+'" />');
+					makeFancyBoxLists(file, $listaDiv, file.key);
+					$hideBloco.append($bloco.append($('<br />')).append($listaDiv));
+					
+					$(".blocos-midia").append($hideBloco);
+				
+					if(file.type == 'video'){
+						if(file.audio){
+							var $onlyAudioList = $('<div class="onlyAudioList" />');
+							makeFancyBoxLists(file.audio, $onlyAudioList, file.key);
+							$listaDiv.after($onlyAudioList);
+							$listaDiv.css('border-right', 'solid 1px');
 						}
 					}
 
-					var pipesAdded = 0;
-					$listaDownloads.children().each(function(index) {
-							index += pipesAdded;
-							var not_is_last_item = (index <xsl:text disable-output-escaping="yes">&lt;</xsl:text> ($listaDownloads.children().length - 1));
-							if (not_is_last_item) {
-							$(this).after($('<strong />').text('|'));
-							pipesAdded += 1;
-							}
-							});
-
+				}
+				
+				function putPipeSeparatorInList($lista){
 					var pipesAdded = 0;
 					$lista.children().each(function(index) {
 							index += pipesAdded;
@@ -360,14 +373,44 @@
 							pipesAdded += 1;
 							}
 							});
-
-					$hideBloco.append($bloco.append($('<br />')).append($labelVisualizarEmQualidade).append($lista).append($labelFazerDownloadEmQualidade).append($listaDownloads));
-
-					$(".blocos-midia").append($hideBloco);
-
 				}
 
-				function getFileItem(filename, filelink){
+				function makeFancyBoxLists(file, $divToAppend, jwplayerID){
+					var visualizarLabel = file.type == 'video' ? "Visualizar em qualidade: " : "Ouvir em qualidade: ";
+					var $labelVisualizarEmQualidade = $('<strong />').text(visualizarLabel);
+					var $labelFazerDownloadEmQualidade = $('<strong />').text("Baixar/Copiar em qualidade: ");
+					var $lista = $('<ul class="qualidades-video" />');
+					var $listaDownloads = $('<ul class="qualidades-video" />');
+					for (var quality in file.list) {
+						var value = file.list[quality];
+
+						$listaDownloads.append($('<li />').append($('<a href="' + value[0] + '" alt="' + value[0] + '">' + textoQualidade(quality) + '</a>')));
+						if (quality != "C") {
+							var resolution = getResolution(quality)
+							value = value[0] + "|" + resolution.width + "|" + resolution.height;
+
+							$lista.append($('<li />').append($('<a href="javascript:void(0);" type="'+file.type+'" rel="jwp-' +jwplayerID + '" alt="' + value + '">' + textoQualidade(quality) + '</a>').click(trocaQualidade)));
+						}
+					}
+
+					var pipesAdded = 0;
+					
+					putPipeSeparatorInList($listaDownloads);
+					putPipeSeparatorInList($lista);
+					
+					$divToAppend.append($labelVisualizarEmQualidade).append($lista).append($labelFazerDownloadEmQualidade).append($listaDownloads);
+				}
+				
+				function buildFancyBox(file){
+					var item =  getItemList(file);
+					$(".lista-galeria-midia").append(item);
+					makeFancyBox(file);
+				}	
+
+				function getItemList(file){
+					var filename = file.name;
+					var key = file.key;
+					var filelink = file.list[file.defaultQuality][0];
 					if(getMediaType() == 'video')
 					{
 						var descItem = $('<p class="description-item" />').text(filename);
@@ -378,83 +421,63 @@
 						if(!filename)
 							filename = 'Audio';
 						var descItem = $('<label class="description-item" />').text(filename);
-						return $('<li class="item itemAudio" />').append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + filelink + '" title="Clique aqui para assistir ou fazer cópia do vídeo" />').append(descItem));
+						return $('<li class="item" />').append($('<a class="visualizar-midia fancybox" href="#' + key + '" rel="' + filelink + '" title="Clique aqui para assistir ou fazer cópia do vídeo" />').append(descItem));
 
 					}
 
 				}
 				
+
 				function makeHtml(fileObj){
 					if(getMediaType() == 'audio'){
-						
-						for(var key in fileObj){
-							var file = fileObj[key];
-							var filename = file.list[file.defaultQuality][1];
-							var link = '';
-							if(filename == 'Áudiolivro completo')
-							{
-								var filelink = file.list[file.defaultQuality][0];
-								link = '<a href="#'+key+'" rel="'+filelink+'" class="audio-title visualizar-midia fancybox">'+filename+'</a>';
-								makeFancyBox(file, key);
-								delete fileObj[key];
-								break;
-							}
-						}
 						var img = '<img alt="Clique aqui para assistir ou fazer cópia do vídeo" onError="onErrorImgPreview(this);"  src="'+image_preview+'" />';
 						$('.blocos-midia').append('<div id="audio-title"></div>');
-						$('#audio-title').append(link);
 						$('.blocos-midia').append('<div class="audio-preview">'+img+'</div>');
 						$('.blocos-midia').append('<ul class="lista-galeria-midia lista-galeria-audio"></ul>');
 					}else
 					{
 						$('.blocos-midia').append('<ul class="lista-galeria-midia lista-galeria-video"></ul>');
+						$('.blocos-midia').append('<p class="video-msg">Clique na imagem para assitir ou fazer cópia do vídeo</p>');
 					}
+					
+					for (var key in fileObj) {
+						buildFancyBox(fileObj[key]);
+					}
+		
+					$(".visualizar-midia.fancybox").fancybox({
+					    titleShow: false,
+					    autoDimensions: true,
+					    onComplete: function(a) {
+						var filename = getStreamingFile(a.attr("rel"), getMediaType());
+						var resolution = getResolution('B');
+						resizeFancybox(resolution.width, resolution.height);
+						jwplayer("jwp-" + a.attr("href").substring(1)).setup({
+						    'flashplayer': '<xsl:value-of select="$theme-path"/>/lib/js/player.swf',
+						    'autostart': true,
+						    'image': image_preview,
+						    'file':  filename,
+						    'width': resolution.width,
+						    'height': resolution.height,
+						});
+					    },
+					    onClose: function(e) {
+					      jwplayer("jwp-" + a.attr("href").substring(1)).pause();
+					    }
+					});
+				
 
 				}
-				var videos = [];
+				var files = [];
                                 <xsl:for-each select="mets:file">
-                                    videos.push(["<xsl:value-of select="substring-before(mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')" />", "<xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label" />"]);
+                                    files.push(["<xsl:value-of select="substring-before(mets:FLocat[@LOCTYPE='URL']/@xlink:href, '?')" />", "<xsl:value-of select="mets:FLocat[@LOCTYPE='URL']/@xlink:label" />", "<xsl:value-of select="@MIMETYPE" />"]);
                                 </xsl:for-each>
 
-				videos.sort(sortVideoArray);	
-                                var fileObj = makeFileObjects(videos);
-				
+				files.sort(sortFilesArray);
+				if(getMediaType() == 'audio')
+					prepareAudioArray(files);	
+				var fileObj = makeFileObjects(files);
 				makeHtml(fileObj);
-				
-				for (var key in fileObj) {
-					var file =  fileObj[key];
-					var filename = file.list[file.defaultQuality][1];
-					var descItem = $('<p class="description-item" />').text(filename);
-					var filelink = file.list[file.defaultQuality][0];
-					
-					var item =  getFileItem(filename, filelink);
-					$(".lista-galeria-midia").append(item);
-					makeFancyBox(file, key);
-				}
-	
-                    				audioItensPipe();
-                                $(".visualizar-midia.fancybox").fancybox({
-                                    titleShow: false,
-                                    autoDimensions: true,
-                                    onComplete: function(a) {
-					var filename = getStreamingFile(a.attr("rel"));
-                                        var resolution = getResolution('B');
-                                        resizeFancybox(resolution.width, resolution.height);
-                                        jwplayer("jwp-" + a.attr("href").substring(1)).setup({
-                                            'flashplayer': '<xsl:value-of select="$theme-path"/>/lib/js/player.swf',
-                                            'autostart': true,
-                                            'image': image_preview,
-                                            'file':  filename,
-                                            'width': resolution.width,
-                                            'height': resolution.height,
-                                        });
-                                    },
-                                    onClose: function(e) {
-                                      jwplayer("jwp-" + a.attr("href").substring(1)).pause();
-                                    }
-                                });
-				
-				
+								
                             </xsl:otherwise>
                         </xsl:choose>
                     });

@@ -1438,9 +1438,11 @@ h3.separador {
 }
 
 .lista-galeria-audio {
-	text-align: center;
-	max-width: 400px;
+	text-align: left;
+	max-width: 481px;
 	margin: 0 auto;
+	float: left;
+	padding-left: 20px;
 }
 
 .lista-galeria-midia .item {
@@ -1832,4 +1834,29 @@ margin-top: 10px;
 #audio-title{
 	color:#A80000;
 	font-weight: bold;
+}
+
+.audio-preview{
+	float:left;
+	padding-left: 178px;
+}
+
+
+.lista-galeria-video li .description-item{
+	font-size: 16px;
+}
+
+.video-msg{
+	color: #A80000;
+}
+
+.listaNormal{
+	float: left;
+	position: relative;
+	width: 50%;
+}
+
+.onlyAudioList{
+	float: right;
+	position: relative;
 }

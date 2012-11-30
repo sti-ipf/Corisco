@@ -19,8 +19,20 @@ function onErrorImgPreview(elem){
 	elem.src='/xmlui/themes/Corisco/images/chamada-video-pequena.png';
 }
 
+function prepareAudioArray(array){
+	var newArray = [];
+	for(var i = 0; i < array.length; i++){  
+		var title = array[i][1]; 
+		if(title == 'Áudiolivro completo'){
+			var elem = array[i];
+			array.splice(i, 1);
+			array.unshift(elem);
+		}
+	}
+	return array;
+}
 
-function sortVideoArray(elem1, elem2){
+function sortFilesArray(elem1, elem2){
 	function removeAcento(str) {
 		str = str.replace(/^\s+|\s+$/g, ''); // trim
 		str = str.toLowerCase();
